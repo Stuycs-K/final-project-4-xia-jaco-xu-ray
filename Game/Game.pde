@@ -15,7 +15,7 @@ void run(){
 }
 
 int dice(){
-  return (int)(Math.random() * 11) + 2;
+  return (int)(Math.random() * 11) + 2; // arent the chances for each number different because there are various ways of getting like 7 but little chance of getting 2?
 }
 
 void drawPlayer(){
