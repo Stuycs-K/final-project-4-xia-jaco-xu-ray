@@ -1,9 +1,14 @@
 private Player[] playerlist;
 private BoardSpace[] spaces;
+private int[] buyPrices;
+private int[] sellPrices;
+private int[][] rentPrices;
 
 
 void setup(){
-  
+  buyPrices = new int[]{60, 107, 147, 187, 227, 267, 307, 375};
+  sellPrices = new int[]{30, 54, 74, 94, 114, 134, 154, 188};
+  rentPrices = new int[][]{{3, 15, 45, 135, 240, 350}};
 }
 
 void draw(){
