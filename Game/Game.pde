@@ -1,3 +1,7 @@
+private Player[] playerlist;
+private BoardSpace[] spaces;
+
+
 void setup(){
   
 }
@@ -11,7 +15,7 @@ void run(){
 }
 
 int dice(){
-  return 0;
+  return (int)(Math.random() * 11) + 2;
 }
 
 void drawPlayer(){
