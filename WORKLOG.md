@@ -15,10 +15,12 @@ info
 
 ## Ray Xu
 
-### date x
+### 5/22/24
+Classwork: N/A; absent for AP.
+Homework: Updated various instance variables and methods within Property and Game classes
 
-info
-
-### date y
-
-info
+### date 5/23/24
+Classwork: Began working on pricing for board spaces in Game class within setup()
+Homework: Updated various instance variables and methods within Property and Street classes,
+          added Player class instance variables, constructor, methods based on prototype document. 
+          Updated UML diagram on prototype document to reflect any other changes/additions.
