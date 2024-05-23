@@ -1,35 +1,43 @@
 class Property extends BoardSpace{
   private boolean occupied;
   private Player whoOccupied;
-  private int price;
+  private int rentPrice;
   private int buyPrice;
   private String type;
   
-  int getPrice(){
-    return 0;
+  public Property(String name, int rentPrice, int buyPrice, String type){
+    super(name);
+    occupied = false;
+    this.rentPrice = rentPrice;
+    this.buyPrice = buyPrice;
+    this.type = type;
   }
   
-  void setPrice(){
-    
+  int getPrice(){
+    return rentPrice;
+  }
+  
+  void setPrice(int newPrice){
+    rentPrice = newPrice;
   }
   
   int buyPrice(){
-    return 0;
+    return buyPrice;
   }
   
   boolean isOccupied(){
-    return false;
+    return occupied;
   }
   
   Player getOccupier(){
-    
+    return whoOccupied;
   }
   
   void setOccupied(Player occupier){
-    
+    whoOccupied = occupier;
   }
   
   void setOccupied(boolean status){
-    
+    occupied = status;
   }
 }
