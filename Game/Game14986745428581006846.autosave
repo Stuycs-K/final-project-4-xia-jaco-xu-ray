@@ -1,0 +1,28 @@
+private Player[] playerlist;
+private BoardSpace[] spaces;
+
+
+void setup(){
+  
+}
+
+void draw(){
+
+}
+
+void run(){
+  
+}
+
+int dice(){
+  return (int)(Math.random() * 11) + 2;
+  // alternatively, return (int)(Math.random() * 6) + 1, twice separately and print out each one.
+}
+
+void drawPlayer(){
+  
+}
+
+void drawBoard(){
+  
+}
