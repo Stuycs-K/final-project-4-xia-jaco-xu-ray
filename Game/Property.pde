@@ -3,7 +3,7 @@ class Property extends BoardSpace{
   private Player whoOccupied;
   private int rentPrice;
   private int buyPrice;
-  private String type;
+  private String type; //either street or utility
   
   public Property(String name, int rentPrice, int buyPrice, String type){
     super(name);
