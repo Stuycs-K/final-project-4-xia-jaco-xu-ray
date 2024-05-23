@@ -1,5 +1,5 @@
 class Street extends Property{
-  private String col;
+  private String col; //color
   private int houses;
   private int hotels;
   
