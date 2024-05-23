@@ -1,17 +1,19 @@
 # Work Log
 
-## GROUP MEMBER 1
+## Jaco Xia
 
-### date x
+### 5/22/24
 
-info
+Classwork: Created files for the classes in processing. Added some methods
+but have not implemented them yet. Still need to add the rest of the
+methods before starting work. Homework: implemented the Street class.
 
 ### date y
 
 info
 
 
-## GROUP MEMBER 2
+## Ray Xu
 
 ### date x
 
