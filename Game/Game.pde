@@ -16,23 +16,7 @@ void setup() {
     {23, 113, 340, 817, 992, 1167},
     {27, 137, 410, 933, 1133, 1317},
     {43, 188, 550, 1250, 1500, 1750}};
-}
-
-void draw() {
-}
-
-void run() {
-}
-
-int dice() {
-  //return (int)(Math.random() * 11) + 2; // arent the chances for each number different because there are various ways of getting like 7 but little chance of getting 2?
-  return (int)(Math.random() * 6) + (int)(Math.random() * 6) + 2;
-}
-
-void drawPlayer() {
-}
-
-void drawBoard() {
+  
   Property brown1, brown2,
     lightBlue1, lightBlue2, lightBlue3,
     pink1, pink2, pink3,
@@ -42,7 +26,6 @@ void drawBoard() {
     green1, green2, green3,
     darkBlue1, darkBlue2
     ;
-  //Street(String name, int rentPrice, int buyPrice, String type, String col, int houses, int hotels){
   brown1 = new Street("Mediterranean Avenue", 3, 60, "Street", "brown", 0, 0);
   brown2 = new Street("Baltic Avenue", 3, 60, "Street", "brown", 0, 0);
 
@@ -78,9 +61,26 @@ void drawBoard() {
     empty(), pink1, empty(), pink2, pink3, empty(), orange1, empty(), orange2, orange3,
     empty(), red1, empty(), red2, red3, empty(), yellow1, yellow2, empty(), yellow3,
     new BoardSpace("Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new BoardSpace("luxuryTax"), darkBlue2
-  }
+  };
 
-  ;
+}
+
+void draw() {
+}
+
+void run() {
+}
+
+int dice() {
+  //return (int)(Math.random() * 11) + 2; // arent the chances for each number different because there are various ways of getting like 7 but little chance of getting 2?
+  return (int)(Math.random() * 6) + (int)(Math.random() * 6) + 2;
+}
+
+void drawPlayer() {
+}
+
+void drawBoard() {
+  
 }
 
 BoardSpace empty() {

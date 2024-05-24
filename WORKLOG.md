@@ -8,9 +8,13 @@ Classwork: Created files for the classes in processing. Added some methods
 but have not implemented them yet. Still need to add the rest of the
 methods before starting work. Homework: implemented the Street class.
 
-### date y
+### 5/23/24
 
-info
+Classwork+Homework: Started working on constructing/initializing
+the board array (using 40 spaces like a real monopoly board, but
+putting empty spaces things like chance cards that we decided to
+cut out for now). Successfully created all the streets and created
+the array. Next steps are to make sure that the graphics logic will work accordingly.
 
 
 ## Ray Xu
