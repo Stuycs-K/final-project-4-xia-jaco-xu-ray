@@ -1,4 +1,4 @@
-abstract class BoardSpace{
+class BoardSpace{
   private String name;
   public String toString(){return name;};
   
