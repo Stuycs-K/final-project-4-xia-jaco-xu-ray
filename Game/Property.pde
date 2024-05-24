@@ -40,4 +40,8 @@ class Property extends BoardSpace{
   void setOccupied(boolean status){
     occupied = status;
   }
+  
+  String getType(){ //Added this method and added it to diagram - Ray [DELETE AFTER SEEN]
+    return type;
+  }
 }

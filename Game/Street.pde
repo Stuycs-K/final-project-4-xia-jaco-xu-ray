@@ -13,16 +13,18 @@ class Street extends Property{
   int getHouses(){
     return houses;
   }
-  int getHotels(){ // need to update the diagram with this method
+  int getHotels(){ // Updated the diagram with this method - Ray [DELETE AFTER SEEN]
     return hotels;
   }
-  void setHouses(int amount){ // need to update the diagram with these parameters
+  void setHouses(int amount){ // Updated the diagram with these parameters - Ray [DELETE AFTER SEEN]
     houses=amount;
   }
   void setHotels(int amount){
     hotels=amount;
   }
-  
+  String getColor() {
+    return col;
+  }
 
   
 }
