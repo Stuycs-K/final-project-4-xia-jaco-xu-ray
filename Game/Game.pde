@@ -26,35 +26,35 @@ void setup() {
     green1, green2, green3,
     darkBlue1, darkBlue2
     ;
-  brown1 = new Street("Mediterranean Avenue", 3, 60, "Street", "brown", 0, 0);
-  brown2 = new Street("Baltic Avenue", 3, 60, "Street", "brown", 0, 0);
+  brown1 = new Street("Mediterranean Avenue", rentPrices[0][0], buyPrices[0], "Street", "brown", 0, 0);
+  brown2 = new Street("Baltic Avenue", rentPrices[0][0], buyPrices[0], "Street", "brown", 0, 0);
 
-  lightBlue1 = new Street("Oriental Avenue", 7, 107, "Street", "lightBlue", 0, 0);
-  lightBlue2 = new Street("Vermont Avenue", 7, 107, "Street", "lightBlue", 0, 0);
-  lightBlue3 = new Street("Connecticut Avenue", 7, 107, "Street", "lightBlue", 0, 0);
+  lightBlue1 = new Street("Oriental Avenue", rentPrices[1][0], buyPrices[1], "Street", "lightBlue", 0, 0);
+  lightBlue2 = new Street("Vermont Avenue", rentPrices[1][0], buyPrices[1], "Street", "lightBlue", 0, 0);
+  lightBlue3 = new Street("Connecticut Avenue", rentPrices[1][0], buyPrices[1], "Street", "lightBlue", 0, 0);
 
-  pink1 = new Street("St. Charles Place", 11, 147, "Street", "pink", 0, 0);
-  pink2 = new Street("States Avenue", 11, 147, "Street", "pink", 0, 0);
-  pink3 = new Street("Virginia Avenue", 11, 147, "Street", "pink", 0, 0);
+  pink1 = new Street("St. Charles Place", rentPrices[2][0],buyPrices[2], "Street", "pink", 0, 0);
+  pink2 = new Street("States Avenue", rentPrices[2][0], buyPrices[2], "Street", "pink", 0, 0);
+  pink3 = new Street("Virginia Avenue", rentPrices[2][0], buyPrices[2], "Street", "pink", 0, 0);
 
-  orange1 = new Street("St. James Place", 15, 187, "Street", "orange", 0, 0);
-  orange2 = new Street("Tennessee Avenue", 15, 187, "Street", "orange", 0, 0);
-  orange3 = new Street("New York Avenue", 15, 187, "Street", "orange", 0, 0);
+  orange1 = new Street("St. James Place", rentPrices[3][0], buyPrices[3], "Street", "orange", 0, 0);
+  orange2 = new Street("Tennessee Avenue", rentPrices[3][0], buyPrices[3], "Street", "orange", 0, 0);
+  orange3 = new Street("New York Avenue", rentPrices[3][0], buyPrices[3], "Street", "orange", 0, 0);
 
-  red1 = new Street("Kentucky Avenue", 19, 227, "Street", "red", 0, 0);
-  red2 = new Street("Indiana Avenue", 19, 227, "Street", "red", 0, 0);
-  red3 = new Street("Illinois Avenue", 19, 227, "Street", "red", 0, 0);
+  red1 = new Street("Kentucky Avenue", rentPrices[4][0], buyPrices[4], "Street", "red", 0, 0);
+  red2 = new Street("Indiana Avenue", rentPrices[4][0], buyPrices[4], "Street", "red", 0, 0);
+  red3 = new Street("Illinois Avenue", rentPrices[4][0], buyPrices[4], "Street", "red", 0, 0);
 
-  yellow1 = new Street("Atlantic Avenue", 23, 267, "Street", "yellow", 0, 0);
-  yellow2 = new Street("Ventnor Avenue", 23, 267, "Street", "yellow", 0, 0);
-  yellow3 = new Street("Marvin Gardens", 23, 267, "Street", "yellow", 0, 0);
+  yellow1 = new Street("Atlantic Avenue", rentPrices[5][0], buyPrices[5], "Street", "yellow", 0, 0);
+  yellow2 = new Street("Ventnor Avenue", rentPrices[5][0], buyPrices[5], "Street", "yellow", 0, 0);
+  yellow3 = new Street("Marvin Gardens", rentPrices[5][0], buyPrices[5], "Street", "yellow", 0, 0);
 
-  green1 = new Street("Pacific Avenue", 27, 307, "Street", "green", 0, 0);
-  green2 = new Street("North Carolina Avenue", 27, 307, "Street", "green", 0, 0);
-  green3 = new Street("Pennsylvania Avenue", 27, 307, "Street", "green", 0, 0);
+  green1 = new Street("Pacific Avenue", rentPrices[6][0], buyPrices[6], "Street", "green", 0, 0);
+  green2 = new Street("North Carolina Avenue", rentPrices[6][0], buyPrices[6], "Street", "green", 0, 0);
+  green3 = new Street("Pennsylvania Avenue", rentPrices[6][0], buyPrices[6], "Street", "green", 0, 0);
 
-  darkBlue1 = new Street("Park Place", 43, 375, "Street", "darkBlue", 0, 0);
-  darkBlue2 = new Street("Boardwalk", 43, 375, "Street", "darkBlue", 0, 0);
+  darkBlue1 = new Street("Park Place", rentPrices[7][0], buyPrices[7], "Street", "darkBlue", 0, 0);
+  darkBlue2 = new Street("Boardwalk", rentPrices[7][0], buyPrices[7], "Street", "darkBlue", 0, 0);
   //public Property(String name, int rentPrice, int buyPrice, String type){
   spaces = new BoardSpace[]{ // total 40 spaces
     new BoardSpace("Go"), brown1, empty(), brown2, new BoardSpace("incomeTax"), empty(), lightBlue1, empty(), lightBlue2, lightBlue3,
@@ -72,7 +72,6 @@ void run() {
 }
 
 int dice() {
-  //return (int)(Math.random() * 11) + 2; // arent the chances for each number different because there are various ways of getting like 7 but little chance of getting 2?
   return (int)(Math.random() * 6) + (int)(Math.random() * 6) + 2;
 }
 
