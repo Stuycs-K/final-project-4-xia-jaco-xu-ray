@@ -57,10 +57,10 @@ void setup() {
   darkBlue2 = new Street("Boardwalk", rentPrices[7][0], buyPrices[7], "Street", "darkBlue", 0, 0);
   //public Property(String name, int rentPrice, int buyPrice, String type){
   spaces = new BoardSpace[]{ // total 40 spaces
-    new BoardSpace("Go"), brown1, empty(), brown2, new BoardSpace("incomeTax"), empty(), lightBlue1, empty(), lightBlue2, lightBlue3,
+    new BoardSpace("Go"), brown1, empty(), brown2, new Tax("incomeTax", 200), empty(), lightBlue1, empty(), lightBlue2, lightBlue3,
     empty(), pink1, empty(), pink2, pink3, empty(), orange1, empty(), orange2, orange3,
     empty(), red1, empty(), red2, red3, empty(), yellow1, yellow2, empty(), yellow3,
-    new BoardSpace("Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new BoardSpace("luxuryTax"), darkBlue2
+    new BoardSpace("Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new Tax("luxuryTax", 100), darkBlue2
   };
 
 }
