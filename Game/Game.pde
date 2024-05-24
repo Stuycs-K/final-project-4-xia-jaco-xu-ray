@@ -30,14 +30,20 @@ void drawPlayer(){
 
 void drawBoard(){
   Property brown1,brown2,
-           lightBlue1,lightBlue2,
+           lightBlue1,lightBlue2,lightBlue3,
            pink1,pink2,pink3,
            orange1,orange2,orange3,
            red1,red2,red3,
            yellow1,yellow2,yellow3,
            green1,green2,green3,
-           darkBlue1,darkBlue2,darkBlue3
+           darkBlue1,darkBlue2
            ;
+//Street(String name, int rentPrice, int buyPrice, String type, String col, int houses, int hotels){
+  brown1 = new Property("Mediterranean Avenue", 3, 60, "Street", "brown", 0, 0);
+  brown2 = new Property("Baltic Avenue", 3, 60, "Street", "brown", 0, 0);
+  lightBlue1 = new Property("Baltic Avenue", 3, 60, "Street", "brown", 0, 0);
+  spaces = new BoardSpace[]{
+    
    
   ;
   
