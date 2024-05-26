@@ -63,10 +63,27 @@ void setup() {
     empty(), red1, empty(), red2, red3, empty(), yellow1, yellow2, empty(), yellow3,
     new BoardSpace("Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new Tax("luxuryTax", 100), darkBlue2
   };
+  drawBoard();
 
 }
 
 void draw() {
+
+  
+}
+
+void run() {
+  
+}
+
+int dice() {
+  return (int)(Math.random() * 6) + (int)(Math.random() * 6) + 2;
+}
+
+void drawPlayer() {
+}
+
+void drawBoard() {
   int spaceCounter = 0;
   for (int i = 0; i<width; i+=100) {
     fill(225);
@@ -94,21 +111,6 @@ void draw() {
     //}
     spaceCounter++;
   }
-  
-}
-
-void run() {
-}
-
-int dice() {
-  return (int)(Math.random() * 6) + (int)(Math.random() * 6) + 2;
-}
-
-void drawPlayer() {
-}
-
-void drawBoard() {
-  
 }
 
 BoardSpace empty() {
