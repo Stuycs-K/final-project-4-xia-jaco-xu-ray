@@ -32,3 +32,6 @@ Homework: Updated various instance variables and methods within Property and Str
 ### 5/24/24
 Classwork: Created subclass for tax spaces, updated Game space list to reflect changs. Also changed UML diagram.
 Updated street space constructors to utilize array values in case prices want to be changed more efficiently.
+
+### 5/26/24
+Homework: Added board spaces to draw/setup, added text to board spaces. Can now visualize the board.
