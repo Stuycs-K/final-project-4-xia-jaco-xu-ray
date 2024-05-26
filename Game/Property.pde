@@ -5,8 +5,8 @@ class Property extends BoardSpace{
   private int buyPrice;
   private String type; //either street or utility
   
-  public Property(String name, int rentPrice, int buyPrice, String type){
-    super(name);
+  public Property(String type, String name, int rentPrice, int buyPrice, String type){
+    super(type,name);
     occupied = false;
     this.rentPrice = rentPrice;
     this.buyPrice = buyPrice;

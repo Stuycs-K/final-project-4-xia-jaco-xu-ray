@@ -21,8 +21,8 @@ class Player{
     return balance;
   }
   
-  void setBalance(int amount) { //This may be better as changeBalance() so you can just add the amount to existing balance (i.e. do calculation within method) instead of doing calculation in Game class - Ray
-    balance = amount;
+  void changeBalance(int amount) { //This may be better as changeBalance() so you can just add the amount to existing balance (i.e. do calculation within method) instead of doing calculation in Game class - Ray
+    balance = balance + amount;
   }
   
   /*
@@ -49,5 +49,16 @@ class Player{
     return bankrupt;
   }
   
+  int getPos(){
+    return position; 
+  }
+  
+  void setPos(int pos){
+    position = pos;
+  }
+  
+  void draw(){
+    circle(500,500, 100);
+  }
   
 }

@@ -3,8 +3,8 @@ class Street extends Property{
   private int houses;
   private int hotels;
   
-  Street(String name, int rentPrice, int buyPrice, String type, String col, int houses, int hotels){
-   super(name,rentPrice,buyPrice,type);
+  Street(String type, String name, int rentPrice, int buyPrice, String type, String col, int houses, int hotels){
+   super(type, name,rentPrice,buyPrice,type);
    this.col=col;
    this.houses=houses;
    this.hotels=hotels;
