@@ -6,6 +6,7 @@ private int[][] rentPrices;
 
 
 void setup() {
+  size(1000, 1000);
   buyPrices = new int[]{60, 107, 147, 187, 227, 267, 307, 375};
   sellPrices = new int[]{30, 54, 74, 94, 114, 134, 154, 188};
   rentPrices = new int[][]{{3, 15, 45, 135, 240, 350},
@@ -66,6 +67,24 @@ void setup() {
 }
 
 void draw() {
+  int spaceCounter = 0;
+  for (int i = 0; i<width; i+=100) {
+    fill(225);
+    rect(i, 0, 100, 100);
+    rect(0, i, 100, 100);
+    rect(i, height-100, 100, 100);
+    rect(width-100, i, 100, 100);
+  }
+  for (int i = 0; i<width; i+=100) {
+    //if (!spaces[spaceCounter].toString().equals("empty")) {
+      textSize(10);
+      fill(0);
+      text(spaces[spaceCounter].toString(), i+3, 20);
+      
+    //}
+    spaceCounter++;
+  }
+  
 }
 
 void run() {
