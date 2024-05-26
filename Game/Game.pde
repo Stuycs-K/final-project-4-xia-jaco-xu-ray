@@ -83,6 +83,9 @@ void run() {
   int bankrupt = 0;
   while(player.bankrupt==false){
     //change status; check jail status (add later)
+    
+    
+    // MOVE PLAYER
     int dice = dice();
     for(int i = 1; i<=dice; i++){ // moves player
       int newPos = player.getPos()+1;
@@ -94,17 +97,25 @@ void run() {
       delay(250); // .5 second delay to animate
     }
     
+    //CHECK LANDED SPACE     
     BoardSpace landedSpace = spaces[player.getPos()];
+    if(landedSpace.getType().equals("Property")){
+      //check owned; buy property; upgrade property (houses); etc
+    }
+    else if(landedSpace.getType().equals("Tax")){
+      
+    }
     
+    //
 
-    delay(1);
+    //delay(1);
     
+    // CHANGE PLAYER
     p++;
     if(p==playerlist.length){
       p = 0;
     }
   }
-  //System.out.println("hi");
 }
 
 int dice() {
