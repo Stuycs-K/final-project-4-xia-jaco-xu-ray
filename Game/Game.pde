@@ -64,16 +64,32 @@ void setup() {
     new BoardSpace("Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new Tax("luxuryTax", 100), darkBlue2
   };
   drawBoard();
-
+  //testing right now with 4 players
+  playerlist = new Player[]{new Player("bob", false),new Player("timmy", false),new Player("billy", false),new Player("sd", false)};
+  playerlist[0].setPos(1);
+  playerlist[1].setPos(5);
+  playerlist[2].setPos(6);
+  playerlist[3].setPos(12);
 }
 
 void draw() {
-
-  
+drawPlayer();
 }
 
 void run() {
-  
+  int player = 0;
+  int bankrupt = 0;
+  while(playerlist[player].bankrupt==false){
+    //change status
+    int dice = dice();
+    delay(1);
+    
+    player++;
+    if(player==playerlist.length){
+      player = 0;
+    }
+  }
+  //System.out.println("hi");
 }
 
 int dice() {
@@ -81,6 +97,46 @@ int dice() {
 }
 
 void drawPlayer() {
+  drawBoard();
+  for(int i = 0; i<playerlist.length; i++){
+    Player player = playerlist[i];
+    int pos = player.getPos();
+    int x;
+    int y;
+    if(pos < 11){
+      x = 50 + (pos * 100);
+      y = 50;
+    }
+    else if(pos < 21){
+      x = width - 50;
+      y = 50 + (100 * (pos - 10));
+    }
+    else if(pos < 31){
+      x = (width - 50) - (100 * (pos - 20));
+      y = height - 50;
+    }
+    else if(pos < 40){
+      x = 50;
+      y = (height - 50) - (100 * (pos - 30));
+    }
+    else{
+      System.out.println("not in bounds");
+      return;
+    }
+    if(i == 0){
+      fill(255,0,0);
+    }
+    if(i == 1){
+      fill(0,255,0);
+    }
+    if(i == 2){
+      fill(0,0,255);
+    }
+    if(i == 3){
+      fill(255,255,0);
+    }
+    circle(x,y,10);
+  }
 }
 
 void drawBoard() {

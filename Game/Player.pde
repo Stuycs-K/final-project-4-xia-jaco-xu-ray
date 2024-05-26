@@ -49,5 +49,12 @@ class Player{
     return bankrupt;
   }
   
+  int getPos(){
+    return position; 
+  }
+  
+  void setPos(int pos){
+    position = pos;
+  }
   
 }
