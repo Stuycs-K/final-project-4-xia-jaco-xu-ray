@@ -3,14 +3,14 @@ class Property extends BoardSpace{
   private Player whoOccupied;
   private int rentPrice;
   private int buyPrice;
-  private String type; //either street or utility
+  private String type2; //either street or utility
   
-  public Property(String type, String name, int rentPrice, int buyPrice, String type){
+  public Property(String type, String name, int rentPrice, int buyPrice, String type2){
     super(type,name);
     occupied = false;
     this.rentPrice = rentPrice;
     this.buyPrice = buyPrice;
-    this.type = type;
+    this.type = type2;
   }
   
   int getPrice(){
@@ -42,6 +42,6 @@ class Property extends BoardSpace{
   }
   
   String getType(){ //Added this method and added it to diagram - Ray [DELETE AFTER SEEN]
-    return type;
+    return type2;
   }
 }
