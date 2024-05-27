@@ -57,8 +57,13 @@ class Player{
     position = pos;
   }
   
-  void draw(){
-    circle(500,500, 100);
+  void setStatus(boolean state){
+    turnStatus = state;
   }
+  boolean getStatus(){
+    return turnStatus;
+  }
+  
+  
   
 }

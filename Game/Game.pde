@@ -3,6 +3,8 @@ private BoardSpace[] spaces;
 private int[] buyPrices;
 private int[] sellPrices;
 private int[][] rentPrices;
+private int distance;
+private int activePlayer;
 
 
 void setup() {
@@ -70,51 +72,39 @@ void setup() {
   playerlist[1].setPos(5);
   playerlist[2].setPos(6);
   playerlist[3].setPos(12);
-  drawPlayer();
+  //drawPlayer();
+  activePlayer = 0;
+  distance = 0;
 }
 
 void draw() {
-
+  drawBoard();
+  drawPlayer();
+  Player player = playerlist[activePlayer];
+  player.setStatus(true);
+  run();
 }
 
 void run() {
-  int p = 0; // indexing variable for which player is active
-  Player player = playerlist[p];
-  int bankrupt = 0;
-  while(player.bankrupt==false){
-    //change status; check jail status (add later)
-    
-    
-    // MOVE PLAYER
-    int dice = dice();
-    for(int i = 1; i<=dice; i++){ // moves player
-      int newPos = player.getPos()+1;
-      if(!(newPos<40)){ // if player makes a full loop to the start
-        newPos = 0;
-      }
-      player.setPos(newPos);
-      drawPlayer();
-      delay(250); // .5 second delay to animate
+  Player player = playerlist[activePlayer];
+  if(distance==0 && player.getStatus()){
+    distance = dice();
+  }
+  if(distance!=0){
+   player.setStatus(false);
+   player.setPos(player.getPos()+1);
+   if(!(player.getPos()<40)){
+     player.setPos(0); 
+   }
+   delay(500);
+   distance--;
+  }
+  if(distance==0 && !player.getStatus()){
+    activePlayer++;
+    if(activePlayer>=playerlist.length){
+      activePlayer=0;
     }
-    
-    //CHECK LANDED SPACE     
-    BoardSpace landedSpace = spaces[player.getPos()];
-    if(landedSpace.getType().equals("Property")){
-      //check owned; buy property; upgrade property (houses); etc
-    }
-    else if(landedSpace.getType().equals("Tax")){
-      
-    }
-    
-    //
-
-    //delay(1);
-    
-    // CHANGE PLAYER
-    p++;
-    if(p==playerlist.length){
-      p = 0;
-    }
+    //do the action
   }
 }
 

@@ -10,7 +10,7 @@ class Property extends BoardSpace{
     occupied = false;
     this.rentPrice = rentPrice;
     this.buyPrice = buyPrice;
-    this.type = type2;
+    this.type2 = type2;
   }
   
   int getPrice(){
