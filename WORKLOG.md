@@ -40,3 +40,8 @@ Updated street space constructors to utilize array values in case prices want to
 
 ### 5/26/24
 Homework: Added board spaces to draw/setup, added text to board spaces. Can now visualize the board.
+
+### 5/28/24
+Classwork: Updated baord size to fit on lab computers, updated visuals
+	   to reflect changes, updated player locations to prevent overlap/allow
+	   for multiple players to be viewed on one space at a given time.
