@@ -21,7 +21,7 @@ class Player{
     return balance;
   }
   
-  void changeBalance(int amount) { //This may be better as changeBalance() so you can just add the amount to existing balance (i.e. do calculation within method) instead of doing calculation in Game class - Ray
+  void changeBalance(int amount) { 
     balance = balance + amount;
   }
   
