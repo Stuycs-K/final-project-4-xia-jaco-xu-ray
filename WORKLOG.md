@@ -16,6 +16,11 @@ putting empty spaces things like chance cards that we decided to
 cut out for now). Successfully created all the streets and created
 the array. Next steps are to make sure that the graphics logic will work accordingly.
 
+## 5/24/24 AP
+
+### 5/26/24
+Homework: Implemented drawPlayer() and started run()/draw(). Might need to reconsider the main game loop.
+
 
 ## Ray Xu
 
