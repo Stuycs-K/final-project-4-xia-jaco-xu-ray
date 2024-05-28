@@ -5,6 +5,7 @@ private int[] sellPrices;
 private int[][] rentPrices;
 private int distance;
 private int activePlayer;
+private boolean buyScreen;
 
 
 void setup() {
@@ -75,14 +76,35 @@ void setup() {
   //drawPlayer();
   activePlayer = 0;
   distance = 0;
+  buyScreen = true;
 }
 
 void draw() {
   drawBoard();
   drawPlayer();
   Player player = playerlist[activePlayer];
-  player.setStatus(true);
-  run();
+  if(!buyScreen){
+    player.setStatus(true);
+    run();
+  }
+  else{
+    BoardSpace landedSpace = spaces[player.getPos()];
+    boolean selected = false;
+    if(selected||landedSpace.toString().equals("empty")){
+      buyScreen = false;
+      return;
+    }
+    int w = 300;
+    int l = 400;
+    noStroke();
+    fill(255,255,255);
+    rect((width-w)/2,(height-l)/2,w,l,20);
+    String name = landedSpace.toString();
+    fill(0);
+    textSize(30);
+    text(name,(width-(name.length()*14))/2,(height/2-165));
+    stroke(0);
+  }
 }
 
 void run() {
@@ -100,11 +122,11 @@ void run() {
    distance--;
   }
   if(distance==0 && !player.getStatus()){
-    activePlayer++;
+    //do the action
+    //activePlayer++;
     if(activePlayer>=playerlist.length){
       activePlayer=0;
     }
-    //do the action
   }
 }
 
@@ -123,8 +145,8 @@ void drawPlayer() {
       int x;
       int y;
       if(pos < 11){ // these if statements will just find the x and y pos on the board
-        x = 50 + (pos * sqLength);
-        y = 50;
+        x = sqLength/2 + (pos * sqLength);
+        y = sqLength/2;
       }
       else if(pos < 21){
         x = width - (sqLength/2);
