@@ -118,13 +118,13 @@ void drawPlayer() {
   for(int i = 0; i<playerlist.length; i++){    
     Player player = playerlist[i];
     if(!player.isBankrupt()){ // is the player bankrupt?
-      int sqLength = 100;
+      int sqLength = width/11;
       int pos = player.getPos();
       int x;
       int y;
       if(pos < 11){ // these if statements will just find the x and y pos on the board
-        x = 50 + (pos * sqLength);
-        y = 50;
+        x = width/22 + (pos * sqLength);
+        y = width/22;
       }
       else if(pos < 21){
         x = width - (sqLength/2);
@@ -144,15 +144,23 @@ void drawPlayer() {
       }
       if(i == 0){ // set the color for the player
         fill(255,0,0);
+        x-=5;
+        y-=5;
       }
       if(i == 1){
         fill(0,255,0);
+        x+=5;
+        y-=5;
       }
       if(i == 2){
         fill(0,0,255);
+        x+=5;
+        y+=5;
       }
       if(i == 3){
         fill(255,255,0);
+        x-=5;
+        y+=5;
       }
       //add more colors for more players
       circle(x,y,10); // CAN EDIT LATER FOR DIFFERENT DESIGN "peg"
@@ -188,7 +196,7 @@ void drawBoard() {
     //}
     spaceCounter++;
   }
-  image(loadImage("logo.png"), width/3, height/3, 500, 200);
+  image(loadImage("logo.png"), width/2-250, height/2-100, 500, 200);
 
 }
 
