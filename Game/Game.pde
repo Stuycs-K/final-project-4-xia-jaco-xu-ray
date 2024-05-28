@@ -92,7 +92,7 @@ void draw() {
     boolean selected = false;
     if(selected||landedSpace.toString().equals("empty")){
       buyScreen = false;
-      return;
+      return; //is this necessary since void function - ray [DELETE COMMENT IF SEEN]
     }
     int w = 300;
     int l = 400;
@@ -104,6 +104,11 @@ void draw() {
     textSize(30);
     text(name,(width-(name.length()*14))/2,(height/2-165));
     stroke(0);
+    if (landedSpace.getType().equals("Street")) {
+      if (!landedSpace.isOccupied()) {
+        //System.out.println("test");
+      }
+    }
   }
 }
 
