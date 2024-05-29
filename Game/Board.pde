@@ -110,13 +110,13 @@ class Board{
       return;
     }
     
-    drawBoard();
-    drawPlayer();
     if(activePlayer>=playerlist.size()){
       activePlayer=0;
     }
     Player player = playerlist.get(activePlayer);
+    drawBoard();
     run(buyScreen, player);
+    drawPlayer();
   }
   
   void run(boolean showBuyScreen, Player player) {
@@ -152,31 +152,24 @@ class Board{
         activePlayer++;
         return; //is this necessary since void function - ray [DELETE COMMENT IF SEEN]
       }
-      int w = 300;
-      int l = 400;
-      noStroke();
-      fill(225);
-      rect((width-w)/2,(height-l)/2,w,l,20);
-      fill(255,255,255);
-      rect((width-w)/2,(height-l+80)/2,w,l-40,0,0,20,20);
-      String name = landedSpace.toString();
-      fill(0);
-      textSize(30);
-      text(name,(width-(name.length()*14))/2,(height/2-165));
-      textSize(20);
-      String info = player.getName()+"'s balance: "+player.getBalance();
-      text(info,(width-(info.length()*14))/2,(height/2+175));
-      stroke(0);
-      if (landedSpace.getType().equals("Street")) {
+      determinePrompt(landedSpace,player);
+      
+    }
+  }
+  
+  void determinePrompt(BoardSpace landedSpace, Player player){
+     if (landedSpace.getType().equals("Street")) {
         Street lanSpace = (Street) landedSpace;
         if (!lanSpace.isOccupied()) {
-          textSize(20);
-          text("Purchase for $"+lanSpace.buyPrice()+"?",(width/2)-75,(height/2-130));
-          text("Press y for yes, n for no.", width/2 - 97, height/2 - 100);
+          String body1 = "Purchase for $"+lanSpace.buyPrice()+"?";
+          String body2 = "Press y for yes, n for no.";
+          cardPrompt(landedSpace.toString(),225,body1,body2,player.getName()+"'s balance: "+player.getBalance());
           if (keyPressed && key=='y' || key=='Y') {
             player.changeBalance(-lanSpace.buyPrice());
             buyScreen = !buyScreen;
             activePlayer++;
+            lanSpace.setOccupied(true);
+            lanSpace.setOccupied(player);
           }
           else if (keyPressed && key=='n' || key=='N') {
             buyScreen = !buyScreen; 
@@ -184,8 +177,15 @@ class Board{
           }
         } 
         else{
-         player.changeBalance(lanSpace.getPrice());
-         lanSpace.getOccupier().changeBalance(lanSpace.getPrice());
+         String body1 = "You must pay $"+lanSpace.getPrice()+" to "+lanSpace.getOccupier().getName();
+         String body2 = "Press y to confirm"; 
+         cardPrompt(landedSpace.toString(),225,body1,body2,"");
+         if (keyPressed && key=='y' || key=='Y') {
+            player.changeBalance(lanSpace.getPrice());
+            lanSpace.getOccupier().changeBalance(lanSpace.getPrice());
+            buyScreen = !buyScreen;
+            activePlayer++;
+         }
         }
       }
       else if(landedSpace.getType().equals("Tax")){
@@ -194,14 +194,34 @@ class Board{
         text("You must pay $"+lanSpace.getTax(),(width/2)-75,(height/2-130));
         text("Press y to confirm.", width/2 - 80, height/2 - 100);
         if (keyPressed && key=='y' || key=='Y') {
-            player.changeBalance(-lanSpace.buyPrice());
+            player.changeBalance(-lanSpace.getTax());
             buyScreen = !buyScreen;
             activePlayer++;
         }
       }
-      
-    }
   }
+  
+  void cardPrompt(String title, color titleColor, String body1, String body2, String bottom){ // need to adjust parameters to be able to fix position of texts
+    //card shape
+    int w = 300;
+    int l = 400;
+    noStroke();
+    fill(titleColor);
+    rect((width-w)/2,(height-l)/2,w,l,20);
+    fill(255);
+    rect((width-w)/2,(height-l+80)/2,w,l-40,0,0,20,20);
+    fill(0);
+    stroke(0);
+    //text
+    textSize(30);
+    text(title,(width-(title.length()*14))/2,(height/2-165));
+    textSize(20);
+    text(body1,(width/2)-75,(height/2-130));
+    text(body2, width/2 - 97, height/2 - 100);
+    //body3 text
+    text(bottom,(width-(bottom.length()*12))/2,(height/2+175));
+  }
+  
   int dice() {
     return (int)(Math.random() * 6) + (int)(Math.random() * 6) + 2;
   }
