@@ -33,35 +33,35 @@ class Board{
       green1, green2, green3,
       darkBlue1, darkBlue2
       ;
-    brown1 = new Street("Property", "Med  Ave", rentPrices[0][0], buyPrices[0], "Street", "brown", 0, 0);
-    brown2 = new Street("Property", "Baltic Ave", rentPrices[0][0], buyPrices[0], "Street", "brown", 0, 0);
+    brown1 = new Street("Property", "Med  Ave", rentPrices[0][0], buyPrices[0], "Street", color(139,69,19), 0, 0);
+    brown2 = new Street("Property", "Baltic Ave", rentPrices[0][0], buyPrices[0], "Street", color(139,69,19), 0, 0);
   
-    lightBlue1 = new Street("Property", "Oriental Ave", rentPrices[1][0], buyPrices[1], "Street", "lightBlue", 0, 0);
-    lightBlue2 = new Street("Property", "Vermont Ave", rentPrices[1][0], buyPrices[1], "Street", "lightBlue", 0, 0);
-    lightBlue3 = new Street("Property", "Conn Ave", rentPrices[1][0], buyPrices[1], "Street", "lightBlue", 0, 0);
+    lightBlue1 = new Street("Property", "Oriental Ave", rentPrices[1][0], buyPrices[1], "Street", color(173, 216, 230), 0, 0);
+    lightBlue2 = new Street("Property", "Vermont Ave", rentPrices[1][0], buyPrices[1], "Street", color(173, 216, 230), 0, 0);
+    lightBlue3 = new Street("Property", "Conn Ave", rentPrices[1][0], buyPrices[1], "Street", color(173, 216, 230), 0, 0);
   
-    pink1 = new Street("Property", "St. Charles Pl", rentPrices[2][0],buyPrices[2], "Street", "pink", 0, 0);
-    pink2 = new Street("Property", "States Ave", rentPrices[2][0], buyPrices[2], "Street", "pink", 0, 0);
-    pink3 = new Street("Property", "Virginia Ave", rentPrices[2][0], buyPrices[2], "Street", "pink", 0, 0);
+    pink1 = new Street("Property", "St. Charles Pl", rentPrices[2][0],buyPrices[2], "Street", color(199,21,133), 0, 0);
+    pink2 = new Street("Property", "States Ave", rentPrices[2][0], buyPrices[2], "Street", color(199,21,133), 0, 0);
+    pink3 = new Street("Property", "Virginia Ave", rentPrices[2][0], buyPrices[2], "Street", color(199,21,133), 0, 0);
   
-    orange1 = new Street("Property", "St. James Pl", rentPrices[3][0], buyPrices[3], "Street", "orange", 0, 0);
-    orange2 = new Street("Property", "Tenn Ave", rentPrices[3][0], buyPrices[3], "Street", "orange", 0, 0);
-    orange3 = new Street("Property", "New York Ave", rentPrices[3][0], buyPrices[3], "Street", "orange", 0, 0);
+    orange1 = new Street("Property", "St. James Pl", rentPrices[3][0], buyPrices[3], "Street", color(255,140,0), 0, 0);
+    orange2 = new Street("Property", "Tenn Ave", rentPrices[3][0], buyPrices[3], "Street", color(255,140,0), 0, 0);
+    orange3 = new Street("Property", "New York Ave", rentPrices[3][0], buyPrices[3], "Street", color(255,140,0), 0, 0);
   
-    red1 = new Street("Property", "Kentucky Ave", rentPrices[4][0], buyPrices[4], "Street", "red", 0, 0);
-    red2 = new Street("Property", "Indiana Ave", rentPrices[4][0], buyPrices[4], "Street", "red", 0, 0);
-    red3 = new Street("Property", "Illinois Ave", rentPrices[4][0], buyPrices[4], "Street", "red", 0, 0);
+    red1 = new Street("Property", "Kentucky Ave", rentPrices[4][0], buyPrices[4], "Street", color(255,0,0), 0, 0);
+    red2 = new Street("Property", "Indiana Ave", rentPrices[4][0], buyPrices[4], "Street", color(255,0,0), 0, 0);
+    red3 = new Street("Property", "Illinois Ave", rentPrices[4][0], buyPrices[4], "Street", color(255,0,0), 0, 0);
   
-    yellow1 = new Street("Property", "Atlantic Ave", rentPrices[5][0], buyPrices[5], "Street", "yellow", 0, 0);
-    yellow2 = new Street("Property", "Ventnor Ave", rentPrices[5][0], buyPrices[5], "Street", "yellow", 0, 0);
-    yellow3 = new Street("Property", "Marvin Gardens", rentPrices[5][0], buyPrices[5], "Street", "yellow", 0, 0);
+    yellow1 = new Street("Property", "Atlantic Ave", rentPrices[5][0], buyPrices[5], "Street", color(255,255,0), 0, 0);
+    yellow2 = new Street("Property", "Ventnor Ave", rentPrices[5][0], buyPrices[5], "Street", color(255,255,0), 0, 0);
+    yellow3 = new Street("Property", "Marvin Gardens", rentPrices[5][0], buyPrices[5], "Street", color(255,255,0), 0, 0);
   
-    green1 = new Street("Property", "Pacific Ave", rentPrices[6][0], buyPrices[6], "Street", "green", 0, 0);
-    green2 = new Street("Property", "NC Ave", rentPrices[6][0], buyPrices[6], "Street", "green", 0, 0);
-    green3 = new Street("Property", "Penn Ave", rentPrices[6][0], buyPrices[6], "Street", "green", 0, 0);
+    green1 = new Street("Property", "Pacific Ave", rentPrices[6][0], buyPrices[6], "Street", color(60,179,113), 0, 0);
+    green2 = new Street("Property", "NC Ave", rentPrices[6][0], buyPrices[6], "Street", color(60,179,113), 0, 0);
+    green3 = new Street("Property", "Penn Ave", rentPrices[6][0], buyPrices[6], "Street", color(60,179,113), 0, 0);
   
-    darkBlue1 = new Street("Property", "Park Place", rentPrices[7][0], buyPrices[7], "Street", "darkBlue", 0, 0);
-    darkBlue2 = new Street("Property", "Boardwalk", rentPrices[7][0], buyPrices[7], "Street", "darkBlue", 0, 0);
+    darkBlue1 = new Street("Property", "Park Place", rentPrices[7][0], buyPrices[7], "Street", color(65,105,225), 0, 0);
+    darkBlue2 = new Street("Property", "Boardwalk", rentPrices[7][0], buyPrices[7], "Street", color(65,105,225), 0, 0);
 
     //spaces array intialization
     spaces = new BoardSpace[]{ // total 40 spaces
@@ -298,14 +298,37 @@ class Board{
   }
   
   void drawBoard() {
-    background(240,240,255); // change to whatever looks good
+    background(205, 230, 208); // change to whatever looks good
     int spaceCounter = 0;
     for (int i = 0; i<width; i+=width/11) {
-      fill(225);
+      fill(205, 230, 208);
+      strokeWeight(2);
       rect(i, 0, width/11, width/11);
       rect(0, i, width/11, width/11);
       rect(i, height-(width/11), width/11, width/11);
       rect(width-(width/11), i, width/11, width/11);
+      //noStroke();
+      int pos = i/80;
+      if(spaces[pos].getType()=="Street"){
+        Street landedSpace = (Street)spaces[pos];        
+        fill(landedSpace.getColor());
+        rect(i, 100-40, width/11, 20);
+      }
+      if(spaces[pos+10].getType()=="Street"){
+        Street landedSpace = (Street)spaces[pos+10];
+        fill(landedSpace.getColor());
+        rect(800, i, 20, width/11);
+      }
+      if(spaces[30-pos].getType()=="Street"){   
+        Street landedSpace = (Street)spaces[30-pos];
+        fill(landedSpace.getColor());
+        rect(i, 800, width/11, 20);
+      }
+      if(pos>0&&spaces[40-pos].getType()=="Street"){
+        Street landedSpace = (Street)spaces[40-pos];
+        fill(landedSpace.getColor());
+        rect(100-40, i, 20, width/11);
+      }
     }
     for (int i = 0; i<width; i+=width/11) {
       //if (!spaces[spaceCounter].toString().equals("empty")) {

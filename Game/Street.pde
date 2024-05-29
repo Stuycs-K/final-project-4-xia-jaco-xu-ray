@@ -1,9 +1,9 @@
 class Street extends Property{
-  private String col; //color
+  private color col; //color
   private int houses;
   private int hotels;
   
-  Street(String type, String name, int rentPrice, int buyPrice, String type2, String col, int houses, int hotels){
+  Street(String type, String name, int rentPrice, int buyPrice, String type2, color col, int houses, int hotels){
    super(type, name,rentPrice,buyPrice,type2);
    this.col=col;
    this.houses=houses;
@@ -22,7 +22,7 @@ class Street extends Property{
   void setHotels(int amount){
     hotels=amount;
   }
-  String getColor() {
+  color getColor() {
     return col;
   }
 
