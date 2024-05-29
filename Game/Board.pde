@@ -190,9 +190,9 @@ class Board{
       }
       else if(landedSpace.getType().equals("Tax")){
         Tax lanSpace = (Tax)landedSpace; 
-        textSize(20);
-        text("You must pay $"+lanSpace.getTax(),(width/2)-75,(height/2-130));
-        text("Press y to confirm.", width/2 - 80, height/2 - 100);
+        String body1 = "You must pay $"+lanSpace.getTax();
+        String body2 = "Press y to confirm"; 
+        cardPrompt(landedSpace.toString(),225,body1,body2,"");
         if (keyPressed && key=='y' || key=='Y') {
             player.changeBalance(-lanSpace.getTax());
             buyScreen = !buyScreen;
@@ -201,7 +201,7 @@ class Board{
       }
   }
   
-  void cardPrompt(String title, color titleColor, String body1, String body2, String bottom){ // need to adjust parameters to be able to fix position of texts
+  void cardPrompt(String title, color titleColor, String body1, String body2, String bottom){
     //card shape
     int w = 300;
     int l = 400;
@@ -213,11 +213,13 @@ class Board{
     fill(0);
     stroke(0);
     //text
+    textAlign(CENTER);
     textSize(30);
-    text(title,(width-(title.length()*14))/2,(height/2-165));
+    text(title,width/2,(height/2-165));
     textSize(20);
-    text(body1,(width/2)-75,(height/2-130));
-    text(body2, width/2 - 97, height/2 - 100);
+    text(body1,width/2,(height/2-130));
+    text(body2, width/2, height/2 - 100);
+    textAlign(LEFT);
     //body3 text
     text(bottom,(width-(bottom.length()*12))/2,(height/2+175));
   }
