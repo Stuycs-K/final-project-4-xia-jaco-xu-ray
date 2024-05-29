@@ -49,4 +49,8 @@ Homework: Added board spaces to draw/setup, added text to board spaces. Can now 
 Classwork: Updated baord size to fit on lab computers, updated visuals
 	   to reflect changes, updated player locations to prevent overlap/allow
 	   for multiple players to be viewed on one space at a given time.
-Homework: Added basic buyScreen functionality with key press recognition. 
+Homework: Added basic buyScreen functionality with key press recognition.
+
+### 5/29/24
+Classwork: Updated board visual to include more information about players, began moving code out of main 'Game' class to a separate class 'Board.'
+Homework: Further updated board visual to include dice roll, completed moving code out of 'Game' and into 'Board,' finished start screen with player count functionality.
