@@ -69,9 +69,9 @@ void setup() {
   drawBoard();
   //testing right now with 4 players
   playerlist = new Player[]{new Player("bob", false),new Player("timmy", false),new Player("billy", false),new Player("sd", false)};
-  playerlist[0].setPos(1);
+  playerlist[0].setPos(4);
   playerlist[1].setPos(5);
-  playerlist[2].setPos(6);
+  playerlist[2].setPos(5);
   playerlist[3].setPos(12);
   //drawPlayer();
   activePlayer = 0;
@@ -82,6 +82,9 @@ void setup() {
 void draw() {
   drawBoard();
   drawPlayer();
+  if(activePlayer>=playerlist.length){
+    activePlayer=0;
+  }
   Player player = playerlist[activePlayer];
   if(!buyScreen){
     player.setStatus(true);
@@ -92,6 +95,7 @@ void draw() {
     boolean selected = false;
     if(selected||landedSpace.toString().equals("empty")){
       buyScreen = false;
+      activePlayer++;
       return; //is this necessary since void function - ray [DELETE COMMENT IF SEEN]
     }
     int w = 300;
@@ -103,8 +107,11 @@ void draw() {
     fill(0);
     textSize(30);
     text(name,(width-(name.length()*14))/2,(height/2-165));
+    textSize(20);
+    String info = player.getName()+"'s balance: "+player.getBalance();
+    text(info,(width-(info.length()*14))/2,(height/2+175));
     stroke(0);
-    if (landedSpace instanceof Street) {
+    if (landedSpace.getType().equals("Street")) {
       Street lanSpace = (Street) landedSpace;
       if (!lanSpace.isOccupied()) {
         textSize(20);
@@ -113,10 +120,27 @@ void draw() {
         if (keyPressed && key=='y' || key=='Y') {
           player.changeBalance(-lanSpace.buyPrice());
           buyScreen = !buyScreen;
+          activePlayer++;
         }
         else if (keyPressed && key=='n' || key=='N') {
           buyScreen = !buyScreen; 
+          activePlayer++;
         }
+      } 
+      else{
+       player.changeBalance(lanSpace.getPrice());
+       lanSpace.getOccupier().changeBalance(lanSpace.getPrice());
+      }
+    }
+    else if(landedSpace.getType().equals("Tax")){
+      Tax lanSpace = (Tax)landedSpace; 
+      textSize(20);
+      text("You must pay $"+lanSpace.getTax(),(width/2)-75,(height/2-130));
+      text("Press y to confirm.", width/2 - 80, height/2 - 100);
+      if (keyPressed && key=='y' || key=='Y') {
+          player.changeBalance(-lanSpace.buyPrice());
+          buyScreen = !buyScreen;
+          activePlayer++;
       }
     }
     
@@ -140,9 +164,10 @@ void run() {
   if(distance==0 && !player.getStatus()){
     //do the action
     //activePlayer++;
-    if(activePlayer>=playerlist.length){
-      activePlayer=0;
-    }
+    //if(activePlayer>=playerlist.length){
+    //  activePlayer=0;
+    //}
+    buyScreen = true;
   }
 }
 
@@ -207,6 +232,7 @@ void drawPlayer() {
 }
 
 void drawBoard() {
+  background(240,240,255); // change to whatever looks good
   int spaceCounter = 0;
   for (int i = 0; i<width; i+=width/11) {
     fill(225);
