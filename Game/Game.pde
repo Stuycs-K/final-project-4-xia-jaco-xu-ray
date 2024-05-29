@@ -103,6 +103,7 @@ void draw() {
     noStroke();
     fill(255,255,255);
     rect((width-w)/2,(height-l)/2,w,l,20);
+    rect((width-w)/2,(height-l+200)/2,w,l,20);
     String name = landedSpace.toString();
     fill(0);
     textSize(30);
