@@ -1,4 +1,4 @@
-private ArrayList<Player> playerlist;
+private Player[] playerlist;
 private BoardSpace[] spaces;
 private int[] buyPrices;
 private int[] sellPrices;
@@ -6,7 +6,7 @@ private int[][] rentPrices;
 private int distance;
 private int activePlayer;
 private boolean buyScreen;
-private boolean startScreen;
+
 
 void setup() {
   size(880, 880);
@@ -68,34 +68,18 @@ void setup() {
   };
   drawBoard();
   //testing right now with 4 players
-  playerlist = new ArrayList<Player>();
+  playerlist = new Player[]{new Player("bob", false),new Player("timmy", false),new Player("billy", false),new Player("sd", false)};
+  playerlist[0].setPos(4);
+  playerlist[1].setPos(5);
+  playerlist[2].setPos(5);
+  playerlist[3].setPos(12);
   //drawPlayer();
   activePlayer = 0;
   distance = 0;
- // buyScreen = true;
-  startScreen = true;
+  buyScreen = true;
 }
 
 void draw() {
-  if(startScreen&&!keyPressed){
-   String startPrompt = "How many players do you want? (2-4)";
-   textSize(30);
-   fill(0);
-   text(startPrompt,(width-startPrompt.length()*22),200);
-   return;
-  }
-  else if(startScreen&&keyPressed){
-    if(key==2){
-      
-    }
-    if(key==3){
-      
-    }
-    else if(key==4){
-    
-    }
-  }
-  
   drawBoard();
   drawPlayer();
   if(activePlayer>=playerlist.length){
@@ -124,7 +108,7 @@ void draw() {
     String name = landedSpace.toString();
     fill(0);
     textSize(30);
-    text(name,(width-(name.length()*14))/2,(height/2-165));
+    text(name,(width-(name.length()*15))/2,(height/2-165));
     textSize(20);
     String info = player.getName()+"'s balance: "+player.getBalance();
     text(info,(width-(info.length()*14))/2,(height/2+175));
@@ -186,7 +170,6 @@ void run() {
     //  activePlayer=0;
     //}
     buyScreen = true;
-    delay(500);
   }
 }
 
