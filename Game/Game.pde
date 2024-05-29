@@ -86,10 +86,7 @@ void draw() {
     activePlayer=0;
   }
   Player player = playerlist[activePlayer];
-  if(!buyScreen){
-    player.setStatus(true);
-    run();
-  }
+  run(buyScreen);
   else{
     BoardSpace landedSpace = spaces[player.getPos()];
     boolean selected = false;
@@ -149,28 +146,35 @@ void draw() {
   }
 }
 
-void run() {
-  Player player = playerlist[activePlayer];
-  if(distance==0 && player.getStatus()){
-    distance = dice();
-  }
-  if(distance!=0){
-   player.setStatus(false);
-   player.setPos(player.getPos()+1);
-   if(!(player.getPos()<40)){
-     player.setPos(0); 
-     player.changeBalance(200);
-   }
-   delay(500);
-   distance--;
-  }
-  if(distance==0 && !player.getStatus()){
-    //do the action
-    //activePlayer++;
-    //if(activePlayer>=playerlist.length){
-    //  activePlayer=0;
-    //}
-    buyScreen = true;
+void run(boolean showBuyScreen) {
+  if (showBuyScreen == false) {
+    player.setStatus(true);
+    Player player = playerlist[activePlayer];
+    if(distance==0 && player.getStatus()){
+      distance = dice();
+      textSize(20);
+      fill(0);
+      text(player.getName()+" rolled a "+distance, width/11+20, height - (height/11) - 10);
+      delay(2000);
+    }
+    if(distance!=0){
+     player.setStatus(false);
+     player.setPos(player.getPos()+1);
+     if(!(player.getPos()<40)){
+       player.setPos(0); 
+       player.changeBalance(200);
+     }
+     delay(500);
+     distance--;
+    }
+    if(distance==0 && !player.getStatus()){
+      //do the action
+      //activePlayer++;
+      //if(activePlayer>=playerlist.length){
+      //  activePlayer=0;
+      //}
+      buyScreen = true;
+    }
   }
 }
 
@@ -214,7 +218,7 @@ void drawPlayer() {
         y-=5;
         textSize(20);
         fill(255,0,0);
-        text("Player "+(i+1)+" balance: "+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
+        text("Player "+(i+1)+" balance: $"+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
       }
       if(i == 1){
         fill(255,140,0);
@@ -222,7 +226,7 @@ void drawPlayer() {
         y-=5;
         textSize(20);
         fill(255,140,0);
-        text("Player "+(i+1)+" balance: "+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
+        text("Player "+(i+1)+" balance: $"+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
 
       }
       if(i == 2){
@@ -231,7 +235,7 @@ void drawPlayer() {
         y+=5;
         textSize(20);
         fill(0,0,255);
-        text("Player "+(i+1)+" balance: "+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
+        text("Player "+(i+1)+" balance: $"+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
 
       }
       if(i == 3){
@@ -240,7 +244,7 @@ void drawPlayer() {
         y+=5;
         textSize(20);
         fill(252,142,172);
-        text("Player "+(i+1)+" balance: "+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
+        text("Player "+(i+1)+" balance: $"+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
       }
       //add more colors for more players
       circle(x,y,10); // CAN EDIT LATER FOR DIFFERENT DESIGN "peg"
