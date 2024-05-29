@@ -104,11 +104,22 @@ void draw() {
     textSize(30);
     text(name,(width-(name.length()*14))/2,(height/2-165));
     stroke(0);
-    if (landedSpace.getType().equals("Street")) {
-      if (!landedSpace.isOccupied()) {
-        //System.out.println("test");
+    if (landedSpace instanceof Street) {
+      Street lanSpace = (Street) landedSpace;
+      if (!lanSpace.isOccupied()) {
+        textSize(20);
+        text("Purchase for $"+lanSpace.buyPrice()+"?",(width/2)-75,(height/2-130));
+        text("Press y for yes, n for no.", width/2 - 97, height/2 - 100);
+        if (keyPressed && key=='y' || key=='Y') {
+          player.changeBalance(-lanSpace.buyPrice());
+          buyScreen = !buyScreen;
+        }
+        else if (keyPressed && key=='n' || key=='N') {
+          buyScreen = !buyScreen; 
+        }
       }
     }
+    
   }
 }
 

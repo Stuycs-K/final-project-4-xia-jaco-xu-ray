@@ -3,10 +3,10 @@ class BoardSpace{
   private String type;
   public String toString(){return name;};
   public String getType(){return type;};
-  public int getPrice(){return 0;};
+  //public int getPrice(){return 0;};
   public void setPrice(int newPrice){};
   public int buyPrice(){return 0;};
-  public boolean isOccupied(){return false;};
+  //public boolean isOccupied(){return false;};
   public Player getOccupier(){return new Player("",false);};
   public void setOccupied(Player occupier){};
   public void setOccupied(boolean status){};
