@@ -11,6 +11,7 @@ class Board{
   private boolean startScreen;
   
   Board(){
+    //Initialize prices of the properties
     buyPrices = new int[]{60, 107, 147, 187, 227, 267, 307, 375};
     sellPrices = new int[]{30, 54, 74, 94, 114, 134, 154, 188};
     rentPrices = new int[][]{{3, 15, 45, 135, 240, 350},
@@ -22,6 +23,7 @@ class Board{
       {27, 137, 410, 933, 1133, 1317},
       {43, 188, 550, 1250, 1500, 1750}};
     
+    //Initialize properties
     Property brown1, brown2,
       lightBlue1, lightBlue2, lightBlue3,
       pink1, pink2, pink3,
@@ -60,20 +62,21 @@ class Board{
   
     darkBlue1 = new Street("Property", "Park Place", rentPrices[7][0], buyPrices[7], "Street", "darkBlue", 0, 0);
     darkBlue2 = new Street("Property", "Boardwalk", rentPrices[7][0], buyPrices[7], "Street", "darkBlue", 0, 0);
-    //public Property(String name, int rentPrice, int buyPrice, String type){
+
+    //spaces array intialization
     spaces = new BoardSpace[]{ // total 40 spaces
       new BoardSpace("Go","Go"), brown1, empty(), brown2, new Tax("Tax","Income Tax", 200), empty(), lightBlue1, empty(), lightBlue2, lightBlue3,
       empty(), pink1, empty(), pink2, pink3, empty(), orange1, empty(), orange2, orange3,
       empty(), red1, empty(), red2, red3, empty(), yellow1, yellow2, empty(), yellow3,
       new BoardSpace("Jail","Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new Tax("Tax","Luxury Tax", 100), darkBlue2
     };
+    
+    // Initialize other fields
     drawBoard();
-    //testing right now with 4 players
     playerlist = new ArrayList<Player>();
-    //drawPlayer();
     activePlayer = 0;
     distance = 0;
-    //buyScreen = true;
+    buyScreen = false;
     startScreen = true;
   }
   
@@ -82,43 +85,47 @@ class Board{
      String startPrompt = "How many players do you want? (2-4)";
      textSize(30);
      fill(0);
-     text(startPrompt,(width-startPrompt.length()*22),200);
+     text(startPrompt,(width-startPrompt.length()*19.5),200);
      return;
     }
     else if(startScreen&&keyPressed){
       if(key=='2'){
           playerlist.add(new Player("Player 1", false));
           playerlist.add(new Player("Player 2", false));
+          startScreen = false;
       }
       else if(key=='3'){
           playerlist.add(new Player("Player 1", false));
           playerlist.add(new Player("Player 2", false));
           playerlist.add(new Player("Player 3", false));
+          startScreen = false;
       }
       else if(key=='4'){
           playerlist.add(new Player("Player 1", false));
           playerlist.add(new Player("Player 2", false));
           playerlist.add(new Player("Player 3", false));
           playerlist.add(new Player("Player 4", false));
+          startScreen = false;
       }
-      startScreen = false;
+      return;
     }
     
-    drawBoard();
-    drawPlayer();
     if(activePlayer>=playerlist.size()){
       activePlayer=0;
     }
     Player player = playerlist.get(activePlayer);
+    drawBoard();
     run(buyScreen, player);
+    drawPlayer();
   }
   
   void run(boolean showBuyScreen, Player player) {
-    if (showBuyScreen == false) {
+    if (!showBuyScreen) {
       player.setStatus(true);
-      if(distance==0 && player.getStatus()){
+      if(distance==0){
         distance = dice();
         sdist = distance;
+        return;
       }
       if(distance!=0){
        textSize(20);
@@ -134,11 +141,6 @@ class Board{
        distance--;
       }
       if(distance==0 && !player.getStatus()){
-        //do the action
-        //activePlayer++;
-        //if(activePlayer>=playerlist.length){
-        //  activePlayer=0;
-        //}
         buyScreen = true;
       }
     }
@@ -150,31 +152,24 @@ class Board{
         activePlayer++;
         return; //is this necessary since void function - ray [DELETE COMMENT IF SEEN]
       }
-      int w = 300;
-      int l = 400;
-      noStroke();
-      fill(225);
-      rect((width-w)/2,(height-l)/2,w,l,20);
-      fill(255,255,255);
-      rect((width-w)/2,(height-l+80)/2,w,l-40,0,0,20,20);
-      String name = landedSpace.toString();
-      fill(0);
-      textSize(30);
-      text(name,(width-(name.length()*14))/2,(height/2-165));
-      textSize(20);
-      String info = player.getName()+"'s balance: "+player.getBalance();
-      text(info,(width-(info.length()*14))/2,(height/2+175));
-      stroke(0);
-      if (landedSpace.getType().equals("Street")) {
+      determinePrompt(landedSpace,player);
+      
+    }
+  }
+  
+  void determinePrompt(BoardSpace landedSpace, Player player){
+     if (landedSpace.getType().equals("Street")) {
         Street lanSpace = (Street) landedSpace;
         if (!lanSpace.isOccupied()) {
-          textSize(20);
-          text("Purchase for $"+lanSpace.buyPrice()+"?",(width/2)-75,(height/2-130));
-          text("Press y for yes, n for no.", width/2 - 97, height/2 - 100);
+          String body1 = "Purchase for $"+lanSpace.buyPrice()+"?";
+          String body2 = "Press y for yes, n for no.";
+          cardPrompt(landedSpace.toString(),225,body1,body2,player.getName()+"'s balance: "+player.getBalance());
           if (keyPressed && key=='y' || key=='Y') {
             player.changeBalance(-lanSpace.buyPrice());
             buyScreen = !buyScreen;
             activePlayer++;
+            lanSpace.setOccupied(true);
+            lanSpace.setOccupied(player);
           }
           else if (keyPressed && key=='n' || key=='N') {
             buyScreen = !buyScreen; 
@@ -182,8 +177,15 @@ class Board{
           }
         } 
         else{
-         player.changeBalance(lanSpace.getPrice());
-         lanSpace.getOccupier().changeBalance(lanSpace.getPrice());
+         String body1 = "You must pay $"+lanSpace.getPrice()+" to "+lanSpace.getOccupier().getName();
+         String body2 = "Press y to confirm"; 
+         cardPrompt(landedSpace.toString(),225,body1,body2,"");
+         if (keyPressed && key=='y' || key=='Y') {
+            player.changeBalance(lanSpace.getPrice());
+            lanSpace.getOccupier().changeBalance(lanSpace.getPrice());
+            buyScreen = !buyScreen;
+            activePlayer++;
+         }
         }
       }
       else if(landedSpace.getType().equals("Tax")){
@@ -192,14 +194,34 @@ class Board{
         text("You must pay $"+lanSpace.getTax(),(width/2)-75,(height/2-130));
         text("Press y to confirm.", width/2 - 80, height/2 - 100);
         if (keyPressed && key=='y' || key=='Y') {
-            player.changeBalance(-lanSpace.buyPrice());
+            player.changeBalance(-lanSpace.getTax());
             buyScreen = !buyScreen;
             activePlayer++;
         }
       }
-      
-    }
   }
+  
+  void cardPrompt(String title, color titleColor, String body1, String body2, String bottom){ // need to adjust parameters to be able to fix position of texts
+    //card shape
+    int w = 300;
+    int l = 400;
+    noStroke();
+    fill(titleColor);
+    rect((width-w)/2,(height-l)/2,w,l,20);
+    fill(255);
+    rect((width-w)/2,(height-l+80)/2,w,l-40,0,0,20,20);
+    fill(0);
+    stroke(0);
+    //text
+    textSize(30);
+    text(title,(width-(title.length()*14))/2,(height/2-165));
+    textSize(20);
+    text(body1,(width/2)-75,(height/2-130));
+    text(body2, width/2 - 97, height/2 - 100);
+    //body3 text
+    text(bottom,(width-(bottom.length()*12))/2,(height/2+175));
+  }
+  
   int dice() {
     return (int)(Math.random() * 6) + (int)(Math.random() * 6) + 2;
   }
