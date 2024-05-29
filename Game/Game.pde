@@ -74,6 +74,7 @@ void setup() {
   distance = 0;
  // buyScreen = true;
   startScreen = true;
+  //Board board = new Board();
 }
 
 void draw() {
@@ -85,25 +86,63 @@ void draw() {
    return;
   }
   else if(startScreen&&keyPressed){
-    if(key==2){
-      
+    if(key=='2'){
+        playerlist.add(new Player("Player 1", false));
+        playerlist.add(new Player("Player 2", false));
     }
-    if(key==3){
-      
+    else if(key=='3'){
+        playerlist.add(new Player("Player 1", false));
+        playerlist.add(new Player("Player 2", false));
+        playerlist.add(new Player("Player 3", false));
     }
-    else if(key==4){
-    
+    else if(key=='4'){
+        playerlist.add(new Player("Player 1", false));
+        playerlist.add(new Player("Player 2", false));
+        playerlist.add(new Player("Player 3", false));
+        playerlist.add(new Player("Player 4", false));
     }
+    startScreen = false;
   }
   
   drawBoard();
   drawPlayer();
-  if(activePlayer>=playerlist.length){
+  if(activePlayer>=playerlist.size()){
     activePlayer=0;
   }
-  Player player = playerlist[activePlayer];
-  run(buyScreen);
-  else{
+  Player player = playerlist.get(activePlayer);
+  run(buyScreen, player);
+}
+
+void run(boolean showBuyScreen, Player player) {
+  if (showBuyScreen == false) {
+    player.setStatus(true);
+    if(distance==0 && player.getStatus()){
+      distance = dice();
+      textSize(20);
+      fill(0);
+      text(player.getName()+" rolled a "+distance, width/11+20, height - (height/11) - 10);
+      delay(2000);
+    }
+    if(distance!=0){
+     player.setStatus(false);
+     player.setPos(player.getPos()+1);
+     if(!(player.getPos()<40)){
+       player.setPos(0); 
+       player.changeBalance(200);
+     }
+     delay(500);
+     distance--;
+    }
+    if(distance==0 && !player.getStatus()){
+      //do the action
+      //activePlayer++;
+      //if(activePlayer>=playerlist.length){
+      //  activePlayer=0;
+      //}
+      buyScreen = true;
+    }
+  }
+  else {
     BoardSpace landedSpace = spaces[player.getPos()];
     boolean selected = false;
     if(selected||landedSpace.toString().equals("empty")){
@@ -162,38 +201,6 @@ void draw() {
   }
 }
 
-void run(boolean showBuyScreen) {
-  if (showBuyScreen == false) {
-    player.setStatus(true);
-    Player player = playerlist[activePlayer];
-    if(distance==0 && player.getStatus()){
-      distance = dice();
-      textSize(20);
-      fill(0);
-      text(player.getName()+" rolled a "+distance, width/11+20, height - (height/11) - 10);
-      delay(2000);
-    }
-    if(distance!=0){
-     player.setStatus(false);
-     player.setPos(player.getPos()+1);
-     if(!(player.getPos()<40)){
-       player.setPos(0); 
-       player.changeBalance(200);
-     }
-     delay(500);
-     distance--;
-    }
-    if(distance==0 && !player.getStatus()){
-      //do the action
-      //activePlayer++;
-      //if(activePlayer>=playerlist.length){
-      //  activePlayer=0;
-      //}
-      buyScreen = true;
-    }
-  }
-}
-
 int dice() {
   return (int)(Math.random() * 6) + (int)(Math.random() * 6) + 2;
 }
@@ -201,8 +208,8 @@ int dice() {
 
 void drawPlayer() {
   //drawBoard();
-  for(int i = 0; i<playerlist.length; i++){    
-    Player player = playerlist[i];
+  for(int i = 0; i<playerlist.size(); i++){    
+    Player player = playerlist.get(i);
     if(!player.isBankrupt()){ // is the player bankrupt?
       int sqLength = width/11;
       int pos = player.getPos();
