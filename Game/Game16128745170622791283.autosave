@@ -1,4 +1,4 @@
-private ArrayList<Player> playerlist;
+private Player[] playerlist;
 private BoardSpace[] spaces;
 private int[] buyPrices;
 private int[] sellPrices;
@@ -6,7 +6,7 @@ private int[][] rentPrices;
 private int distance;
 private int activePlayer;
 private boolean buyScreen;
-private boolean startScreen;
+
 
 void setup() {
   size(880, 880);
@@ -61,48 +61,35 @@ void setup() {
   darkBlue2 = new Street("Property", "Boardwalk", rentPrices[7][0], buyPrices[7], "Street", "darkBlue", 0, 0);
   //public Property(String name, int rentPrice, int buyPrice, String type){
   spaces = new BoardSpace[]{ // total 40 spaces
-    new BoardSpace("Go","Go"), brown1, empty(), brown2, new Tax("Tax","Income Tax", 200), empty(), lightBlue1, empty(), lightBlue2, lightBlue3,
+    new BoardSpace("Go","Go"), brown1, empty(), brown2, new Tax("Tax","incomeTax", 200), empty(), lightBlue1, empty(), lightBlue2, lightBlue3,
     empty(), pink1, empty(), pink2, pink3, empty(), orange1, empty(), orange2, orange3,
     empty(), red1, empty(), red2, red3, empty(), yellow1, yellow2, empty(), yellow3,
-    new BoardSpace("Jail","Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new Tax("Tax","Luxury Tax", 100), darkBlue2
+    new BoardSpace("Jail","Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new Tax("Tax","luxuryTax", 100), darkBlue2
   };
   drawBoard();
   //testing right now with 4 players
-  playerlist = new ArrayList<Player>();
+  playerlist = new Player[]{new Player("bob", false),new Player("timmy", false),new Player("billy", false),new Player("sd", false)};
+  playerlist[0].setPos(4);
+  playerlist[1].setPos(5);
+  playerlist[2].setPos(5);
+  playerlist[3].setPos(12);
   //drawPlayer();
   activePlayer = 0;
   distance = 0;
- // buyScreen = true;
-  startScreen = true;
+  buyScreen = true;
 }
 
 void draw() {
-  if(startScreen&&!keyPressed){
-   String startPrompt = "How many players do you want? (2-4)";
-   textSize(30);
-   fill(0);
-   text(startPrompt,(width-startPrompt.length()*22),200);
-   return;
-  }
-  else if(startScreen&&keyPressed){
-    if(key==2){
-      
-    }
-    if(key==3){
-      
-    }
-    else if(key==4){
-    
-    }
-  }
-  
   drawBoard();
   drawPlayer();
   if(activePlayer>=playerlist.length){
     activePlayer=0;
   }
   Player player = playerlist[activePlayer];
-  run(buyScreen);
+  if(!buyScreen){
+    player.setStatus(true);
+    run();
+  }
   else{
     BoardSpace landedSpace = spaces[player.getPos()];
     boolean selected = false;
@@ -121,7 +108,7 @@ void draw() {
     String name = landedSpace.toString();
     fill(0);
     textSize(30);
-    text(name,(width-(name.length()*14))/2,(height/2-165));
+    text(name,(width-(name.length()*15))/2,(height/2-165));
     textSize(20);
     String info = player.getName()+"'s balance: "+player.getBalance();
     text(info,(width-(info.length()*14))/2,(height/2+175));
@@ -162,35 +149,27 @@ void draw() {
   }
 }
 
-void run(boolean showBuyScreen) {
-  if (showBuyScreen == false) {
-    player.setStatus(true);
-    Player player = playerlist[activePlayer];
-    if(distance==0 && player.getStatus()){
-      distance = dice();
-      textSize(20);
-      fill(0);
-      text(player.getName()+" rolled a "+distance, width/11+20, height - (height/11) - 10);
-      delay(2000);
-    }
-    if(distance!=0){
-     player.setStatus(false);
-     player.setPos(player.getPos()+1);
-     if(!(player.getPos()<40)){
-       player.setPos(0); 
-       player.changeBalance(200);
-     }
-     delay(500);
-     distance--;
-    }
-    if(distance==0 && !player.getStatus()){
-      //do the action
-      //activePlayer++;
-      //if(activePlayer>=playerlist.length){
-      //  activePlayer=0;
-      //}
-      buyScreen = true;
-    }
+void run() {
+  Player player = playerlist[activePlayer];
+  if(distance==0 && player.getStatus()){
+    distance = dice();
+  }
+  if(distance!=0){
+   player.setStatus(false);
+   player.setPos(player.getPos()+1);
+   if(!(player.getPos()<40)){
+     player.setPos(0); 
+   }
+   delay(500);
+   distance--;
+  }
+  if(distance==0 && !player.getStatus()){
+    //do the action
+    //activePlayer++;
+    //if(activePlayer>=playerlist.length){
+    //  activePlayer=0;
+    //}
+    buyScreen = true;
   }
 }
 
@@ -200,7 +179,7 @@ int dice() {
 
 
 void drawPlayer() {
-  //drawBoard();
+  drawBoard();
   for(int i = 0; i<playerlist.length; i++){    
     Player player = playerlist[i];
     if(!player.isBankrupt()){ // is the player bankrupt?
@@ -232,35 +211,21 @@ void drawPlayer() {
         fill(255,0,0);
         x-=5;
         y-=5;
-        textSize(20);
-        fill(255,0,0);
-        text("Player "+(i+1)+" balance: $"+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
       }
       if(i == 1){
-        fill(255,140,0);
+        fill(0,255,0);
         x+=5;
         y-=5;
-        textSize(20);
-        fill(255,140,0);
-        text("Player "+(i+1)+" balance: $"+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
-
       }
       if(i == 2){
         fill(0,0,255);
         x+=5;
         y+=5;
-        textSize(20);
-        fill(0,0,255);
-        text("Player "+(i+1)+" balance: $"+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
-
       }
       if(i == 3){
-        fill(252,142,172);
+        fill(255,255,0);
         x-=5;
         y+=5;
-        textSize(20);
-        fill(252,142,172);
-        text("Player "+(i+1)+" balance: $"+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
       }
       //add more colors for more players
       circle(x,y,10); // CAN EDIT LATER FOR DIFFERENT DESIGN "peg"
