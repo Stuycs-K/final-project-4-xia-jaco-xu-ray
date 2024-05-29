@@ -11,6 +11,7 @@ class Board{
   private boolean startScreen;
   
   Board(){
+    //Initialize prices of the properties
     buyPrices = new int[]{60, 107, 147, 187, 227, 267, 307, 375};
     sellPrices = new int[]{30, 54, 74, 94, 114, 134, 154, 188};
     rentPrices = new int[][]{{3, 15, 45, 135, 240, 350},
@@ -22,6 +23,7 @@ class Board{
       {27, 137, 410, 933, 1133, 1317},
       {43, 188, 550, 1250, 1500, 1750}};
     
+    //Initialize properties
     Property brown1, brown2,
       lightBlue1, lightBlue2, lightBlue3,
       pink1, pink2, pink3,
@@ -60,20 +62,21 @@ class Board{
   
     darkBlue1 = new Street("Property", "Park Place", rentPrices[7][0], buyPrices[7], "Street", "darkBlue", 0, 0);
     darkBlue2 = new Street("Property", "Boardwalk", rentPrices[7][0], buyPrices[7], "Street", "darkBlue", 0, 0);
-    //public Property(String name, int rentPrice, int buyPrice, String type){
+
+    //spaces array intialization
     spaces = new BoardSpace[]{ // total 40 spaces
       new BoardSpace("Go","Go"), brown1, empty(), brown2, new Tax("Tax","Income Tax", 200), empty(), lightBlue1, empty(), lightBlue2, lightBlue3,
       empty(), pink1, empty(), pink2, pink3, empty(), orange1, empty(), orange2, orange3,
       empty(), red1, empty(), red2, red3, empty(), yellow1, yellow2, empty(), yellow3,
       new BoardSpace("Jail","Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new Tax("Tax","Luxury Tax", 100), darkBlue2
     };
+    
+    // Initialize other fields
     drawBoard();
-    //testing right now with 4 players
     playerlist = new ArrayList<Player>();
-    //drawPlayer();
     activePlayer = 0;
     distance = 0;
-    //buyScreen = true;
+    buyScreen = false;
     startScreen = true;
   }
   
@@ -82,26 +85,29 @@ class Board{
      String startPrompt = "How many players do you want? (2-4)";
      textSize(30);
      fill(0);
-     text(startPrompt,(width-startPrompt.length()*22),200);
+     text(startPrompt,(width-startPrompt.length()*19.5),200);
      return;
     }
     else if(startScreen&&keyPressed){
       if(key=='2'){
           playerlist.add(new Player("Player 1", false));
           playerlist.add(new Player("Player 2", false));
+          startScreen = false;
       }
       else if(key=='3'){
           playerlist.add(new Player("Player 1", false));
           playerlist.add(new Player("Player 2", false));
           playerlist.add(new Player("Player 3", false));
+          startScreen = false;
       }
       else if(key=='4'){
           playerlist.add(new Player("Player 1", false));
           playerlist.add(new Player("Player 2", false));
           playerlist.add(new Player("Player 3", false));
           playerlist.add(new Player("Player 4", false));
+          startScreen = false;
       }
-      startScreen = false;
+      return;
     }
     
     drawBoard();
@@ -114,11 +120,12 @@ class Board{
   }
   
   void run(boolean showBuyScreen, Player player) {
-    if (showBuyScreen == false) {
+    if (!showBuyScreen) {
       player.setStatus(true);
-      if(distance==0 && player.getStatus()){
+      if(distance==0){
         distance = dice();
         sdist = distance;
+        return;
       }
       if(distance!=0){
        textSize(20);
@@ -134,11 +141,6 @@ class Board{
        distance--;
       }
       if(distance==0 && !player.getStatus()){
-        //do the action
-        //activePlayer++;
-        //if(activePlayer>=playerlist.length){
-        //  activePlayer=0;
-        //}
         buyScreen = true;
       }
     }
