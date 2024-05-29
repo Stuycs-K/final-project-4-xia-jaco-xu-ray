@@ -24,6 +24,7 @@ Homework: Implemented drawPlayer() and started run()/draw(). Might need to recon
 
 ### 5/28/24
 Classwork: Started implementing the landedSpace graphics/prompt that would ask the player whether or not they want to buy/sell/upgrade their property. Need to code in buttons.
+Homework: Added Tax buyscreen and added additional information on the monopoly cards. Also added code to rotate players after their round has ended.
 
 ## Ray Xu
 
