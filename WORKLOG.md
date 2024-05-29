@@ -49,4 +49,4 @@ Homework: Added board spaces to draw/setup, added text to board spaces. Can now 
 Classwork: Updated baord size to fit on lab computers, updated visuals
 	   to reflect changes, updated player locations to prevent overlap/allow
 	   for multiple players to be viewed on one space at a given time.
-Homework: Added basic buyScreen functionality with key press recognition.
+Homework: Added basic buyScreen functionality with key press recognition. 
