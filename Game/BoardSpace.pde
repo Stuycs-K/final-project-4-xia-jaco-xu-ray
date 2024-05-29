@@ -14,8 +14,8 @@ class BoardSpace{
   public int getHotels(){return 0;};
   public void setHouses(int amount){};
   public void setHotels(int amount){};
-  public String getColor(){return "";};
-  public int getTax(){return 0;};
+  public color getColor(){return color(255);};
+  public int getTax(){return 0;}; // delete all of these? except until getType() and maybe also keep getColor() with the "" returned - Jaco
   
   BoardSpace(String type, String name){
     this.type = type;
