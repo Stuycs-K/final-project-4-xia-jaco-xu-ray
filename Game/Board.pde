@@ -124,7 +124,7 @@ class Board{
   void run(boolean showBuyScreen, Player player) {
     if (disruption) {
       for (int i = 0; i<playerlist.size(); i++) {
-        playerlist.get(i).setPos(1);
+        playerlist.get(i).setPos(30);
       }
     }
     if (!showBuyScreen) {
@@ -262,6 +262,16 @@ class Board{
         cardPrompt(landedSpace.toString(),225,body1,body2,"","");
         if (keyPressed && key=='y' || key=='Y') {
             player.changeBalance(-lanSpace.getTax());
+            buyScreen = !buyScreen;
+            activePlayer++;
+        }
+      }
+      else if(landedSpace.getType().equals("Jail")){
+        String body1 = player.getName()+" is in jail!";
+        String body2 = "Press y to pay $50 to bail out."; 
+        cardPrompt(landedSpace.toString(),225,body1,body2,"","");
+        if (keyPressed && key=='y' || key=='Y') {
+            player.changeBalance(-50);
             buyScreen = !buyScreen;
             activePlayer++;
         }
