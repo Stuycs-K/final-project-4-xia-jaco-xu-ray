@@ -8,3 +8,13 @@ void setup() {
 void draw() {
   mainBoard.draw();
 }
+
+void keyPressed(){
+  if (key=='z') {
+   mainBoard.loseMoney(); 
+  }
+  
+  if (key=='t') {
+   mainBoard.teleport();
+  }
+}
