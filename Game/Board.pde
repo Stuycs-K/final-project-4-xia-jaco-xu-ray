@@ -114,8 +114,8 @@ class Board{
       activePlayer=0;
     }
     Player player = playerlist.get(activePlayer);
-    //playerlist.get(0).setPos(16); // this is here to test selling / upgrading streets; use something like this to play around with selling
-    //playerlist.get(1).setPos(16);
+    playerlist.get(0).setPos(16); // this is here to test selling / upgrading streets; use something like this to play around with selling
+    playerlist.get(1).setPos(16);
     drawBoard();
     run(buyScreen, player);
     drawPlayer();
@@ -168,6 +168,7 @@ class Board{
           cardPrompt(landedSpace.toString(),225,body1,body2,"",player.getName()+"'s balance: "+player.getBalance());
           if (keyPressed && key=='y' || key=='Y') {
             player.changeBalance(-lanSpace.buyPrice());
+            player.addProperty(lanSpace);
             buyScreen = !buyScreen;
             activePlayer++;
             lanSpace.setOccupied(true);
@@ -216,6 +217,9 @@ class Board{
               else if(lanSpace.getHouses()==0){
                 lanSpace.setOccupied(false);
                 lanSpace.setOccupied(null);
+                System.out.println("Old property:" + player.viewProperty());
+
+                System.out.println("New Property:"+ player.viewProperty());
                 lanSpace.updateBuyPrice();
                 lanSpace.setHouses(0);
                 lanSpace.setHotels(0);
