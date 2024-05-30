@@ -116,18 +116,17 @@ class Board{
       activePlayer=0;
     }
     Player player = playerlist.get(activePlayer);
-
-    if (disruption) {
-      playerlist.get(0).setPos(16); // this is here to test selling / upgrading streets; use something like this to play around with selling
-      playerlist.get(1).setPos(16);
-    }
-
     drawBoard();
     run(buyScreen, player);
     drawPlayer();
   }
   
   void run(boolean showBuyScreen, Player player) {
+    if (disruption) {
+      for (int i = 0; i<playerlist.size(); i++) {
+        playerlist.get(i).setPos(1);
+      }
+    }
     if (!showBuyScreen) {
       player.setStatus(true);
       if(distance==0){
@@ -387,7 +386,10 @@ class Board{
           fill(0);
           textSize(10);
           textAlign(CENTER);
-          text(landedSpace.getOccupier().getName(),i+40,40);
+          text(landedSpace.getOccupier().getName(),i+40,35);
+          textAlign(CENTER);
+          textSize(8);
+          text("Houses: "+landedSpace.getHouses()+"  Hotels: "+landedSpace.getHotels(), i+40, 45); 
           textAlign(BASELINE);
         }
       }
@@ -399,7 +401,10 @@ class Board{
           fill(0);
           textSize(10);
           textAlign(CENTER);
-          text(landedSpace.getOccupier().getName(),880-30,i+45);
+          text(landedSpace.getOccupier().getName(),880-30,i+40);
+          textAlign(CENTER);
+          textSize(8);
+          text("Houses: "+landedSpace.getHouses()+"\nHotels: "+landedSpace.getHotels(), 880-30, i+55); 
           textAlign(BASELINE);
         }
       }
@@ -411,7 +416,10 @@ class Board{
           fill(0);
           textSize(10);
           textAlign(CENTER);
-          text(landedSpace.getOccupier().getName(),i+40,height - 35);
+          text(landedSpace.getOccupier().getName(),i+40,height-35);
+          textAlign(CENTER);
+          textSize(8);
+          text("Houses: "+landedSpace.getHouses()+"  Hotels: "+landedSpace.getHotels(), i+40, height-25); 
           textAlign(BASELINE);
         }
       }
@@ -422,8 +430,10 @@ class Board{
         if(landedSpace.isOccupied()){
           fill(0);
           textSize(10);
+          text(landedSpace.getOccupier().getName(),30,i+40);
           textAlign(CENTER);
-          text(landedSpace.getOccupier().getName(),30,i+45);
+          textSize(8);
+          text("Houses: "+landedSpace.getHouses()+"\nHotels: "+landedSpace.getHotels(), 30, i+55); 
           textAlign(BASELINE);
         }
       }
