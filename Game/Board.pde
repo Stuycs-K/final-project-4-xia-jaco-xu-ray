@@ -33,35 +33,35 @@ class Board{
       green1, green2, green3,
       darkBlue1, darkBlue2
       ;
-    brown1 = new Street("Property", "Med  Ave", rentPrices[0][0], buyPrices[0], "Street", color(139,69,19), 0, 0);
-    brown2 = new Street("Property", "Baltic Ave", rentPrices[0][0], buyPrices[0], "Street", color(139,69,19), 0, 0);
+    brown1 = new Street("Med Ave", rentPrices[0][0], buyPrices[0], "Street", color(139,69,19),0, 0, 0);
+    brown2 = new Street("Baltic Ave", rentPrices[0][0], buyPrices[0], "Street", color(139,69,19),0, 0, 0);
   
-    lightBlue1 = new Street("Property", "Oriental Ave", rentPrices[1][0], buyPrices[1], "Street", color(173, 216, 230), 0, 0);
-    lightBlue2 = new Street("Property", "Vermont Ave", rentPrices[1][0], buyPrices[1], "Street", color(173, 216, 230), 0, 0);
-    lightBlue3 = new Street("Property", "Conn Ave", rentPrices[1][0], buyPrices[1], "Street", color(173, 216, 230), 0, 0);
+    lightBlue1 = new Street("Oriental Ave", rentPrices[1][0], buyPrices[1], "Street", color(173, 216, 230),1, 0, 0);
+    lightBlue2 = new Street("Vermont Ave", rentPrices[1][0], buyPrices[1], "Street", color(173, 216, 230),1, 0, 0);
+    lightBlue3 = new Street("Conn Ave", rentPrices[1][0], buyPrices[1], "Street", color(173, 216, 230),1, 0, 0);
   
-    pink1 = new Street("Property", "St. Charles Pl", rentPrices[2][0],buyPrices[2], "Street", color(199,21,133), 0, 0);
-    pink2 = new Street("Property", "States Ave", rentPrices[2][0], buyPrices[2], "Street", color(199,21,133), 0, 0);
-    pink3 = new Street("Property", "Virginia Ave", rentPrices[2][0], buyPrices[2], "Street", color(199,21,133), 0, 0);
+    pink1 = new Street("St. Charles Pl", rentPrices[2][0],buyPrices[2], "Street", color(199,21,133),2, 0, 0);
+    pink2 = new Street("States Ave", rentPrices[2][0], buyPrices[2], "Street", color(199,21,133),2, 0, 0);
+    pink3 = new Street("Virginia Ave", rentPrices[2][0], buyPrices[2], "Street", color(199,21,133),2, 0, 0);
   
-    orange1 = new Street("Property", "St. James Pl", rentPrices[3][0], buyPrices[3], "Street", color(255,140,0), 0, 0);
-    orange2 = new Street("Property", "Tenn Ave", rentPrices[3][0], buyPrices[3], "Street", color(255,140,0), 0, 0);
-    orange3 = new Street("Property", "New York Ave", rentPrices[3][0], buyPrices[3], "Street", color(255,140,0), 0, 0);
+    orange1 = new Street("St. James Pl", rentPrices[3][0], buyPrices[3], "Street", color(255,140,0),3, 0, 0);
+    orange2 = new Street("Tenn Ave", rentPrices[3][0], buyPrices[3], "Street", color(255,140,0),3, 0, 0);
+    orange3 = new Street("New York Ave", rentPrices[3][0], buyPrices[3], "Street", color(255,140,0),3, 0, 0);
   
-    red1 = new Street("Property", "Kentucky Ave", rentPrices[4][0], buyPrices[4], "Street", color(255,0,0), 0, 0);
-    red2 = new Street("Property", "Indiana Ave", rentPrices[4][0], buyPrices[4], "Street", color(255,0,0), 0, 0);
-    red3 = new Street("Property", "Illinois Ave", rentPrices[4][0], buyPrices[4], "Street", color(255,0,0), 0, 0);
+    red1 = new Street("Kentucky Ave", rentPrices[4][0], buyPrices[4], "Street", color(255,0,0),4, 0, 0);
+    red2 = new Street("Indiana Ave", rentPrices[4][0], buyPrices[4], "Street", color(255,0,0),4, 0, 0);
+    red3 = new Street("Illinois Ave", rentPrices[4][0], buyPrices[4], "Street", color(255,0,0),4, 0, 0);
   
-    yellow1 = new Street("Property", "Atlantic Ave", rentPrices[5][0], buyPrices[5], "Street", color(255,255,0), 0, 0);
-    yellow2 = new Street("Property", "Ventnor Ave", rentPrices[5][0], buyPrices[5], "Street", color(255,255,0), 0, 0);
-    yellow3 = new Street("Property", "Marvin Gardens", rentPrices[5][0], buyPrices[5], "Street", color(255,255,0), 0, 0);
+    yellow1 = new Street("Atlantic Ave", rentPrices[5][0], buyPrices[5], "Street", color(255,255,0),5, 0, 0);
+    yellow2 = new Street("Ventnor Ave", rentPrices[5][0], buyPrices[5], "Street", color(255,255,0),5, 0, 0);
+    yellow3 = new Street("Marvin Gardens", rentPrices[5][0], buyPrices[5], "Street", color(255,255,0),5, 0, 0);
   
-    green1 = new Street("Property", "Pacific Ave", rentPrices[6][0], buyPrices[6], "Street", color(60,179,113), 0, 0);
-    green2 = new Street("Property", "NC Ave", rentPrices[6][0], buyPrices[6], "Street", color(60,179,113), 0, 0);
-    green3 = new Street("Property", "Penn Ave", rentPrices[6][0], buyPrices[6], "Street", color(60,179,113), 0, 0);
+    green1 = new Street("Pacific Ave", rentPrices[6][0], buyPrices[6], "Street", color(60,179,113),6, 0, 0);
+    green2 = new Street("NC Ave", rentPrices[6][0], buyPrices[6], "Street", color(60,179,113),6, 0, 0);
+    green3 = new Street("Penn Ave", rentPrices[6][0], buyPrices[6], "Street", color(60,179,113),6, 0, 0);
   
-    darkBlue1 = new Street("Property", "Park Place", rentPrices[7][0], buyPrices[7], "Street", color(65,105,225), 0, 0);
-    darkBlue2 = new Street("Property", "Boardwalk", rentPrices[7][0], buyPrices[7], "Street", color(65,105,225), 0, 0);
+    darkBlue1 = new Street("Park Place", rentPrices[7][0], buyPrices[7], "Street", color(65,105,225),7, 0, 0);
+    darkBlue2 = new Street("Boardwalk", rentPrices[7][0], buyPrices[7], "Street", color(65,105,225),7, 0, 0);
 
     //spaces array intialization
     spaces = new BoardSpace[]{ // total 40 spaces
@@ -114,6 +114,8 @@ class Board{
       activePlayer=0;
     }
     Player player = playerlist.get(activePlayer);
+    playerlist.get(0).setPos(16); // this is here to test selling / upgrading streets; use something like this to play around with selling
+    playerlist.get(1).setPos(16);
     drawBoard();
     run(buyScreen, player);
     drawPlayer();
@@ -163,13 +165,15 @@ class Board{
         if (!lanSpace.isOccupied()) {
           String body1 = "Purchase for $"+lanSpace.buyPrice()+"?";
           String body2 = "Press y for yes, n for no.";
-          cardPrompt(landedSpace.toString(),225,body1,body2,player.getName()+"'s balance: "+player.getBalance());
+          cardPrompt(landedSpace.toString(),225,body1,body2,"",player.getName()+"'s balance: "+player.getBalance());
           if (keyPressed && key=='y' || key=='Y') {
             player.changeBalance(-lanSpace.buyPrice());
             buyScreen = !buyScreen;
             activePlayer++;
             lanSpace.setOccupied(true);
             lanSpace.setOccupied(player);
+            lanSpace.updateRent();
+            lanSpace.updateBuyPrice(); // houses and hotels are constant for the "row"
           }
           else if (keyPressed && key=='n' || key=='N') {
             buyScreen = !buyScreen; 
@@ -177,22 +181,76 @@ class Board{
           }
         } 
         else{
-         String body1 = "You must pay $"+lanSpace.getPrice()+" to "+lanSpace.getOccupier().getName();
-         String body2 = "Press y to confirm"; 
-         cardPrompt(landedSpace.toString(),225,body1,body2,"");
-         if (keyPressed && key=='y' || key=='Y') {
-            player.changeBalance(lanSpace.getPrice());
-            lanSpace.getOccupier().changeBalance(lanSpace.getPrice());
-            buyScreen = !buyScreen;
-            activePlayer++;
+         if(lanSpace.getOccupier()!=player){
+           String body1 = player.getName()+" pays $"+lanSpace.getPrice()+" to "+lanSpace.getOccupier().getName();
+           String body2 = "Press y to confirm"; 
+           cardPrompt(landedSpace.toString(),225,body1,body2,"","");
+           if (keyPressed && key=='y' || key=='Y') {
+              player.changeBalance(-1*lanSpace.getPrice());
+              lanSpace.getOccupier().changeBalance(lanSpace.getPrice());
+              buyScreen = !buyScreen;
+              activePlayer++;
+           }
+         }
+         else{
+           String body1 = "Sell(s) for half price or Upgrade(u)?";
+           String body2 = "Cost of Upgrade: "+lanSpace.buyPrice();
+           String body3 = "Current Houses (max 4): "+lanSpace.getHouses(); 
+           String body4 = "Current Hotels (max 1): "+lanSpace.getHotels(); 
+           cardPrompt(landedSpace.toString(),225,body1,body2,body3,"");
+           textAlign(CENTER);
+           text(body4,width/2,height/2-40);
+           textAlign(BASELINE);
+           if (keyPressed && key=='s' || key=='S') {
+              if(lanSpace.getHotels()==1){
+                player.changeBalance(lanSpace.buyPrice()/2);
+                lanSpace.setHotels(0);
+                lanSpace.setHouses(4);
+                lanSpace.updateRent();
+              }
+              else if(lanSpace.getHouses()!=0){
+                player.changeBalance(lanSpace.buyPrice()/2);
+                lanSpace.setHouses(lanSpace.getHouses()-1);
+                lanSpace.updateRent();
+              }
+              else if(lanSpace.getHouses()==0){
+                lanSpace.setOccupied(false);
+                lanSpace.setOccupied(null);
+                lanSpace.updateBuyPrice();
+                lanSpace.setHouses(0);
+                lanSpace.setHotels(0);
+                lanSpace.updateRent();
+                player.changeBalance(lanSpace.buyPrice()/2);
+              }
+              buyScreen = !buyScreen;
+              activePlayer++;
+           }
+           if (keyPressed && key=='u' || key=='U') {
+             if(lanSpace.getHotels()==1){
+               textAlign(CENTER);
+               text("You cannot upgrade anymore!",width/2,height/2+175);
+               textAlign(BASELINE);
+             }
+             else{
+              player.changeBalance(-1*lanSpace.buyPrice());
+              lanSpace.setHouses(lanSpace.getHouses()+1);
+              if(lanSpace.getHouses()==5){
+                lanSpace.setHouses(0);
+                lanSpace.setHotels(1);
+              }
+              lanSpace.updateRent();
+              buyScreen = !buyScreen;
+              activePlayer++;
+             }
+           }
          }
         }
       }
       else if(landedSpace.getType().equals("Tax")){
         Tax lanSpace = (Tax)landedSpace; 
-        String body1 = "You must pay $"+lanSpace.getTax();
+        String body1 = player.getName()+" must pay $"+lanSpace.getTax();
         String body2 = "Press y to confirm"; 
-        cardPrompt(landedSpace.toString(),225,body1,body2,"");
+        cardPrompt(landedSpace.toString(),225,body1,body2,"","");
         if (keyPressed && key=='y' || key=='Y') {
             player.changeBalance(-lanSpace.getTax());
             buyScreen = !buyScreen;
@@ -201,7 +259,7 @@ class Board{
       }
   }
   
-  void cardPrompt(String title, color titleColor, String body1, String body2, String bottom){
+  void cardPrompt(String title, color titleColor, String body1, String body2, String body3, String bottom){
     //card shape
     int w = 300;
     int l = 400;
@@ -219,8 +277,8 @@ class Board{
     textSize(20);
     text(body1,width/2,(height/2-130));
     text(body2, width/2, height/2 - 100);
+    text(body3,width/2,height/2-70);
     textAlign(LEFT);
-    //body3 text
     text(bottom,(width-(bottom.length()*12))/2,(height/2+175));
     strokeWeight(1);
   }
@@ -351,13 +409,11 @@ class Board{
         Street landedSpace = (Street)spaces[40-pos];
         fill(landedSpace.getColor());
         rect(100-40, i, 20, width/11);
-        spaces[21].setOccupied(new Player("hi",false));
-        spaces[21].setOccupied(true);
         if(landedSpace.isOccupied()){
           fill(0);
           textSize(10);
           textAlign(CENTER);
-          text(landedSpace.getOccupier().getName(),20,i+450);
+          text(landedSpace.getOccupier().getName(),30,i+45);
           textAlign(BASELINE);
         }
       }
@@ -382,7 +438,7 @@ class Board{
         fill(0);
         textAlign(CENTER);
         text(spaces[spaceCounter+19].toString(), i+40, height-10);
-        text(spaces[spaceCounter+29].toString(), 30, i+40);
+        text(spaces[spaceCounter+29].toString(), 30, i+15);
         textAlign(BASELINE);
       //}
       spaceCounter++;

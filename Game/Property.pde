@@ -3,26 +3,29 @@ class Property extends BoardSpace{
   private Player whoOccupied;
   private int rentPrice;
   private int buyPrice;
-  private String type2; //either street or utility
+
   
-  public Property(String type, String name, int rentPrice, int buyPrice, String type2){
+  public Property(String name, int rentPrice, int buyPrice, String type){
     super(type,name);
     occupied = false;
     this.rentPrice = rentPrice;
     this.buyPrice = buyPrice;
-    this.type2 = type2;
   }
   
   int getPrice(){
     return rentPrice;
   }
   
-  void setPrice(int newPrice){
+  void setPrice(int newPrice){  // havent updated the diagram for the following method - Jaco
     rentPrice = newPrice;
   }
   
   int buyPrice(){
     return buyPrice;
+  }
+  
+  void setBuyPrice(int price){ // have not updated the diagram yet -- Jaco
+    buyPrice = price;
   }
   
   boolean isOccupied(){
@@ -41,7 +44,7 @@ class Property extends BoardSpace{
     occupied = status;
   }
   
-  String getType(){ //Added this method and added it to diagram - Ray [DELETE AFTER SEEN]
-    return type2;
-  }
+  //String getType(){ //Added this method and added it to diagram - Ray [DELETE AFTER SEEN] keep it in boardspace - Jaco
+  //  return type;
+  //}
 }
