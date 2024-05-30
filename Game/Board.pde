@@ -117,7 +117,12 @@ class Board{
     }
     Player player = playerlist.get(activePlayer);
     drawBoard();
-    run(buyScreen, player);
+    if (!player.inJail()) {
+      run(buyScreen, player);
+    }
+    else {
+      run(true, player);
+    }
     drawPlayer();
   }
   
@@ -268,12 +273,34 @@ class Board{
       }
       else if(landedSpace.getType().equals("Jail")){
         String body1 = player.getName()+" is in jail!";
-        String body2 = "Press y to pay $50 to bail out."; 
-        cardPrompt(landedSpace.toString(),225,body1,body2,"","");
+        String body2 = "Press y to pay $50 to bail"; 
+        String body3 = "Press n to try rolling a 4 to bail";
+        player.setJail(true);
+        cardPrompt(landedSpace.toString(),225,body1,body2,body3,"");
         if (keyPressed && key=='y' || key=='Y') {
             player.changeBalance(-50);
+            player.setJail(false);
             buyScreen = !buyScreen;
             activePlayer++;
+        }
+        else if (keyPressed && key=='n' || key=='N') {
+          int rolled = dice();
+            if (rolled==4) {
+              player.setJail(false);
+              cardPrompt(landedSpace.toString(),225,"You rolled a 4","You're out of jail!","Press y to continue","");
+              if (keyPressed && key=='y' || key=='Y') {
+                buyScreen = !buyScreen;
+                activePlayer++;
+              }
+            }
+            else {
+              cardPrompt(landedSpace.toString(),225,"You didn't roll a 4","You're still in jail","Press y to continue","");
+              if (keyPressed && key=='y' || key=='Y') {
+                buyScreen = !buyScreen;
+                activePlayer++;
+              }
+            }
+            
         }
       }
   }
@@ -440,6 +467,7 @@ class Board{
         if(landedSpace.isOccupied()){
           fill(0);
           textSize(10);
+          textAlign(CENTER);
           text(landedSpace.getOccupier().getName(),30,i+40);
           textAlign(CENTER);
           textSize(8);
