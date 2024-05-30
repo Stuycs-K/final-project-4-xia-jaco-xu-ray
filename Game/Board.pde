@@ -114,7 +114,8 @@ class Board{
       activePlayer=0;
     }
     Player player = playerlist.get(activePlayer);
-    playerlist.get(0).setPos(16); // this is here to test selling / upgrading streets
+    playerlist.get(0).setPos(16); // this is here to test selling / upgrading streets; use something like this to play around with selling
+    playerlist.get(1).setPos(16);
     drawBoard();
     run(buyScreen, player);
     drawPlayer();
@@ -193,17 +194,34 @@ class Board{
          }
          else{
            String body1 = "Sell(s) for half price or Upgrade(u)?";
-           String body2 = "Current Houses (max 4): "+lanSpace.getHouses(); 
-           String body3 = "Current Hotels (max 1): "+lanSpace.getHotels(); 
+           String body2 = "Cost of Upgrade: "+lanSpace.buyPrice();
+           String body3 = "Current Houses (max 4): "+lanSpace.getHouses(); 
+           String body4 = "Current Hotels (max 1): "+lanSpace.getHotels(); 
            cardPrompt(landedSpace.toString(),225,body1,body2,body3,"");
+           textAlign(CENTER);
+           text(body4,width/2,height/2-40);
+           textAlign(BASELINE);
            if (keyPressed && key=='s' || key=='S') {
-              lanSpace.setOccupied(false);
-              lanSpace.setOccupied(null);
-              lanSpace.updateBuyPrice();
-              lanSpace.setHouses(0);
-              lanSpace.setHotels(0);
-              lanSpace.updateRent();
-              player.changeBalance(lanSpace.buyPrice()/2);
+              if(lanSpace.getHotels()==1){
+                player.changeBalance(lanSpace.buyPrice()/2);
+                lanSpace.setHotels(0);
+                lanSpace.setHouses(4);
+                lanSpace.updateRent();
+              }
+              else if(lanSpace.getHouses()!=0){
+                player.changeBalance(lanSpace.buyPrice()/2);
+                lanSpace.setHouses(lanSpace.getHouses()-1);
+                lanSpace.updateRent();
+              }
+              else if(lanSpace.getHouses()==0){
+                lanSpace.setOccupied(false);
+                lanSpace.setOccupied(null);
+                lanSpace.updateBuyPrice();
+                lanSpace.setHouses(0);
+                lanSpace.setHotels(0);
+                lanSpace.updateRent();
+                player.changeBalance(lanSpace.buyPrice()/2);
+              }
               buyScreen = !buyScreen;
               activePlayer++;
            }
@@ -214,6 +232,7 @@ class Board{
                textAlign(BASELINE);
              }
              else{
+              player.changeBalance(-1*lanSpace.buyPrice());
               lanSpace.setHouses(lanSpace.getHouses()+1);
               if(lanSpace.getHouses()==5){
                 lanSpace.setHouses(0);
