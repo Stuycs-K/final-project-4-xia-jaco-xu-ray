@@ -7,4 +7,5 @@ THIS DOCUMENT IS REQUIRED
 
 SHORTCUTS:
 'z' to change all players' balances to $200.
-'t' to teleport all players to a random space on the board.
+'t' to teleport all players to a random space on the board. 
+'d' to disrupt regular gameplay flow: shows sell/upgrade functionality.
