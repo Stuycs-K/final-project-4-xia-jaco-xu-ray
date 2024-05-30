@@ -4,3 +4,7 @@ THIS DOCUMENT IS REQUIRED
 ## Group Info
 ## Overview
 ## Instructions
+
+SHORTCUTS:
+'z' to change all players' balances to $200.
+'t' to teleport all players to a random space on the board.
