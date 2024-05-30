@@ -10,7 +10,7 @@ class Player{
   
   Player(String tname, boolean turnStat) {
    balance = 1500; //This is monopoly's default starting money, can be changed
-   //ownedProperty = new int
+   ownedProperty = new ArrayList<Property>();
    name = tname;
    turnStatus = turnStat;
    jail = false;
@@ -26,13 +26,23 @@ class Player{
     balance = balance + amount;
   }
   
-  /*
-  String viewProperty() {
+  
+  String viewProperty() { // should be String
+    String res = "";
+    for(int i = 0; i<ownedProperty.size(); i++){
+     System.out.println(ownedProperty.get(i).toString()+""); 
+    }
+    return res;
   }
   
-  Property sellProperty(int index) { 
+  void addProperty(Property p){
+    ownedProperty.add(p);
   }
-  */
+  
+  void sellProperty(BoardSpace space) { 
+    ownedProperty.remove(space);
+  }
+
   
   String getName() {
     return name;
@@ -64,6 +74,7 @@ class Player{
   boolean getStatus(){
     return turnStatus;
   }
+  
   
   
   
