@@ -124,7 +124,8 @@ class Board{
   void run(boolean showBuyScreen, Player player) {
     if (disruption) {
       for (int i = 0; i<playerlist.size(); i++) {
-        playerlist.get(i).setPos(30);
+        //playerlist.get(i).setPos(30); //TEMPORARY TO TEST JAIL
+        playerlist.get(1).setPos(1); //FOR MEDITERRANEAN AVENUE
       }
     }
     if (!showBuyScreen && !player.inJail()) {
