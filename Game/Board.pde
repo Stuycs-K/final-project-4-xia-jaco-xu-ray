@@ -205,7 +205,7 @@ class Board{
     //card shape
     int w = 300;
     int l = 400;
-    noStroke();
+    strokeWeight(2);
     fill(titleColor);
     rect((width-w)/2,(height-l)/2,w,l,20);
     fill(255);
@@ -222,6 +222,7 @@ class Board{
     textAlign(LEFT);
     //body3 text
     text(bottom,(width-(bottom.length()*12))/2,(height/2+175));
+    strokeWeight(1);
   }
   
   int dice() {
@@ -230,6 +231,7 @@ class Board{
   
   void drawPlayer() {
     //drawBoard();
+    strokeWeight(1);
     for(int i = 0; i<playerlist.size(); i++){    
       Player player = playerlist.get(i);
       if(!player.isBankrupt()){ // is the player bankrupt?
@@ -308,34 +310,68 @@ class Board{
       rect(i, height-(width/11), width/11, width/11);
       rect(width-(width/11), i, width/11, width/11);
       //noStroke();
-      int pos = i/80;
+      int pos = i/(width/11);
       if(spaces[pos].getType()=="Street"){
         Street landedSpace = (Street)spaces[pos];        
         fill(landedSpace.getColor());
         rect(i, 100-40, width/11, 20);
+        if(landedSpace.isOccupied()){
+          fill(0);
+          textSize(10);
+          textAlign(CENTER);
+          text(landedSpace.getOccupier().getName(),i+40,40);
+          textAlign(BASELINE);
+        }
       }
       if(spaces[pos+10].getType()=="Street"){
         Street landedSpace = (Street)spaces[pos+10];
         fill(landedSpace.getColor());
         rect(800, i, 20, width/11);
+        if(landedSpace.isOccupied()){
+          fill(0);
+          textSize(10);
+          textAlign(CENTER);
+          text(landedSpace.getOccupier().getName(),880-30,i+45);
+          textAlign(BASELINE);
+        }
       }
       if(spaces[30-pos].getType()=="Street"){   
         Street landedSpace = (Street)spaces[30-pos];
         fill(landedSpace.getColor());
         rect(i, 800, width/11, 20);
+        if(landedSpace.isOccupied()){
+          fill(0);
+          textSize(10);
+          textAlign(CENTER);
+          text(landedSpace.getOccupier().getName(),i+40,height - 35);
+          textAlign(BASELINE);
+        }
       }
       if(pos>0&&spaces[40-pos].getType()=="Street"){
         Street landedSpace = (Street)spaces[40-pos];
         fill(landedSpace.getColor());
         rect(100-40, i, 20, width/11);
+        spaces[21].setOccupied(new Player("hi",false));
+        spaces[21].setOccupied(true);
+        if(landedSpace.isOccupied()){
+          fill(0);
+          textSize(10);
+          textAlign(CENTER);
+          text(landedSpace.getOccupier().getName(),20,i+450);
+          textAlign(BASELINE);
+        }
       }
     }
     for (int i = 0; i<width; i+=width/11) {
       //if (!spaces[spaceCounter].toString().equals("empty")) {
         textSize(10);
         fill(0);
-        text(spaces[spaceCounter].toString(), i+3, 15);
-        text(spaces[spaceCounter+10].toString(), width-77, i+15);
+        textAlign(CENTER);
+        text(spaces[spaceCounter].toString(), i+40, 15);
+        if(spaceCounter>0&&spaceCounter<10){
+          text(spaces[spaceCounter+10].toString(), width-30, i+15);
+        }
+        textAlign(BASELINE);
       //}
       spaceCounter++;
     }
@@ -344,8 +380,10 @@ class Board{
       //if (!spaces[spaceCounter].toString().equals("empty")) {
         textSize(10);
         fill(0);
-        text(spaces[spaceCounter+19].toString(), i+3, height-65);
-        text(spaces[spaceCounter+29].toString(), 3, i+15);
+        textAlign(CENTER);
+        text(spaces[spaceCounter+19].toString(), i+40, height-10);
+        text(spaces[spaceCounter+29].toString(), 30, i+40);
+        textAlign(BASELINE);
       //}
       spaceCounter++;
     }
