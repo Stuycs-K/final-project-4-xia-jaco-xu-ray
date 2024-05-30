@@ -152,7 +152,7 @@ class Board{
       if(selected||landedSpace.toString().equals("empty")){
         buyScreen = false;
         activePlayer++;
-        return; //is this necessary since void function - ray [DELETE COMMENT IF SEEN]
+        return; 
       }
       determinePrompt(landedSpace,player);
       
@@ -453,5 +453,23 @@ class Board{
   
   BoardSpace empty() {
     return new BoardSpace("empty","empty");
+  }
+  
+  void loseMoney(){
+     for (int i = 0; i<playerlist.size(); i++) {
+        int cbal = -playerlist.get(i).getBalance() + 200; 
+        playerlist.get(i).changeBalance(cbal);
+     }
+  }
+  
+  void teleport(){
+    if (!buyScreen) {
+       int temp = (int) (Math.random()*40);
+       for (int i = 0; i<playerlist.size(); i++) { 
+          playerlist.get(i).setPosition(temp);
+       }
+       drawBoard();
+       drawPlayer();
+    }
   }
 }
