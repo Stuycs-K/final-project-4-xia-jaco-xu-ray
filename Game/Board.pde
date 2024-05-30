@@ -114,8 +114,8 @@ class Board{
       activePlayer=0;
     }
     Player player = playerlist.get(activePlayer);
-    playerlist.get(0).setPos(16); // this is here to test selling / upgrading streets; use something like this to play around with selling
-    playerlist.get(1).setPos(16);
+    //playerlist.get(0).setPos(16); // this is here to test selling / upgrading streets; use something like this to play around with selling
+    //playerlist.get(1).setPos(16);
     drawBoard();
     run(buyScreen, player);
     drawPlayer();
