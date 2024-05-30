@@ -117,12 +117,7 @@ class Board{
     }
     Player player = playerlist.get(activePlayer);
     drawBoard();
-    if (!player.inJail()) {
-      run(buyScreen, player);
-    }
-    else {
-      run(true, player);
-    }
+    run(buyScreen, player);
     drawPlayer();
   }
   
@@ -132,7 +127,7 @@ class Board{
         playerlist.get(i).setPos(30);
       }
     }
-    if (!showBuyScreen) {
+    if (!showBuyScreen && !player.inJail()) {
       player.setStatus(true);
       if(distance==0){
         distance = dice();
