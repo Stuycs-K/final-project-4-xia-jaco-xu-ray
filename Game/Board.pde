@@ -9,6 +9,7 @@ class Board{
   private int activePlayer;
   private boolean buyScreen;
   private boolean startScreen;
+  private boolean disruption;
   
   Board(){
     //Initialize prices of the properties
@@ -78,6 +79,7 @@ class Board{
     distance = 0;
     buyScreen = false;
     startScreen = true;
+    disruption = false;
   }
   
   void draw() {
@@ -114,8 +116,10 @@ class Board{
       activePlayer=0;
     }
     Player player = playerlist.get(activePlayer);
-    //playerlist.get(0).setPos(16); // this is here to test selling / upgrading streets; use something like this to play around with selling
-    //playerlist.get(1).setPos(16);
+    if (disruption) {
+      playerlist.get(0).setPos(16); // this is here to test selling / upgrading streets; use something like this to play around with selling
+      playerlist.get(1).setPos(16);
+    }
     drawBoard();
     run(buyScreen, player);
     drawPlayer();
@@ -459,13 +463,18 @@ class Board{
   }
   
   void teleport(){
-    if (!buyScreen) {
+    if (!buyScreen && !startScreen) {
        int temp = (int) (Math.random()*40);
        for (int i = 0; i<playerlist.size(); i++) { 
           playerlist.get(i).setPosition(temp);
        }
-       drawBoard();
-       drawPlayer();
+       //drawBoard();
+       //drawPlayer();
+       draw();
     }
+  }
+  
+  void disrupt(){
+    disruption = !disruption;
   }
 }

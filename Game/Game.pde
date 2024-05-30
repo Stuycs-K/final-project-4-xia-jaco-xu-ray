@@ -17,4 +17,8 @@ void keyPressed(){
   if (key=='t') {
    mainBoard.teleport();
   }
+  
+  if (key=='d') {
+   mainBoard.disrupt(); 
+  }
 }
