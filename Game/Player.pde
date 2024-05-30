@@ -56,6 +56,10 @@ class Player{
     jail = inJail;
   }
   
+  boolean inJail() {
+     return jail; 
+  }
+  
   boolean isBankrupt(){
     return bankrupt;
   }

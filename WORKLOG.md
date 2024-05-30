@@ -58,3 +58,7 @@ Homework: Added basic buyScreen functionality with key press recognition.
 ### 5/29/24
 Classwork: Updated board visual to include more information about players, began moving code out of main 'Game' class to a separate class 'Board.'
 Homework: Further updated board visual to include dice roll, completed moving code out of 'Game' and into 'Board,' finished start screen with player count functionality.
+
+### 5/30/24
+Classwork: Added shortcuts to simulate key elements of game (bankruptcy, random teleport, disruption (i.e. buy, sell, upgrade Mediterranean Avenue)).
+Homework: Added jail space functionality and visual card, worked on logic for player to either bail out through monetary means or dice rolling.
