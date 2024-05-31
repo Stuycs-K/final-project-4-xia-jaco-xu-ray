@@ -36,7 +36,7 @@ Homework: Added bankruptcy protocol; if player balance is < 0, the player will h
 
 ## 5/31/24
 Classwork: Started looping through pages (for owned property and selling). Still need to update loop for displaying and selecting the right property on each page.
-
+Homework: Finished implementing code that loops through property (pages) -- this is for when players have more than 10 properties and it can't fit on screen (this is something we should show for MVP). Fixed weird merged code (for some reason code got lost in one of the sections I was working on; i fixed it though).
 
 ## Ray Xu
 
@@ -70,3 +70,7 @@ Homework: Further updated board visual to include dice roll, completed moving co
 ### 5/30/24
 Classwork: Added shortcuts to simulate key elements of game (bankruptcy, random teleport, disruption (i.e. buy, sell, upgrade Mediterranean Avenue)).
 Homework: Added jail space functionality and visual card, worked on logic for player to either bail out through monetary means or dice rolling.
+
+### 5/31/24
+Classwork: Continued working on logic for jail space, successfully implemented card that does not disappear but logic is flawed in that it may skip certain players who are/(not) in jail.
+Homework: TO DO: NEW JAIL METHOD IN BOARD, ADD INSTANCE VARS TO PLAYER: JAIL SCREEN, NUMBER OF ROUNDS IN JAIL. UTILISE IN JAIL METHOD.
