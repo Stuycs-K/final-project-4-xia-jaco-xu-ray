@@ -64,10 +64,6 @@ class Player{
     return position; 
   }
   
-  void setPos(int pos){
-    position = pos;
-  }
-  
   void setStatus(boolean state){
     turnStatus = state;
   }
