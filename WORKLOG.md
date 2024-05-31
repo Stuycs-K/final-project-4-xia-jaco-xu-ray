@@ -30,6 +30,10 @@ Homework: Added Tax buyscreen and added additional information on the monopoly c
 Classwork: Started working on changing some fields (to arraylists). Worked on centering text.
 Homework: Centered text (created a method that would create a prompt card). Colored the board and added color borders to respective property. Added sell and upgrade options and tested. (still need to add jail and bankruptcy code). I also fixed the weird issue where the last movement would be really quick. Also shifted placement of text inside each of the spaces to better fit the space.
 
+## 5/30/24
+Classwork: Started working on keeping track of players owned properties (specific to the player) and making sure properties are removed based off player decision.
+Homework: Added bankruptcy protocol; if player balance is < 0, the player will have to sell their properties. Adjusted code to make sure that if a player goes broke, they'll immediately be prompted to sell property (in any situation). Issue: right now, players can select from 0 - 9 (because there are 0 - 9 digits). If a player has more than 10 properties, to sell the 11th property, how should we index it?
+
 ## Ray Xu
 
 ### 5/22/24
