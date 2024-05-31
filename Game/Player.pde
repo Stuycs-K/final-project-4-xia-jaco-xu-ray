@@ -27,12 +27,8 @@ class Player{
   }
   
   
-  String viewProperty() { // should be String
-    String res = "";
-    for(int i = 0; i<ownedProperty.size(); i++){
-     System.out.println(ownedProperty.get(i).toString()+""); 
-    }
-    return res;
+  ArrayList<Property> getProperty() { // should be String
+    return ownedProperty;
   }
   
   void addProperty(Property p){

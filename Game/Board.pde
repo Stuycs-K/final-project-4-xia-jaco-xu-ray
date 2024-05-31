@@ -10,6 +10,7 @@ class Board{
   private boolean buyScreen;
   private boolean startScreen;
   private boolean disruption;
+  private int speed;
   
   Board(){
     //Initialize prices of the properties
@@ -80,6 +81,7 @@ class Board{
     buyScreen = false;
     startScreen = true;
     disruption = false;
+    speed = 50;
   }
   
   void draw() {
@@ -145,7 +147,7 @@ class Board{
          player.setPos(0); 
          player.changeBalance(200);
        }
-       delay(500);
+       delay(speed);
        distance--;
       }
       if(distance==0 && !player.getStatus()){
@@ -154,8 +156,8 @@ class Board{
     }
     else {
       BoardSpace landedSpace = spaces[player.getPos()];
-      boolean selected = false;
-      if(selected||landedSpace.toString().equals("empty")){
+      boolean selected = false; // what is this for again? - Jaco
+      if(selected||landedSpace.toString().equals("empty")||landedSpace.toString().equals("Go")){
         buyScreen = false;
         activePlayer++;
         return; 
@@ -166,6 +168,7 @@ class Board{
   }
   
   void determinePrompt(BoardSpace landedSpace, Player player){
+    if(player.getBalance()>=0){
      if (landedSpace.getType().equals("Street")) {
         Street lanSpace = (Street) landedSpace;
         if (!lanSpace.isOccupied()) {
@@ -173,14 +176,19 @@ class Board{
           String body2 = "Press y for yes, n for no.";
           cardPrompt(landedSpace.toString(),225,body1,body2,"",player.getName()+"'s balance: "+player.getBalance());
           if (keyPressed && key=='y' || key=='Y') {
-            player.changeBalance(-lanSpace.buyPrice());
-            player.addProperty(lanSpace);
-            buyScreen = !buyScreen;
-            activePlayer++;
-            lanSpace.setOccupied(true);
-            lanSpace.setOccupied(player);
-            lanSpace.updateRent();
-            lanSpace.updateBuyPrice(); // houses and hotels are constant for the "row"
+            if(player.getBalance()>=lanSpace.buyPrice()){
+              player.changeBalance(-lanSpace.buyPrice());
+              player.addProperty(lanSpace);
+              buyScreen = !buyScreen;
+              activePlayer++;
+              lanSpace.setOccupied(true);
+              lanSpace.setOccupied(player);
+              lanSpace.updateRent();
+              lanSpace.updateBuyPrice(); // houses and hotels are constant for the "row"
+            }
+            else{
+              cardPrompt(landedSpace.toString(),225,"No money!","","",player.getName()+"'s balance: "+player.getBalance());
+            }
           }
           else if (keyPressed && key=='n' || key=='N') {
             buyScreen = !buyScreen; 
@@ -209,29 +217,7 @@ class Board{
            text(body4,width/2,height/2-40);
            textAlign(BASELINE);
            if (keyPressed && key=='s' || key=='S') {
-              if(lanSpace.getHotels()==1){
-                player.changeBalance(lanSpace.buyPrice()/2);
-                lanSpace.setHotels(0);
-                lanSpace.setHouses(4);
-                lanSpace.updateRent();
-              }
-              else if(lanSpace.getHouses()!=0){
-                player.changeBalance(lanSpace.buyPrice()/2);
-                lanSpace.setHouses(lanSpace.getHouses()-1);
-                lanSpace.updateRent();
-              }
-              else if(lanSpace.getHouses()==0){
-                lanSpace.setOccupied(false);
-                lanSpace.setOccupied(null);
-                System.out.println("Old property:" + player.viewProperty());
-
-                System.out.println("New Property:"+ player.viewProperty());
-                lanSpace.updateBuyPrice();
-                lanSpace.setHouses(0);
-                lanSpace.setHotels(0);
-                lanSpace.updateRent();
-                player.changeBalance(lanSpace.buyPrice()/2);
-              }
+              lanSpace.sellUpdatePrice();
               buyScreen = !buyScreen;
               activePlayer++;
            }
@@ -299,6 +285,22 @@ class Board{
             
         }
       }
+    }
+    else{
+        if(player.getProperty().size()>0){
+          
+          String body1 = "You must sell property!";
+          String body2 = "Press y to pay $50 to bail"; 
+          String body3 = "Press n to try rolling a 4 to bail";
+          cardPrompt(player.getName(),225,body1,body2,body3,"");
+        }
+        else{
+          String body1 = "";
+          String body2 = "Press y to pay $50 to bail"; 
+          String body3 = "Press n to try rolling a 4 to bail";
+          cardPrompt(player.getName(),225,body1,body2,body3,"");
+        }
+    }
   }
   
   void cardPrompt(String title, color titleColor, String body1, String body2, String body3, String bottom){

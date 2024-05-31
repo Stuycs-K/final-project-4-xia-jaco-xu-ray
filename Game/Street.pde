@@ -28,8 +28,32 @@ class Street extends Property{
     return col;
   }
   
-  void updateRent(){  // havent updated the diagram for the two following methods - Jaco
+  void updateRent(){  // havent updated the diagram for the three following methods - Jaco
     super.setPrice(determineNextRent());
+  }
+  
+  void sellUpdatePrice(){ // sells house and updates price accordingly
+    if(getHotels()==1){
+       super.whoOccupied.changeBalance(buyPrice()/2);
+       setHotels(0);
+       setHouses(4);
+       updateRent();
+    }
+    else if(getHouses()!=0){
+       super.whoOccupied.changeBalance(buyPrice()/2);
+       setHouses(getHouses()-1);
+       updateRent();
+    }
+    else if(getHouses()==0){
+       super.whoOccupied.sellProperty(this);
+       setOccupied(false);
+       updateBuyPrice();
+       setHouses(0);
+       setHotels(0);
+       updateRent();
+       super.whoOccupied.changeBalance(buyPrice()/2);
+       setOccupied(null);
+     }
   }
   
   void updateBuyPrice(){
@@ -75,6 +99,8 @@ class Street extends Property{
     }
     return nextCost;
   }
+  
+  
 
   
 }
