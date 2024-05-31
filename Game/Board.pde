@@ -11,6 +11,7 @@ class Board{
   private boolean startScreen;
   private boolean disruption;
   private int speed;
+  private boolean jailScreen;
   
   Board(){
     //Initialize prices of the properties
@@ -82,6 +83,7 @@ class Board{
     startScreen = true;
     disruption = false;
     speed = 50;
+    jailScreen = true;
   }
   
   void draw() {
@@ -131,8 +133,8 @@ class Board{
   void run(boolean showBuyScreen, Player player) {
     if (disruption) {
       for (int i = 0; i<playerlist.size(); i++) {
-        //playerlist.get(i).setPos(30); //TEMPORARY TO TEST JAIL
-        playerlist.get(1).setPos(1); //FOR MEDITERRANEAN AVENUE
+        playerlist.get(i).setPosition(30); //TEMPORARY TO TEST JAIL
+        //playerlist.get(1).setPosition(1); //FOR MEDITERRANEAN AVENUE
       }
     }
     if (!showBuyScreen && !player.inJail()) {
@@ -147,9 +149,9 @@ class Board{
        fill(0);
        text(player.getName()+" rolled a "+sdist, width/11+20, height - (height/11) - 10);
        player.setStatus(false);
-       player.setPos(player.getPos()+1);
+       player.setPosition(player.getPos()+1);
        if(!(player.getPos()<40)){
-         player.setPos(0); 
+         player.setPosition(0); 
          player.changeBalance(200);
        }
        delay(speed);
@@ -276,25 +278,33 @@ class Board{
         }
       }
       else if(landedSpace.getType().equals("Jail")){
-        String body1 = player.getName()+" is in jail!";
-        String body2 = "Press y to pay $50 to bail"; 
-        String body3 = "Press n to try rolling a 4 to bail";
-        player.setJail(true);
-        cardPrompt(landedSpace.toString(),225,body1,body2,body3,"");
-        if (keyPressed && key=='y' || key=='Y') {
+        int rolled = 0;
+        if (jailScreen) {
+          String body1 = player.getName()+" is in jail!";
+          String body2 = "Press y to pay $50 to bail"; 
+          String body3 = "Press n to try rolling a 4 to bail";
+          player.setJail(true);
+          cardPrompt(landedSpace.toString(),225,body1,body2,body3,"");
+          if (keyPressed && key=='y' || key=='Y') {
             player.changeBalance(-50);
             player.setJail(false);
             buyScreen = !buyScreen;
             activePlayer++;
+          }
+          else if (keyPressed && ((key=='n' || key=='N'))) {
+            jailScreen = false;
+            rolled = dice();
+          }
         }
-        else if (keyPressed && key=='n' || key=='N') {
-          int rolled = dice();
-            if (rolled==4) {
+        else {
+          if (rolled==4) {
               player.setJail(false);
               cardPrompt(landedSpace.toString(),225,"You rolled a 4","You're out of jail!","Press y to continue","");
               if (keyPressed && key=='y' || key=='Y') {
                 buyScreen = !buyScreen;
                 activePlayer++;
+                jailScreen = true;
+                player.setPosition(player.getPos()+1);
               }
             }
             else {
@@ -302,12 +312,11 @@ class Board{
               if (keyPressed && key=='y' || key=='Y') {
                 buyScreen = !buyScreen;
                 activePlayer++;
+                jailScreen = true;
               }
             }
-            
         }
       }
-    }
     else{
         if(player.getProperty().size()>0){
           String body1 = "You must sell property!";
@@ -351,6 +360,7 @@ class Board{
             buyScreen = !buyScreen;
           }
         }
+      }
     }
   }
   
@@ -560,7 +570,7 @@ class Board{
   
   void loseMoney(){
      for (int i = 0; i<playerlist.size(); i++) {
-        int cbal = /*-playerlist.get(i).getBalance() + 200; */ -200;
+        int cbal = -playerlist.get(i).getBalance() + 200; // -200;
         playerlist.get(i).changeBalance(cbal);
      }
   }
