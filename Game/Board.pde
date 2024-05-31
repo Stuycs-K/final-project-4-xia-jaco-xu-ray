@@ -1,4 +1,4 @@
-class Board {
+  class Board {
   private ArrayList<Player> playerlist;
   private BoardSpace[] spaces;
   private int[] buyPrices;
@@ -73,7 +73,7 @@ class Board {
       empty(), pink1, empty(), pink2, pink3, empty(), orange1, empty(), orange2, orange3,
       empty(), red1, empty(), red2, red3, empty(), yellow1, yellow2, empty(), yellow3,
       new BoardSpace("Jail", "Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new Tax("Tax", "Luxury Tax", 100), darkBlue2
-    };
+    };    
 
     // Initialize other fields
     drawBoard();
@@ -308,71 +308,57 @@ class Board {
             }
         }
       }
+    }
     else{
+      ArrayList<Property> playerProperty = player.getProperty();
         if(player.getProperty().size()>0){
           String body1 = "You must sell property!";
           String body2 = "Houses/Hotels will be sold first";
           cardPrompt(player.getName(),225,body1,body2,"","");
-          
-          ArrayList<Property> playerProperty = player.getProperty();
-          for(int i = 0; i<playerProperty.size(); i++){
+          if(playerProperty.size()>10&&page==0){
+            String arrows = "Next(.)";
             textAlign(CENTER);
-            textSize(20);
-            text(playerProperty.get(i).toString()+" ["+i+"]", width/2, height/2-(70-(20*i)));
+            text(arrows,width/2,height/2+175);
             textAlign(BASELINE);
           }
-          if (keyPressed && Character.isDigit(key) && key-48<playerProperty.size()){ // character 0 is 48 in ascii
-            Street temp = (Street)playerProperty.get(key-48);
+          else if(page>0){
+            String arrows = "(,)Prev   Next(.)";
+            textAlign(CENTER);
+            text(arrows,width/2,height/2+175);
+            textAlign(BASELINE);
+          }
+          if(10+(10*page)<playerProperty.size()&&(page==0||page==1)&&keyPressed && key=='.'){
+            page++;
+            delay(250);
+          }
+          else if((page==1||page==2)&& keyPressed && key==','){
+            page--;
+            delay(250);
+          }
+          for (int i = 0; i<10&&i+(page*10)<playerProperty.size(); i++) { // change bounds of loop to work with the pages implementation
+            textAlign(CENTER);
+            textSize(20);
+            text(playerProperty.get(i+(page*10)).toString()+" ["+i+"]", width/2, height/2-(70-(20*i)));
+            textAlign(BASELINE);
+          }
+          if (keyPressed && Character.isDigit(key) && key-48<playerProperty.size()) { // character 0 is 48 in ascii
+            Street temp = (Street)playerProperty.get((page*10)+key-48);
             temp.sellUpdatePrice();
             key = 0; // null
             textAlign(CENTER);
-            fill(7,200,7);
+            fill(7, 200, 7);
             textSize(50);
             text("Sold!", width/2, height/2+175);
             fill(0);
             textAlign(BASELINE);
           }
-          
-          if(player.getBalance()>0){
+  
+          if (player.getBalance()>0) {
             buyScreen = !buyScreen;
             activePlayer++;
           }
         }
-        else if(playerProperty.size()>20&&page==1){
-          String arrows = "(<)Prev   Next(>)";
-          textAlign(CENTER);
-          text(arrows,width/2,height/2+175);
-          textAlign(BASELINE);
-        }
-        if((page==0||page==1)&&keyPressed && key=='>'){
-          page++;
-        }
-        else if((page==1||page==2)&& keyPressed && key=='<'){
-          page--;
-        }
-        for (int i = 0; i<playerProperty.size(); i++) { // change bounds of loop to work with the pages implementation
-          textAlign(CENTER);
-          textSize(20);
-          text(playerProperty.get(i+(page*10)).toString()+" ["+i+"]", width/2, height/2-(70-(20*i)));
-          textAlign(BASELINE);
-        }
-        if (keyPressed && Character.isDigit(key) && key-48<playerProperty.size()) { // character 0 is 48 in ascii
-          Street temp = (Street)playerProperty.get((page*10)+key-48);
-          temp.sellUpdatePrice();
-          key = 0; // null
-          textAlign(CENTER);
-          fill(7, 200, 7);
-          textSize(50);
-          text("Sold!", width/2, height/2+175);
-          fill(0);
-          textAlign(BASELINE);
-        }
-
-        if (player.getBalance()>0) {
-          buyScreen = !buyScreen;
-          activePlayer++;
-        }
-      } else {
+       else {
         String body1 = "You have no more property to sell";
         String body2 = player.getName()+" is bankrupt!";
         String body3 = "Press y to continue";
