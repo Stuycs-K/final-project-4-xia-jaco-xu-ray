@@ -10,6 +10,7 @@
   private boolean buyScreen;
   private boolean startScreen;
   private boolean disruption;
+  private boolean jailDisruption;
   private int speed;
   private boolean jailScreen;
   private int page;
@@ -83,6 +84,7 @@
     buyScreen = false;
     startScreen = true;
     disruption = false;
+    jailDisruption = false;
     speed = 50;
     jailScreen = true;
     page = 0;
@@ -131,8 +133,12 @@
   void run(boolean showBuyScreen, Player player) {
     if (disruption) {
       for (int i = 0; i<playerlist.size(); i++) {
-        playerlist.get(i).setPosition(30); //TEMPORARY TO TEST JAIL
-        //playerlist.get(1).setPosition(1); //FOR MEDITERRANEAN AVENUE
+        playerlist.get(1).setPosition(1); //FOR MEDITERRANEAN AVENUE
+      }
+    }
+    if (jailDisruption) {
+      for (int i = 0; i<playerlist.size(); i++) {
+        playerlist.get(i).setPosition(30);
       }
     }
     if (!showBuyScreen && !player.inJail()) {
@@ -594,5 +600,16 @@
 
   void disrupt() {
     disruption = !disruption;
+    if (disruption && jailDisruption) {
+     jailDisruption = !jailDisruption; 
+    }
+  }
+  
+  void jailDisrupt(){
+    
+    jailDisruption = !jailDisruption;
+    if (disruption && jailDisruption) {
+     disruption = !disruption; 
+    }
   }
 }

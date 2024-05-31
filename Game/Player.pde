@@ -5,6 +5,8 @@ class Player{
   private String name;
   private boolean turnStatus;
   private boolean jail;
+  private boolean jailScreen;
+  private int jailCount;
   private int position;
   private boolean bankrupt;
   
