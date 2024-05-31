@@ -292,6 +292,7 @@ class Board{
             activePlayer++;
           }
           else if (keyPressed && ((key=='n' || key=='N'))) {
+            player.setJail(true);
             jailScreen = false;
             rolled = dice();
           }
@@ -308,6 +309,7 @@ class Board{
               }
             }
             else {
+              player.setJail(true);
               cardPrompt(landedSpace.toString(),225,"You didn't roll a 4","You're still in jail","Press y to continue","");
               if (keyPressed && key=='y' || key=='Y') {
                 buyScreen = !buyScreen;
