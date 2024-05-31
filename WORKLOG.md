@@ -34,6 +34,10 @@ Homework: Centered text (created a method that would create a prompt card). Colo
 Classwork: Started working on keeping track of players owned properties (specific to the player) and making sure properties are removed based off player decision.
 Homework: Added bankruptcy protocol; if player balance is < 0, the player will have to sell their properties. Adjusted code to make sure that if a player goes broke, they'll immediately be prompted to sell property (in any situation). Issue: right now, players can select from 0 - 9 (because there are 0 - 9 digits). If a player has more than 10 properties, to sell the 11th property, how should we index it?
 
+## 5/31/24
+Classwork: Started looping through pages (for owned property and selling). Still need to update loop for displaying and selecting the right property on each page.
+
+
 ## Ray Xu
 
 ### 5/22/24
