@@ -66,3 +66,7 @@ Homework: Further updated board visual to include dice roll, completed moving co
 ### 5/30/24
 Classwork: Added shortcuts to simulate key elements of game (bankruptcy, random teleport, disruption (i.e. buy, sell, upgrade Mediterranean Avenue)).
 Homework: Added jail space functionality and visual card, worked on logic for player to either bail out through monetary means or dice rolling.
+
+### 5/31/24
+Classwork: Continued working on logic for jail space, successfully implemented card that does not disappear but logic is flawed in that it may skip certain players who are/(not) in jail.
+Homework: TO DO: NEW JAIL METHOD IN BOARD, ADD INSTANCE VARS TO PLAYER: JAIL SCREEN, NUMBER OF ROUNDS IN JAIL. UTILISE IN JAIL METHOD.
