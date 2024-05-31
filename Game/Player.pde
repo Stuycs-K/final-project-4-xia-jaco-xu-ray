@@ -58,6 +58,22 @@ class Player{
      return jail; 
   }
   
+  void setJS(boolean stat){
+   jailScreen = stat;
+  }
+  
+  boolean jailScreen(){
+    return jailScreen;
+  }
+  
+  void setJC(int count) {
+    jailCount = count;
+  }
+  
+  int jailCount(){
+    return jailCount;
+  }
+  
   boolean isBankrupt(){
     return bankrupt;
   }

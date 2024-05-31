@@ -12,7 +12,6 @@
   private boolean disruption;
   private boolean jailDisruption;
   private int speed;
-  private boolean jailScreen;
   private int page;
 
   Board() {
@@ -86,7 +85,6 @@
     disruption = false;
     jailDisruption = false;
     speed = 50;
-    jailScreen = true;
     page = 0;
   }
 
@@ -273,46 +271,7 @@
         }
       }
       else if(landedSpace.getType().equals("Jail")){
-        int rolled = 0;
-        if (jailScreen) {
-          String body1 = player.getName()+" is in jail!";
-          String body2 = "Press y to pay $50 to bail"; 
-          String body3 = "Press n to try rolling a 4 to bail";
-          player.setJail(true);
-          cardPrompt(landedSpace.toString(),225,body1,body2,body3,"");
-          if (keyPressed && key=='y' || key=='Y') {
-            player.changeBalance(-50);
-            player.setJail(false);
-            buyScreen = !buyScreen;
-            activePlayer++;
-          }
-          else if (keyPressed && ((key=='n' || key=='N'))) {
-            player.setJail(true);
-            jailScreen = false;
-            rolled = dice();
-          }
-        }
-        else {
-          if (rolled==4) {
-              player.setJail(false);
-              cardPrompt(landedSpace.toString(),225,"You rolled a 4","You're out of jail!","Press y to continue","");
-              if (keyPressed && key=='y' || key=='Y') {
-                buyScreen = !buyScreen;
-                activePlayer++;
-                jailScreen = true;
-                player.setPosition(player.getPos()+1);
-              }
-            }
-            else {
-              player.setJail(true);
-              cardPrompt(landedSpace.toString(),225,"You didn't roll a 4","You're still in jail","Press y to continue","");
-              if (keyPressed && key=='y' || key=='Y') {
-                buyScreen = !buyScreen;
-                activePlayer++;
-                jailScreen = true;
-              }
-            }
-        }
+         jail(player);
       }
     }
     else{
@@ -571,6 +530,56 @@
       spaceCounter++;
     }
     image(loadImage("logo.png"), width/2-250, height/2-100, 500, 200);
+  }
+  
+  void jail(Player player){
+      int rolled = 0;
+      if (player.jailCount()==0) {
+        String body1 = player.getName()+" is in jail!";
+        String body2 = "Press y to pay $50 to bail"; 
+        String body3 = "Press n to try rolling a 4 to bail";
+        player.setJail(true);
+        cardPrompt("Jail",225,body1,body2,body3,"");
+        if (keyPressed && key=='y' || key=='Y') {
+          player.changeBalance(-50);
+          player.setJail(false);
+          buyScreen = !buyScreen;
+          activePlayer++;
+        }
+        else if (keyPressed && ((key=='n' || key=='N'))) {
+          player.setJC(1);
+          rolled = dice();
+        }
+      }
+      else if (player.jailCount()<3){
+        if (rolled==4) {
+            player.setJail(false);
+            player.setJC(0);
+            cardPrompt("Jail",225,"You rolled a 4","You're out of jail!","Press y to continue","");
+            if (keyPressed && key=='y' || key=='Y') {
+              buyScreen = !buyScreen;
+              activePlayer++;
+              player.setPosition(player.getPos()+1);
+            }
+          }
+          else {
+            player.setJail(true);
+            player.setJC(player.jailCount()+1);
+            cardPrompt("Jail",225,"You didn't roll a 4","You're still in jail","Press y to continue","");
+            if (keyPressed && key=='y' || key=='Y') {
+              buyScreen = !buyScreen;
+              activePlayer++;
+            }
+          }
+      }else {
+        cardPrompt("Jail",225,"You're out of jail", "You've been here awhile","Press y to continue","");
+        if (keyPressed && key=='y' || key=='Y') {
+          player.setJail(false);
+          player.setJC(0);
+          buyScreen = !buyScreen;
+          activePlayer++;
+        }
+      }
   }
 
   BoardSpace empty() {
