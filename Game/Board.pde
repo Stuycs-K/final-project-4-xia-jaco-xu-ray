@@ -141,7 +141,7 @@
       /*for (int i = 0; i<playerlist.size(); i++) {
         playerlist.get(i).setPosition(30);
       }*/
-      playerlist.get(0).setPosition(29);
+      playerlist.get(0).setPosition(30);
       playerlist.get(1).setPosition(30);
     }
     if (!showBuyScreen && !player.inJail()) {
@@ -186,7 +186,7 @@
         if (!lanSpace.isOccupied()) {
           String body1 = "Purchase for $"+lanSpace.buyPrice()+"?";
           String body2 = "Press y for yes, n for no.";
-          cardPrompt(landedSpace.toString(), 225, body1, body2, "", player.getName()+"'s balance: "+player.getBalance());
+          cardPrompt(landedSpace.toString(), 225, body1, body2, "", player.getName()+"'s balance: $"+player.getBalance());
           if (keyPressed && key=='y' || key=='Y') {
             if (player.getBalance()>=lanSpace.buyPrice()) {
               player.changeBalance(-lanSpace.buyPrice());
@@ -198,7 +198,7 @@
               lanSpace.updateRent();
               lanSpace.updateBuyPrice(); // houses and hotels are constant for the "row"
             } else {
-              cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: "+player.getBalance());
+              cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: $"+player.getBalance());
             }
           } else if (keyPressed && key=='n' || key=='N') {
             buyScreen = !buyScreen;
@@ -251,7 +251,7 @@
                   buyScreen = !buyScreen;
                   activePlayer++;
                 } else {
-                  cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: "+player.getBalance());
+                  cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: $"+player.getBalance());
                 }
               }
             }
@@ -276,6 +276,7 @@
         }
       }
       else if(landedSpace.getType().equals("Jail")){
+        buyScreen = true;
          jail(player);
       }
     }
@@ -364,7 +365,7 @@
     text(body2, width/2, height/2 - 100);
     text(body3, width/2, height/2-70);
     textAlign(LEFT);
-    text(bottom, (width-(bottom.length()*12))/2, (height/2+175));
+    text(bottom, (width-(bottom.length()*11))/2, (height/2+175));
     strokeWeight(1);
   }
 
@@ -585,7 +586,7 @@
         }
       } 
       else {
-        cardPrompt("Jail",225,"You're out of jail", "You've been here awhile","Press y to continue","");
+        cardPrompt("Jail",225,player.getName()+", you're out of jail", "You've been here for 3 rounds","Press y to continue","");
         if (keyPressed && key=='y' || key=='Y') {
           player.setJS(true);
           player.setJail(false);
