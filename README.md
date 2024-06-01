@@ -27,4 +27,4 @@ SHORTCUTS:
 'z' to deduct all players' balances by $200.
 't' to teleport all players to a random space on the board. 
 'd' to disrupt regular gameplay flow: shows sell/upgrade functionality for space Med(iterranean) Ave.
-'j' to disrupt regular gameplay flow: puts all players in jail.
+'j' to disrupt regular gameplay flow: puts all players in jail. 
