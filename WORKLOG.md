@@ -73,4 +73,6 @@ Homework: Added jail space functionality and visual card, worked on logic for pl
 
 ### 5/31/24
 Classwork: Continued working on logic for jail space, successfully implemented card that does not disappear but logic is flawed in that it may skip certain players who are/(not) in jail.
-Homework: TO DO: NEW JAIL METHOD IN BOARD, ADD INSTANCE VARS TO PLAYER: JAIL SCREEN, NUMBER OF ROUNDS IN JAIL. UTILISE IN JAIL METHOD.
+Homework: Finished jail logic, encountered problem where jail would lead to game skipping certain players' turns but was resolved by adjusting buyScreen variable. 
+
+TODO: Further testing required to make sure jail is stable.
