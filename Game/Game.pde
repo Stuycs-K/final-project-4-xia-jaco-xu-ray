@@ -21,4 +21,8 @@ void keyPressed(){
   if (key=='d') {
    mainBoard.disrupt(); 
   }
+  
+  if (key=='j') {
+   mainBoard.jailDisrupt(); 
+  }
 }

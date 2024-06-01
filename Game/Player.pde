@@ -5,6 +5,8 @@ class Player{
   private String name;
   private boolean turnStatus;
   private boolean jail;
+  private boolean jailScreen;
+  private int jailCount;
   private int position;
   private boolean bankrupt;
   
@@ -16,6 +18,7 @@ class Player{
    jail = false;
    position = 0;
    bankrupt = false;
+   jailScreen = true;
   }
   
   int getBalance() {
@@ -54,6 +57,22 @@ class Player{
   
   boolean inJail() {
      return jail; 
+  }
+  
+  void setJS(boolean stat){
+   jailScreen = stat;
+  }
+  
+  boolean jailScreen(){
+    return jailScreen;
+  }
+  
+  void setJC(int count) {
+    jailCount = count;
+  }
+  
+  int jailCount(){
+    return jailCount;
   }
   
   boolean isBankrupt(){

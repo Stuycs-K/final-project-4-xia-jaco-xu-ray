@@ -1,3 +1,4 @@
+  import java.util.*;
   class Board {
   private ArrayList<Player> playerlist;
   private BoardSpace[] spaces;
@@ -10,9 +11,10 @@
   private boolean buyScreen;
   private boolean startScreen;
   private boolean disruption;
+  private boolean jailDisruption;
   private int speed;
-  private boolean jailScreen;
   private int page;
+  private int jailDice;
 
   Board() {
     //Initialize prices of the properties
@@ -83,9 +85,10 @@
     buyScreen = false;
     startScreen = true;
     disruption = false;
+    jailDisruption = false;
     speed = 50;
-    jailScreen = true;
     page = 0;
+    jailDice = 0;
   }
 
   void draw() {
@@ -131,9 +134,15 @@
   void run(boolean showBuyScreen, Player player) {
     if (disruption) {
       for (int i = 0; i<playerlist.size(); i++) {
-        playerlist.get(i).setPosition(30); //TEMPORARY TO TEST JAIL
-        //playerlist.get(1).setPosition(1); //FOR MEDITERRANEAN AVENUE
+        playerlist.get(1).setPosition(1); //FOR MEDITERRANEAN AVENUE
       }
+    }
+    if (jailDisruption) {
+      /*for (int i = 0; i<playerlist.size(); i++) {
+        playerlist.get(i).setPosition(30);
+      }*/
+      playerlist.get(0).setPosition(29);
+      playerlist.get(1).setPosition(30);
     }
     if (!showBuyScreen && !player.inJail()) {
       player.setStatus(true);
@@ -160,13 +169,18 @@
       }
     } else {
       BoardSpace landedSpace = spaces[player.getPos()];
-      boolean selected = false; // what is this for again? - Jaco
-      if (selected||landedSpace.toString().equals("empty")||landedSpace.toString().equals("Go")) {
+      if (landedSpace.toString().equals("empty")||landedSpace.toString().equals("Go")) {
         buyScreen = false;
         activePlayer++;
         return;
       }
-      determinePrompt(landedSpace, player);
+      System.out.println(player.getName());
+      if (player.inJail() || landedSpace.getType().equals("Jail")) {
+       jail(player); 
+      }
+      else {
+        determinePrompt(landedSpace, player);
+      }
     }
   }
 
@@ -267,46 +281,7 @@
         }
       }
       else if(landedSpace.getType().equals("Jail")){
-        int rolled = 0;
-        if (jailScreen) {
-          String body1 = player.getName()+" is in jail!";
-          String body2 = "Press y to pay $50 to bail"; 
-          String body3 = "Press n to try rolling a 4 to bail";
-          player.setJail(true);
-          cardPrompt(landedSpace.toString(),225,body1,body2,body3,"");
-          if (keyPressed && key=='y' || key=='Y') {
-            player.changeBalance(-50);
-            player.setJail(false);
-            buyScreen = !buyScreen;
-            activePlayer++;
-          }
-          else if (keyPressed && ((key=='n' || key=='N'))) {
-            player.setJail(true);
-            jailScreen = false;
-            rolled = dice();
-          }
-        }
-        else {
-          if (rolled==4) {
-              player.setJail(false);
-              cardPrompt(landedSpace.toString(),225,"You rolled a 4","You're out of jail!","Press y to continue","");
-              if (keyPressed && key=='y' || key=='Y') {
-                buyScreen = !buyScreen;
-                activePlayer++;
-                jailScreen = true;
-                player.setPosition(player.getPos()+1);
-              }
-            }
-            else {
-              player.setJail(true);
-              cardPrompt(landedSpace.toString(),225,"You didn't roll a 4","You're still in jail","Press y to continue","");
-              if (keyPressed && key=='y' || key=='Y') {
-                buyScreen = !buyScreen;
-                activePlayer++;
-                jailScreen = true;
-              }
-            }
-        }
+         jail(player);
       }
     }
     else{
@@ -566,6 +541,115 @@
     }
     image(loadImage("logo.png"), width/2-250, height/2-100, 500, 200);
   }
+  
+  void jail(Player player){
+      //if (player.jailCount()==0) {
+      if (player.jailCount()<3){
+        if (player.jailScreen()) {
+          String body1 = player.getName()+" is in jail!";
+          String body2 = "Press y to pay $50 to bail"; 
+          String body3 = "Press n to try rolling a 4 to bail";
+          player.setJail(true);
+          cardPrompt("Jail",225,body1,body2,body3,"");
+          if (keyPressed && key=='y' || key=='Y') {
+            player.changeBalance(-50);
+            player.setJail(false);
+            player.setJS(true);
+            buyScreen = !buyScreen;
+            activePlayer++;
+            return;
+          } 
+          else if (keyPressed && (key=='n' || key=='N')) {
+           player.setJS(false); 
+           jailDice = dice();
+          }
+        }
+        else {
+          if (jailDice==4) {
+            cardPrompt("Jail",225,"You rolled a 4","You're out of jail!","Press y to continue","");
+            if (keyPressed && key=='y' || key=='Y') {
+              player.setJail(false);
+              player.setJC(0);
+              jailDice = dice();
+              player.setJS(true);
+              buyScreen = !buyScreen;
+              activePlayer++;
+            }
+          }
+          else {
+            cardPrompt("Jail",225,"You didn't roll a 4","You're still in jail","Press y to continue","");
+            if (keyPressed && key=='y' || key=='Y') {
+              player.setJail(true);
+              player.setJC(player.jailCount()+1);
+              buyScreen = !buyScreen;
+              player.setJS(true);
+              jailDice = dice();
+              activePlayer++;
+              //System.out.println("finished");
+            }
+          }
+        }
+      } /*
+      else if (player.jailCount()<4){
+        if (player.jailScreen()) {
+          String body1 = player.getName()+" is in jail!";
+          String body2 = "Press y to pay $50 to bail"; 
+          String body3 = "Press n to try rolling a 4 to bail";
+          player.setJail(true);
+          cardPrompt("Jail",225,body1,body2,body3,"");
+          if (keyPressed && key=='y' || key=='Y') {
+            player.setJS(true);
+            player.changeBalance(-50);
+            player.setJail(false);
+            buyScreen = !buyScreen;
+            activePlayer++;
+            return;
+          }
+          else if (keyPressed && (key=='n' || key=='N')) {
+           player.setJS(false); 
+           jailDice = dice();
+          }
+        }
+        else {
+          player.setJS(false);
+          if (jailDice==4) {
+              cardPrompt("Jail",225,"You rolled a 4","You're out of jail!","Press y to continue","");
+              if (keyPressed && key=='y' || key=='Y') {
+                player.setJS(true);
+                player.setJail(false);
+                player.setJC(0);
+                buyScreen = !buyScreen;
+                activePlayer++;
+                //player.setPosition(player.getPos()+1);
+                jailDice = dice();
+                return;
+              }
+            }
+            else {
+              cardPrompt("Jail",225,"You didn't roll a 4","You're still in jail","Press y to continue","");
+              if (keyPressed && key=='y' || key=='Y') {
+                player.setJS(true);
+                player.setJC(player.jailCount()+1);
+                buyScreen = !buyScreen;
+                activePlayer++;
+                jailDice = dice();
+                return;
+              }
+            }
+        }
+      }*/
+      else {
+        cardPrompt("Jail",225,"You're out of jail", "You've been here awhile","Press y to continue","");
+        if (keyPressed && key=='y' || key=='Y') {
+          player.setJS(true);
+          player.setJail(false);
+          player.setJC(0);
+          buyScreen = !buyScreen;
+          activePlayer++;
+          return;
+        }
+      }
+  }
 
   BoardSpace empty() {
     return new BoardSpace("empty", "empty");
@@ -594,5 +678,16 @@
 
   void disrupt() {
     disruption = !disruption;
+    if (disruption && jailDisruption) {
+     jailDisruption = !jailDisruption; 
+    }
+  }
+  
+  void jailDisrupt(){
+    
+    jailDisruption = !jailDisruption;
+    if (disruption && jailDisruption) {
+     disruption = !disruption; 
+    }
   }
 }
