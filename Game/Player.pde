@@ -18,6 +18,7 @@ class Player{
    jail = false;
    position = 0;
    bankrupt = false;
+   jailScreen = true;
   }
   
   int getBalance() {
