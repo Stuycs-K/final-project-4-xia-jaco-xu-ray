@@ -174,13 +174,8 @@
         activePlayer++;
         return;
       }
-      System.out.println(player.getName());
-      if (player.inJail() || landedSpace.getType().equals("Jail")) {
-       jail(player); 
-      }
-      else {
-        determinePrompt(landedSpace, player);
-      }
+      determinePrompt(landedSpace, player);
+      
     }
   }
 
@@ -555,7 +550,7 @@
             player.changeBalance(-50);
             player.setJail(false);
             player.setJS(true);
-            buyScreen = !buyScreen;
+            buyScreen = false;
             activePlayer++;
             return;
           } 
@@ -572,7 +567,7 @@
               player.setJC(0);
               jailDice = dice();
               player.setJS(true);
-              buyScreen = !buyScreen;
+              buyScreen = false;
               activePlayer++;
             }
           }
@@ -581,7 +576,7 @@
             if (keyPressed && key=='y' || key=='Y') {
               player.setJail(true);
               player.setJC(player.jailCount()+1);
-              buyScreen = !buyScreen;
+              buyScreen = false;
               player.setJS(true);
               jailDice = dice();
               activePlayer++;
@@ -644,7 +639,7 @@
           player.setJS(true);
           player.setJail(false);
           player.setJC(0);
-          buyScreen = !buyScreen;
+          buyScreen = false;
           activePlayer++;
           return;
         }
