@@ -13,6 +13,7 @@
   private boolean jailDisruption;
   private int speed;
   private int page;
+  private int jailDice;
 
   Board() {
     //Initialize prices of the properties
@@ -86,6 +87,7 @@
     jailDisruption = false;
     speed = 50;
     page = 0;
+    jailDice = 0;
   }
 
   void draw() {
@@ -135,9 +137,11 @@
       }
     }
     if (jailDisruption) {
-      for (int i = 0; i<playerlist.size(); i++) {
+      /*for (int i = 0; i<playerlist.size(); i++) {
         playerlist.get(i).setPosition(30);
-      }
+      }*/
+      playerlist.get(0).setPosition(29);
+      playerlist.get(1).setPosition(30);
     }
     if (!showBuyScreen && !player.inJail()) {
       player.setStatus(true);
@@ -533,7 +537,6 @@
   }
   
   void jail(Player player){
-      int rolled = 0;
       if (player.jailCount()==0) {
         String body1 = player.getName()+" is in jail!";
         String body2 = "Press y to pay $50 to bail"; 
@@ -545,14 +548,14 @@
           player.setJail(false);
           buyScreen = !buyScreen;
           activePlayer++;
+          return;
         }
         else if (keyPressed && ((key=='n' || key=='N'))) {
           player.setJC(1);
-          rolled = dice();
-        }
-      }
-      else if (player.jailCount()<3){
-        if (rolled==4) {
+          jailDice = dice();
+          //buyScreen = !buyScreen;
+          /*jailDice = dice();
+          if (jailDice==4) {
             player.setJail(false);
             player.setJC(0);
             cardPrompt("Jail",225,"You rolled a 4","You're out of jail!","Press y to continue","");
@@ -563,12 +566,38 @@
             }
           }
           else {
-            player.setJail(true);
-            player.setJC(player.jailCount()+1);
             cardPrompt("Jail",225,"You didn't roll a 4","You're still in jail","Press y to continue","");
             if (keyPressed && key=='y' || key=='Y') {
+              player.setJail(true);
+              player.setJC(player.jailCount()+1);
               buyScreen = !buyScreen;
               activePlayer++;
+              jailDice = dice();
+            }
+          }*/
+        }
+      }
+      else if (player.jailCount()<4){
+        if (jailDice==4) {
+            cardPrompt("Jail",225,"You rolled a 4","You're out of jail!","Press y to continue","");
+            if (keyPressed && key=='y' || key=='Y') {
+              player.setJail(false);
+              player.setJC(0);
+              buyScreen = !buyScreen;
+              activePlayer++;
+              //player.setPosition(player.getPos()+1);
+              jailDice = dice();
+              return;
+            }
+          }
+          else {
+            cardPrompt("Jail",225,"You didn't roll a 4","You're still in jail","Press y to continue","");
+            if (keyPressed && key=='y' || key=='Y') {
+              player.setJC(player.jailCount()+1);
+              buyScreen = !buyScreen;
+              activePlayer++;
+              jailDice = dice();
+              return;
             }
           }
       }else {
@@ -578,6 +607,7 @@
           player.setJC(0);
           buyScreen = !buyScreen;
           activePlayer++;
+          return;
         }
       }
   }
