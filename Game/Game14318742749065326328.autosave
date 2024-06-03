@@ -20,32 +20,16 @@ void keyPressed(){
   
   if (key=='d') {
    mainBoard.disrupt(); 
-   mainBoard.speedIncrease();
+   mainBoard.speedIncrease(); 
   }
   
   if (key=='j') {
    mainBoard.jailDisrupt(); 
   }
   
-  if (key=='e'){
+  if (key=='b'){
     mainBoard.taxDisruption();
     mainBoard.speedIncrease();
-  }
-  
-  if(key=='q'){
-    mainBoard.speedIncrease();
-    mainBoard.onePlayerJail();
-    delay(400);
-  }
-  
-  if(key=='w'){
-    mainBoard.multipleProperty();
-
-    //delay(400);
-  }
-  
-  if(key=='r'){
-    mainBoard = new Board();
   }
   
 }
