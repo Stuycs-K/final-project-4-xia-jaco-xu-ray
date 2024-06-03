@@ -28,3 +28,7 @@ SHORTCUTS:
 't' to teleport all players to a random space on the board. 
 'd' to disrupt regular gameplay flow: shows sell/upgrade functionality for space Med(iterranean) Ave.
 'j' to disrupt regular gameplay flow: puts all players in jail. 
+'q' to disrupt regular gameplay flow: shows functionality for jail sequence
+'w' to see cycling through properties; NOTE, SELLING DOES NOT WORK. THIS IS A VISUAL SHOWCASE.
+'e' to disrupt regular gameplay flow: shows functionality for tax and bankruptcy
+'r' TO RESET BOARD

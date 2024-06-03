@@ -147,7 +147,7 @@
     if(taxDisruption){
       playerlist.get(1).setPosition(4);
     }
-    if (!showBuyScreen && !player.inJail()) {
+    if (!showBuyScreen && !player.inJail() && player.getBalance()>=0) {
       player.setStatus(true);
       if (distance==0) {
         distance = dice();
@@ -285,7 +285,7 @@
     }
     else if (landedSpace.getType().equals("Street")){
       Street lanSpace = (Street) landedSpace;
-      if (lanSpace.isOccupied() && lanSpace.getOccupier()!=player) {
+      if ((lanSpace.isOccupied() && lanSpace.getOccupier()!=player) || !lanSpace.isOccupied()) {
         ArrayList<Property> playerProperty = player.getProperty();
           if(player.getProperty().size()>0){
             String body1 = "You must sell property!";
@@ -747,5 +747,23 @@
   
   void speedIncrease(){
     speed = 5;
+  }
+  
+  void onePlayerJail(){
+    buyScreen = true;
+    Player p = playerlist.get(activePlayer);
+    p.setPosition(30);
+    jail(p);
+  }
+  
+  void multipleProperty(){
+    Player p = playerlist.get(activePlayer);
+    for(int i = 0; i<spaces.length; i++){
+     if(spaces[i].getType().equals("Street")){
+      p.addProperty((Street)spaces[i]); 
+     }
+    }
+    p.changeBalance(-1*p.getBalance()-1);
+    run(true,p);
   }
 }
