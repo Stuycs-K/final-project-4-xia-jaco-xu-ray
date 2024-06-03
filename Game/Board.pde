@@ -12,6 +12,7 @@
   private boolean startScreen;
   private boolean disruption;
   private boolean jailDisruption;
+  private boolean taxDisruption;
   private int speed;
   private int page;
   private int jailDice;
@@ -86,6 +87,7 @@
     startScreen = true;
     disruption = false;
     jailDisruption = false;
+    taxDisruption = false;
     speed = 250;
     page = 0;
     jailDice = 0;
@@ -141,6 +143,9 @@
       for (int i = 0; i<playerlist.size(); i++) {
         playerlist.get(i).setPosition(30);
       }
+    }
+    if(taxDisruption){
+      playerlist.get(1).setPosition(4);
     }
     if (!showBuyScreen && !player.inJail()) {
       player.setStatus(true);
@@ -235,7 +240,7 @@
             if (keyPressed && key=='u' || key=='U') {
               if (lanSpace.getHotels()==1) {
                 textAlign(CENTER);
-                text("You cannot upgrade anymore!", width/2, height/2+175);
+                text("You cannot upgrade anymore!", width/2, height/2+135);
                 textAlign(BASELINE);
               } else {
                 if (player.getBalance()>=lanSpace.buyPrice()) {
@@ -734,5 +739,13 @@
     if (disruption && jailDisruption) {
      disruption = !disruption; 
     }
+  }
+  
+  void taxDisruption(){
+    taxDisruption = true;
+  }
+  
+  void speedIncrease(){
+    speed = 5;
   }
 }

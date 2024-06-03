@@ -20,9 +20,16 @@ void keyPressed(){
   
   if (key=='d') {
    mainBoard.disrupt(); 
+   mainBoard.speedIncrease();
   }
   
   if (key=='j') {
    mainBoard.jailDisrupt(); 
   }
+  
+  if (key=='b'){
+    mainBoard.taxDisruption();
+    mainBoard.speedIncrease();
+  }
+  
 }
