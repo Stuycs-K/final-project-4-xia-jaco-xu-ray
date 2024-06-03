@@ -11,10 +11,10 @@ class Chest extends BoardSpace{
    outcomes.add("Stock Sale");
    //outcomes.add("Free Jail Bail");
    //outcomes.add("Go to Jail");
-   outcomes.add("Opera Night");
+   //outcomes.add("Opera Night");
    outcomes.add("Christmas");
    outcomes.add("Tax Refund");
-   outcomes.add("Birthday");
+   //outcomes.add("Birthday");
    outcomes.add("Insurance End");
    outcomes.add("Hospital Fees");
    outcomes.add("School Fees");
@@ -40,9 +40,15 @@ class Chest extends BoardSpace{
    //40 per house 115 per hotel
    outcomeMoney.add(10);
    outcomeMoney.add(100);
-   
   }
   
+  String getOutcome(int index){
+    return outcomes.get(index);
+  }
+  
+  int getOutcomeMoney(int index) {
+   return outcomeMoney.get(index); 
+  }
  
   
 }

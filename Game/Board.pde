@@ -16,6 +16,7 @@
   private int speed;
   private int page;
   private int jailDice;
+  private int chestIndex;
 
   Board() {
     //Initialize prices of the properties
@@ -72,10 +73,10 @@
 
     //spaces array intialization
     spaces = new BoardSpace[]{ // total 40 spaces
-      new BoardSpace("Go", "Go"), brown1, empty(), brown2, new Tax("Tax", "Income Tax", 200), empty(), lightBlue1, empty(), lightBlue2, lightBlue3,
-      empty(), pink1, empty(), pink2, pink3, empty(), orange1, empty(), orange2, orange3,
+      new BoardSpace("Go", "Go"), brown1, new Chest("Chest","Chest"), brown2, new Tax("Tax", "Income Tax", 200), empty(), lightBlue1, empty(), lightBlue2, lightBlue3,
+      empty(), pink1, empty(), pink2, pink3, empty(), orange1, new Chest("Chest","Chest"), orange2, orange3,
       empty(), red1, empty(), red2, red3, empty(), yellow1, yellow2, empty(), yellow3,
-      new BoardSpace("Jail", "Jail"), green1, green2, empty(), green3, empty(), empty(), darkBlue1, new Tax("Tax", "Luxury Tax", 100), darkBlue2
+      new BoardSpace("Jail", "Jail"), green1, green2, new Chest("Chest","Chest"), green3, empty(), empty(), darkBlue1, new Tax("Tax", "Luxury Tax", 100), darkBlue2
     };    
 
     // Initialize other fields
@@ -91,6 +92,7 @@
     speed = 250;
     page = 0;
     jailDice = 0;
+    chestIndex = (int)(Math.random() * 11);
   }
 
   void draw() {
@@ -281,6 +283,27 @@
       else if(landedSpace.getType().equals("Jail")){
         buyScreen = true;
          jail(player);
+      }
+      else if (landedSpace.getType().equals("Chest")) {
+        Chest lanSpace = (Chest)landedSpace;
+        String body1 = player.getName();
+        if (lanSpace.getOutcomeMoney(chestIndex)<0) {
+         body1+=" must pay $"+(-lanSpace.getOutcomeMoney(chestIndex));
+        }
+        else {
+          body1+=" earns $"+lanSpace.getOutcomeMoney(chestIndex);
+        }
+        String body2 = "Press y to confirm";
+        cardPrompt("Chest: "+lanSpace.getOutcome(chestIndex), 225, body1, body2, "", "");
+        if (keyPressed && key=='y' || key=='Y') {
+          player.changeBalance(lanSpace.getOutcomeMoney(chestIndex));
+          if (player.getBalance()<0) {
+            return; // so it doesnt go to the next player just yet
+          }
+          buyScreen = !buyScreen;
+          chestIndex = (int)(Math.random() * 11);
+          activePlayer++;
+        }
       }
     }
     else if (landedSpace.getType().equals("Street")){

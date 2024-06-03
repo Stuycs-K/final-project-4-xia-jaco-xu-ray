@@ -77,3 +77,7 @@ Homework: Finished jail logic, encountered problem where jail would lead to game
 
 ### 6/1/24
 Homework: Further tested jail logic if both players in jail. Updated minor text features. Updated bankruptcy logic.
+
+### 6/3/24
+Classwork: Began adding new subclass of BoardSpace: Community Chests (abbrev. Chest), which randomly pays/deducts money to/from players' balances.
+Homework: Finished adding community chest spaces to game, added functionality, tested.
