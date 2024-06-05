@@ -40,7 +40,7 @@ Homework: Finished implementing code that loops through property (pages) -- this
 
 ## 6/3/24
 Classwork: Reviewed prototype document and made sure it was updated 
-Homework: Continued adding prototype revisions; also added speedIncrease testing method.
+Homework: Continued adding prototype revisions; also added speedIncrease testing method. Thinking about how to add utilities
 
 ## Ray Xu
 
