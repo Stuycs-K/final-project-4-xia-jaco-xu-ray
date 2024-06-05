@@ -5,7 +5,7 @@ class Chest extends BoardSpace{
   
   Chest(String type, String name) {
    super(type, name);
-   //outcomes.add("Go to Go");
+   outcomes.add("Go to Go");
    outcomes.add("Bank Error");
    outcomes.add("Doctor's Fees");
    outcomes.add("Stock Sale");
@@ -23,7 +23,7 @@ class Chest extends BoardSpace{
    outcomes.add("Beauty Contest");
    outcomes.add("Inheritance");
     
-   //GO CARD;
+   outcomeMoney.add(200);
    outcomeMoney.add(200);
    outcomeMoney.add(-50);
    outcomeMoney.add(50);
