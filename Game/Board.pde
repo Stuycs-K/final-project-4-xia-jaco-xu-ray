@@ -92,7 +92,8 @@
     speed = 250;
     page = 0;
     jailDice = 0;
-    chestIndex = (int)(Math.random() * 11);
+    //chestIndex = (int)(Math.random() * 11);
+    chestIndex = 0; //to test go space
   }
 
   void draw() {
@@ -287,22 +288,36 @@
       else if (landedSpace.getType().equals("Chest")) {
         Chest lanSpace = (Chest)landedSpace;
         String body1 = player.getName();
-        if (lanSpace.getOutcomeMoney(chestIndex)<0) {
-         body1+=" must pay $"+(-lanSpace.getOutcomeMoney(chestIndex));
+        if (lanSpace.getOutcome(chestIndex).equals("Go to Go")) {
+          body1+=" advances to Go and receives $200.";
+          String body2 = "Press y to confirm";
+          cardPrompt("Chest: "+lanSpace.getOutcome(chestIndex), 225, body1, body2, "", "");
+          if (keyPressed && key=='y' || key=='Y') {
+            player.setPosition(41);
+            //need to test with player.setPosition(0), 41 goes out of bounds, pause in game but resumes
+            buyScreen = !buyScreen;
+            chestIndex = (int)(Math.random() * 11);
+            activePlayer++;
+          }
         }
         else {
-          body1+=" earns $"+lanSpace.getOutcomeMoney(chestIndex);
-        }
-        String body2 = "Press y to confirm";
-        cardPrompt("Chest: "+lanSpace.getOutcome(chestIndex), 225, body1, body2, "", "");
-        if (keyPressed && key=='y' || key=='Y') {
-          player.changeBalance(lanSpace.getOutcomeMoney(chestIndex));
-          if (player.getBalance()<0) {
-            return; // so it doesnt go to the next player just yet
+          if (lanSpace.getOutcomeMoney(chestIndex)<0) {
+           body1+=" must pay $"+(-lanSpace.getOutcomeMoney(chestIndex));
           }
-          buyScreen = !buyScreen;
-          chestIndex = (int)(Math.random() * 11);
-          activePlayer++;
+          else {
+            body1+=" earns $"+lanSpace.getOutcomeMoney(chestIndex);
+          }
+          String body2 = "Press y to confirm";
+          cardPrompt("Chest: "+lanSpace.getOutcome(chestIndex), 225, body1, body2, "", "");
+          if (keyPressed && key=='y' || key=='Y') {
+            player.changeBalance(lanSpace.getOutcomeMoney(chestIndex));
+            if (player.getBalance()<0) {
+              return; // so it doesnt go to the next player just yet
+            }
+            buyScreen = !buyScreen;
+            chestIndex = (int)(Math.random() * 11);
+            activePlayer++;
+          }
         }
       }
     }
