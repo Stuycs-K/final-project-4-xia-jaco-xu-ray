@@ -48,4 +48,8 @@ void keyPressed(){
     mainBoard = new Board();
   }
   
+  if(key=='+'){
+    mainBoard.speedIncrease();
+  }
+  
 }
