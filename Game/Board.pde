@@ -74,8 +74,8 @@
     //spaces array intialization
     spaces = new BoardSpace[]{ // total 40 spaces
       new BoardSpace("Go", "Go"), brown1, new Chest("Chest","Chest"), brown2, new Tax("Tax", "Income Tax", 200), empty(), lightBlue1, empty(), lightBlue2, lightBlue3,
-      empty(), pink1, empty(), pink2, pink3, empty(), orange1, new Chest("Chest","Chest"), orange2, orange3,
-      empty(), red1, empty(), red2, red3, empty(), yellow1, yellow2, empty(), yellow3,
+      empty(), pink1, new Utility("Elec. Company", 0, 150, "Utility"), pink2, pink3, empty(), orange1, new Chest("Chest","Chest"), orange2, orange3,
+      empty(), red1, empty(), red2, red3, empty(), yellow1, yellow2, new Utility("Water Works", 0, 150, "Utility"), yellow3,
       new BoardSpace("Jail", "Jail"), green1, green2, new Chest("Chest","Chest"), green3, empty(), empty(), darkBlue1, new Tax("Tax", "Luxury Tax", 100), darkBlue2
     };    
 
@@ -210,21 +210,23 @@
             buyScreen = !buyScreen;
             activePlayer++;
           }
-        } else {
-          if (lanSpace.getOccupier()!=player) {
-            String body1 = player.getName()+" pays $"+lanSpace.getPrice()+" to "+lanSpace.getOccupier().getName();
-            String body2 = "Press y to confirm";
-            cardPrompt(landedSpace.toString(), 225, body1, body2, "", "");
-            if (keyPressed && key=='y' || key=='Y') {
-              player.changeBalance(-1*lanSpace.getPrice());
-              lanSpace.getOccupier().changeBalance(lanSpace.getPrice());
-              if (player.getBalance()<0) {
-                return; // so it doesnt go to the next player just yet
+        }
+        else {
+            if (lanSpace.getOccupier()!=player) {
+              String body1 = player.getName()+" pays $"+lanSpace.getPrice()+" to "+lanSpace.getOccupier().getName();
+              String body2 = "Press y to confirm";
+              cardPrompt(landedSpace.toString(), 225, body1, body2, "", "");
+              if (keyPressed && key=='y' || key=='Y') {
+                player.changeBalance(-1*lanSpace.getPrice());
+                lanSpace.getOccupier().changeBalance(lanSpace.getPrice());
+                if (player.getBalance()<0) {
+                  return; // so it doesnt go to the next player just yet
+                }
+                buyScreen = !buyScreen;
+                activePlayer++;
               }
-              buyScreen = !buyScreen;
-              activePlayer++;
             }
-          } else {
+            else {
             String body1 = "Sell(s) for half price or Upgrade(u)?";
             String body2 = "Cost of Upgrade: "+lanSpace.buyPrice();
             String body3 = "Current Houses (max 4): "+lanSpace.getHouses();
@@ -318,6 +320,60 @@
             chestIndex = (int)(Math.random() * 11);
             activePlayer++;
           }
+        }
+      }
+      else if (landedSpace.getType().equals("Utility")) {
+        Utility lanSpace = (Utility)landedSpace;
+        if (!lanSpace.isOccupied()) {
+          String body1 = "Purchase for $"+lanSpace.buyPrice()+"?";
+          String body2 = "Press y for yes, n for no.";
+          cardPrompt(landedSpace.toString(), 225, body1, body2, "", player.getName()+"'s balance: $"+player.getBalance());
+          if (keyPressed && key=='y' || key=='Y') {
+            if (player.getBalance()>=lanSpace.buyPrice()) {
+              player.changeBalance(-lanSpace.buyPrice());
+              player.addProperty(lanSpace);
+              buyScreen = false;
+              activePlayer++;
+              lanSpace.setOccupied(true);
+              lanSpace.setOccupied(player);
+            } else {
+              cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: $"+player.getBalance());
+            }
+          } else if (keyPressed && key=='n' || key=='N') {
+            buyScreen = false;
+            activePlayer++;
+          }
+        }
+        else{
+          if (lanSpace.getOccupier()!=player) {
+              int price = lanSpace.getPrice();
+              String body1 = player.getName()+" pays $"+price+" to "+lanSpace.getOccupier().getName();
+              String body2 = "Press y to confirm";
+              cardPrompt(landedSpace.toString(), 225, body1, body2, "", "");
+              if (keyPressed && key=='y' || key=='Y') {
+                player.changeBalance(-1*price);
+                lanSpace.getOccupier().changeBalance(price);
+                if (player.getBalance()<0) {
+                  return; // so it doesnt go to the next player just yet
+                }
+                buyScreen = false;
+                activePlayer++;
+              }
+           }
+           else{
+            String body1 = "Sell(s) for half price?";
+            String body2 = "Cancel (n)";
+            cardPrompt(landedSpace.toString(), 225, body1, body2, "", "");
+            if (keyPressed && key=='s' || key=='S') {
+              lanSpace.sellUtility();
+              buyScreen = false;
+              activePlayer++;
+            }
+            else if (keyPressed && key=='n' || key=='N'){
+              buyScreen = false;
+              activePlayer++;
+            }
+           }
         }
       }
     }
@@ -790,7 +846,7 @@
   void onePlayerJail(){
     buyScreen = true;
     Player p = playerlist.get(activePlayer);
-    p.setPosition(30);
+    p.setPosition(12);
     jail(p);
   }
   
