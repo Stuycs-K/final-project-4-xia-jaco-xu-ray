@@ -18,8 +18,8 @@ The game then begins automatically. Note that the players' balances are always d
 If a player lands on an empty space, nothing will happen and the next player will automatically go.
 If a player lands on jail, they will be jailed for 3 rounds unless they bail out through monetary ($50) means or luck (rolling a 4 is equivalent to chances of rolling a double).
 If a player lands on a space, they are able to purchase or skip. If a player does not have enough money, they will not be able to purchase the space.
-If a player runs out of cash, they will be prompted to sell owned property. If such selling does not bring the player's balance back to net positive, the player is bankrupt and out of the game.
-When a player passes 'Go,' they receive monetary compensation ($200).
+If a player runs out of cash, they will be prompted to sell owned property (note that players can sell houses, hotels, and Streets separately). If such selling does not bring the player's balance back to net positive, the player is bankrupt and out of the game.
+When a player passes or lands on 'Go,' they receive monetary compensation ($200).
 
 
 
