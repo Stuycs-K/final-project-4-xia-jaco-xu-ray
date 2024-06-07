@@ -11,7 +11,7 @@ class Chest extends BoardSpace{
    outcomes.add("Stock Sale");
    //outcomes.add("Free Jail Bail");
    //outcomes.add("Go to Jail");
-   //outcomes.add("Opera Night");
+   outcomes.add("Opera Night");
    outcomes.add("Christmas");
    outcomes.add("Tax Refund");
    //outcomes.add("Birthday");
@@ -29,7 +29,7 @@ class Chest extends BoardSpace{
    outcomeMoney.add(50);
    //JAIL CARD
    //JAIL CARD
-   //collect 50 from every player outcomeMoney.add();
+   outcomeMoney.add(50);
    outcomeMoney.add(100);
    outcomeMoney.add(20);
    //collect 10 from every player
