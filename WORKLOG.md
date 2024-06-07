@@ -95,3 +95,6 @@ Classwork: Began adding advance to go chest card, tested with different methods 
 
 ### 6/6/24
 Homework: Updated chest cards (go to go, opera night).
+
+### 6/7/24
+Classwork: Finished implementing all chest cards wanted in-game (except get out of jail free).
