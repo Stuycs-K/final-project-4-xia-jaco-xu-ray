@@ -42,6 +42,10 @@ Homework: Finished implementing code that loops through property (pages) -- this
 Classwork: Reviewed prototype document and made sure it was updated 
 Homework: Continued adding prototype revisions; also added speedIncrease testing method. Thinking about how to add utilities
 
+## 6/5/24
+Classwork: Began utilities class (started on the class itself)
+Homework: Finished implementation of utilities inside the game (but needs more thorough checking). Added stuff like displaying ownership on the board, buying utilities, selling utilities (both when you land on a space and when you are going to be bankrupt). Also modified some of the testing methods so they may not work as intended now--but I am keeping it as it is because those changes would be useful to debug utilities if there are issues. 
+
 ## Ray Xu
 
 ### 5/22/24
@@ -85,3 +89,12 @@ Homework: Further tested jail logic if both players in jail. Updated minor text 
 ### 6/3/24
 Classwork: Began adding new subclass of BoardSpace: Community Chests (abbrev. Chest), which randomly pays/deducts money to/from players' balances.
 Homework: Finished adding community chest spaces to game, added functionality, tested.
+
+### 6/5/24
+Classwork: Began adding advance to go chest card, tested with different methods to check that the card works as intended.
+
+### 6/6/24
+Homework: Updated chest cards (go to go, opera night).
+
+### 6/7/24
+Classwork: Finished implementing all chest cards wanted in-game (except get out of jail free).
