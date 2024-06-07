@@ -52,6 +52,13 @@ void keyPressed(){
     mainBoard.speedIncrease();
   }
   
+  else{
+    mainBoard.changeInputStatus(true);
+  }
   
   
+}
+
+void keyReleased(){
+  mainBoard.changeInputStatus(false);
 }
