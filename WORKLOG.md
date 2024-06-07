@@ -42,6 +42,10 @@ Homework: Finished implementing code that loops through property (pages) -- this
 Classwork: Reviewed prototype document and made sure it was updated 
 Homework: Continued adding prototype revisions; also added speedIncrease testing method. Thinking about how to add utilities
 
+## 6/5/24
+Classwork: Began utilities class (started on the class itself)
+Homework: Finished implementation of utilities inside the game (but needs more thorough checking). Added stuff like displaying ownership on the board, buying utilities, selling utilities (both when you land on a space and when you are going to be bankrupt). Also modified some of the testing methods so they may not work as intended now--but I am keeping it as it is because those changes would be useful to debug utilities if there are issues. 
+
 ## Ray Xu
 
 ### 5/22/24
