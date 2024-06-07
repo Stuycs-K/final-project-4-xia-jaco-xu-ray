@@ -92,8 +92,8 @@
     speed = 250;
     page = 0;
     jailDice = 0;
-    //chestIndex = (int)(Math.random() * 11);
-    chestIndex = 0; //to test go space
+    chestIndex = (int)(Math.random() * 11);
+    //chestIndex = 4; to test for specific chest card indices
   }
 
   void draw() {
@@ -290,7 +290,7 @@
       else if (landedSpace.getType().equals("Chest")) {
         Chest lanSpace = (Chest)landedSpace;
         String body1 = player.getName();
-        if (lanSpace.getOutcome(chestIndex).equals("Go to Go")) {
+        if (chestIndex==0) { //Go to Go card index
           body1+=" advances to Go";
           String body2 = "and receives $200.";
           String body3 = "Press y to confirm";
@@ -298,12 +298,29 @@
           if (keyPressed && key=='y' || key=='Y') {
             player.setPosition(0);
             player.changeBalance(200);
-            //need to test with player.setPosition(0), 41 goes out of bounds, pause in game but resumes
             buyScreen = !buyScreen;
             chestIndex = (int)(Math.random() * 11);
             activePlayer++;
           }
         }
+        else if (lanSpace.getOutcome(chestIndex).equals("Opera Night")) {
+          body1+=" collects $50";
+          String body2 = "from every player.";
+          String body3 = "Press y to confirm";
+          cardPrompt("Chest: "+lanSpace.getOutcome(chestIndex), 225, body1, body2, body3, "");
+          if (keyPressed && key=='y' || key=='Y') {
+            player.changeBalance(50*(playerlist.size()-1));
+            for (int i  = 0; i<playerlist.size(); i++) {
+              if (i!=activePlayer) {
+                playerlist.get(i).changeBalance(-50);
+              }
+            }
+            buyScreen = !buyScreen;
+            chestIndex = (int)(Math.random() * 11);
+            activePlayer++;
+          }
+        }
+        
         else {
           if (lanSpace.getOutcomeMoney(chestIndex)<0) {
            body1+=" must pay $"+(-lanSpace.getOutcomeMoney(chestIndex));
