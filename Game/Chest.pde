@@ -9,17 +9,16 @@ class Chest extends BoardSpace{
    outcomes.add("Bank Error");
    outcomes.add("Doctor's Fees");
    outcomes.add("Stock Sale");
-   //outcomes.add("Free Jail Bail");
-   //outcomes.add("Go to Jail");
+   outcomes.add("Go to Jail");
    outcomes.add("Opera Night");
    outcomes.add("Christmas");
    outcomes.add("Tax Refund");
-   //outcomes.add("Birthday");
+   outcomes.add("Birthday");
    outcomes.add("Insurance End");
    outcomes.add("Hospital Fees");
    outcomes.add("School Fees");
    outcomes.add("Consultancy Fee");
-   //outcomes.add("Street Repairs");
+   outcomes.add("Street Repairs");
    outcomes.add("Beauty Contest");
    outcomes.add("Inheritance");
     
@@ -27,17 +26,16 @@ class Chest extends BoardSpace{
    outcomeMoney.add(200);
    outcomeMoney.add(-50);
    outcomeMoney.add(50);
-   //JAIL CARD
-   //JAIL CARD
+   outcomeMoney.add(0); //placeholder for jail
    outcomeMoney.add(50);
    outcomeMoney.add(100);
    outcomeMoney.add(20);
-   //collect 10 from every player
+   outcomeMoney.add(10);
    outcomeMoney.add(100);
    outcomeMoney.add(-50);
    outcomeMoney.add(-50);
    outcomeMoney.add(25);
-   //40 per house 115 per hotel
+   outcomeMoney.add(40);
    outcomeMoney.add(10);
    outcomeMoney.add(100);
   }

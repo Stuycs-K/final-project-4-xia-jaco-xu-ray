@@ -1,7 +1,7 @@
 import java.util.*;
 class Player{
   private int balance;
-  private ArrayList<Property> ownedProperty; //This may be better as an arraylist, what do you think?
+  private ArrayList<Property> ownedProperty; 
   private String name;
   private boolean turnStatus;
   private boolean jail;
