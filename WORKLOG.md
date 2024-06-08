@@ -46,6 +46,10 @@ Homework: Continued adding prototype revisions; also added speedIncrease testing
 Classwork: Began utilities class (started on the class itself)
 Homework: Finished implementation of utilities inside the game (but needs more thorough checking). Added stuff like displaying ownership on the board, buying utilities, selling utilities (both when you land on a space and when you are going to be bankrupt). Also modified some of the testing methods so they may not work as intended now--but I am keeping it as it is because those changes would be useful to debug utilities if there are issues. 
 
+## 6/7/24
+Classwork: Began fixing early input as well as weird screen skipping (if you, lets say, hold down the 'y' key).
+Homework: Finished modifying input methods (keyPressed() and keyReleased() in main Game class).
+
 ## Ray Xu
 
 ### 5/22/24
