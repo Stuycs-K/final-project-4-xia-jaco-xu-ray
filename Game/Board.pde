@@ -16,6 +16,7 @@
   private int page;
   private int jailDice;
   private int chestIndex;
+  private int chanceIndex;
   private boolean receivingInput;
   
   Board() {
@@ -91,7 +92,8 @@
     speed = 250;
     page = 0;
     jailDice = 0;
-    chestIndex = (int)(Math.random() * 11);
+    chestIndex = (int)(Math.random() * 16);
+    chanceIndex = (int) (Math.random() * 11);
     //chestIndex = 13; //to test for specific chest card indices
 
   }
@@ -312,76 +314,82 @@
       else if (landedSpace.getType().equals("Chance")){
         Chance lanSpace = (Chance) landedSpace;
         String body1 = player.getName();
-        if (chestIndex==0) {
+        if (chanceIndex==0) {
           body1+=" advances to Go";
           String body2 = "and receives $200.";
           String body3 = "Press c to confirm";
-          cardPrompt("Chance: "+lanSpace.getOutcome(chestIndex), 225, body1, body2, body3, "");
+          cardPrompt("Chance: "+lanSpace.getOutcome(chanceIndex), 225, body1, body2, body3, "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
             player.setPosition(0);
             player.changeBalance(200);
             buyScreen = !buyScreen;
-            chestIndex = (int)(Math.random() * 11);
+            chanceIndex = (int) (Math.random() * 11);
             activePlayer++;
           }
         }
-        else if (chestIndex==1) {
+        else if (chanceIndex==1) {
           body1+=" goes to Illinois Ave";
           String body3 = "Press c to confirm";
-          cardPrompt("Chance: "+lanSpace.getOutcome(chestIndex), 225, body1, body3, "", "");
+          cardPrompt("Chance: "+lanSpace.getOutcome(chanceIndex), 225, body1, body3, "", "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
+            if (player.getPos()>24) {
+             player.changeBalance(200); 
+            }
             player.setPosition(24);
-            chestIndex = (int)(Math.random() * 11);
+            chanceIndex = (int)(Math.random() * 11);
             return;
           }
         }
-        else if (chestIndex==2) {
+        else if (chanceIndex==2) {
           body1+=" goes to St Charles Pl";
           String body3 = "Press c to confirm";
-          cardPrompt("Chance: "+lanSpace.getOutcome(chestIndex), 225, body1, body3, "", "");
+          cardPrompt("Chance: "+lanSpace.getOutcome(chanceIndex), 225, body1, body3, "", "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
+            if (player.getPos()>11) {
+             player.changeBalance(200); 
+            }
             player.setPosition(11);
-            chestIndex = (int)(Math.random() * 11);
+            chanceIndex = (int)(Math.random() * 11);
             return;
           }
         }
-        else if (chestIndex==8) {
+        else if (chanceIndex==8) {
           body1+=" goes to Boardwalk";
           String body3 = "Press c to confirm";
-          cardPrompt("Chance: "+lanSpace.getOutcome(chestIndex), 225, body1, body3, "", "");
+          cardPrompt("Chance: "+lanSpace.getOutcome(chanceIndex), 225, body1, body3, "", "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
             player.setPosition(39);
-            chestIndex = (int)(Math.random() * 11);
+            chanceIndex = (int)(Math.random() * 11);
             return;
           }
         }
-        else if (chestIndex==9) {
+        else if (chanceIndex==9) {
           body1+=" is now Chairman!";
           String body2 = "Pay $50 to each player";
           String body3 = "Press c to confirm";
-          cardPrompt("Chance: "+lanSpace.getOutcome(chestIndex), 225, body1, body2, body3, "");
+          cardPrompt("Chance: "+lanSpace.getOutcome(chanceIndex), 225, body1, body2, body3, "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
             player.changeBalance(-50*(playerlist.size()-1));
             for (int i  = 0; i<playerlist.size(); i++) {
               if (i!=activePlayer) {
-                playerlist.get(i).changeBalance(10);
+                playerlist.get(i).changeBalance(50);
               }
             }
             buyScreen = !buyScreen;
-            chestIndex = (int)(Math.random() * 11);
+            chanceIndex = (int)(Math.random() * 11);
             activePlayer++;
           }
         }
-        else if (chestIndex==6) {
+        else if (chanceIndex==6) {
           body1+=" pays $25 for every house,";
           String body2 = "$100 for every hotel owned.";
           String body3 = "Press c to confirm";
-          cardPrompt("Chance: "+lanSpace.getOutcome(chestIndex), 225, body1, body2, body3, "");
+          cardPrompt("Chance: "+lanSpace.getOutcome(chanceIndex), 225, body1, body2, body3, "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
             int tsum = 0;
@@ -394,50 +402,50 @@
             }
             player.changeBalance(-tsum);
             buyScreen = !buyScreen;
-            chestIndex = (int)(Math.random() * 11);
+            chanceIndex = (int)(Math.random() * 11);
             activePlayer++;
           }
         }
-        else if (chestIndex==4) {
+        else if (chanceIndex==4) {
           body1+=" goes back 3 spaces";
           String body3 = "Press c to confirm";
-          cardPrompt("Chance: "+lanSpace.getOutcome(chestIndex), 225, body1, body3, "", "");
+          cardPrompt("Chance: "+lanSpace.getOutcome(chanceIndex), 225, body1, body3, "", "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
             player.setPosition(player.getPos()-3);
-            chestIndex = (int)(Math.random() * 11);
+            chanceIndex = (int)(Math.random() * 11);
             return;
           }
         }
-        else if (chestIndex==5) {
+        else if (chanceIndex==5) {
           body1+=" is in Jail!";
           String body2 = "Press c to confirm";
-          cardPrompt("Chance: "+lanSpace.getOutcome(chestIndex), 225, body1, body2, "", "");
+          cardPrompt("Chance: "+lanSpace.getOutcome(chanceIndex), 225, body1, body2, "", "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
             player.setPosition(30);
             jail(player);
-            chestIndex = (int)(Math.random() * 11);
+            chanceIndex = (int)(Math.random() * 11);
             return;
           }
         }
         else {
-          if (lanSpace.getOutcomeMoney(chestIndex)<0) {
-           body1+=" must pay $"+(-lanSpace.getOutcomeMoney(chestIndex));
+          if (lanSpace.getOutcomeMoney(chanceIndex)<0) {
+           body1+=" must pay $"+(-lanSpace.getOutcomeMoney(chanceIndex));
           }
           else {
-            body1+=" earns $"+lanSpace.getOutcomeMoney(chestIndex);
+            body1+=" earns $"+lanSpace.getOutcomeMoney(chanceIndex);
           }
           String body2 = "Press c to confirm";
-          cardPrompt("Chest: "+lanSpace.getOutcome(chestIndex), 225, body1, body2, "", "");
+          cardPrompt("Chest: "+lanSpace.getOutcome(chanceIndex), 225, body1, body2, "", "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
-            player.changeBalance(lanSpace.getOutcomeMoney(chestIndex));
+            player.changeBalance(lanSpace.getOutcomeMoney(chanceIndex));
             if (player.getBalance()<0) {
               return; 
             }
             buyScreen = !buyScreen;
-            chestIndex = (int)(Math.random() * 11);
+            chanceIndex = (int)(Math.random() * 11);
             activePlayer++;
           }
         }
@@ -455,7 +463,7 @@
             player.setPosition(0);
             player.changeBalance(200);
             buyScreen = !buyScreen;
-            chestIndex = (int)(Math.random() * 11);
+            chestIndex = (int)(Math.random() * 16);
             activePlayer++;
           }
         }
@@ -476,7 +484,7 @@
             }
             player.changeBalance(-tsum);
             buyScreen = !buyScreen;
-            chestIndex = (int)(Math.random() * 11);
+            chestIndex = (int)(Math.random() * 16);
             activePlayer++;
           }
         }
@@ -494,7 +502,7 @@
               }
             }
             buyScreen = !buyScreen;
-            chestIndex = (int)(Math.random() * 11);
+            chestIndex = (int)(Math.random() * 16);
             activePlayer++;
           }
         }
@@ -513,7 +521,7 @@
               }
             }
             buyScreen = !buyScreen;
-            chestIndex = (int)(Math.random() * 11);
+            chestIndex = (int)(Math.random() * 16);
             activePlayer++;
           }
         }
@@ -525,7 +533,7 @@
             key = 0;
             player.setPosition(30);
             jail(player);
-            chestIndex = (int)(Math.random() * 11);
+            chestIndex = (int)(Math.random() * 16);
             return;
             //activePlayer++;
           }
@@ -548,7 +556,7 @@
               return; // so it doesnt go to the next player just yet
             }
             buyScreen = !buyScreen;
-            chestIndex = (int)(Math.random() * 11);
+            chestIndex = (int)(Math.random() * 16);
             activePlayer++;
           }
         }
