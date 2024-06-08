@@ -102,3 +102,6 @@ Homework: Updated chest cards (go to go, opera night).
 
 ### 6/7/24
 Classwork: Finished implementing all chest cards wanted in-game (except get out of jail free).
+
+### 6/8/24
+Homework: Added Chance card spaces, tested and verified their functionality. 
