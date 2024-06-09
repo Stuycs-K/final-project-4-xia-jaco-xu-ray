@@ -16,12 +16,14 @@ Monopoly is a popular board game in which players aim to become wealthy by buyin
 1. The game starts with asking how many players will be playing (2-4). Press key on keyboard corresponding to a number in that range.
 2. The game then begins automatically. Note that the players' balances are always displayed in the upper left corner, and the current dice roll is displayed on the lower left corner.
 3. If a player lands on an empty space, nothing will happen and the next player will automatically go.
-4. If a player lands on jail, they will be jailed for 3 rounds unless they bail out through monetary ($50) means or luck (rolling a 4 is equivalent to chances of rolling a double).
-5. If a player lands on a property or utility, they are able to purchase or skip. If a player does not have enough money, they will not be able to purchase the space.
-6. If a player lands on an owned utility, the player will pay whatever they roll multiplied by 4 or multiplied by 10. If the owner of the utility has both utilities, the active player will pay 10 times whatever they roll, otherwise, if the owner only has one, the player will pay 4 times whatever they roll.  
-7. If a player lands on a Chance or Chest space, they will be prompted with a random instruction. This can involve monetary compensation and/or movement around the board.
-8. If a player runs out of cash, they will be prompted to sell owned property (note that players can sell houses, hotels, and Streets separately). If such selling does not bring the player's balance back to net positive, the player is bankrupt and out of the game.
-9. When a player passes or lands on 'Go,' they receive monetary compensation ($200).
+4. When a player lands on a non-empty space, they will be prompted the landed space's associated action. The player must input corresponding keyboard inputs (such as 'y' or 'n' which correspond with yes or no). Instructions 5-9 illustrate some of the actions that a player might encounter. 
+5. If a player lands on jail, they will be jailed for 3 rounds unless they bail out through monetary ($50) means or luck (rolling a 4 is equivalent to chances of rolling a double).
+6. If a player lands on a property or utility, they are able to purchase or skip. If a player does not have enough money, they will not be able to purchase the space.
+7. If a player lands on an owned utility, the player will pay whatever they roll multiplied by 4 or multiplied by 10. If the owner of the utility has both utilities, the active player will pay 10 times whatever they roll, otherwise, if the owner only has one, the player will pay 4 times whatever they roll.  
+8. If a player lands on a Chance or Chest space, they will be prompted with a random instruction. This can involve monetary compensation and/or movement around the board.
+9. If a player runs out of cash, they will be prompted to sell owned property (note that players can sell houses, hotels, and Streets separately). If such selling does not bring the player's balance back to net positive, the player is bankrupt and out of the game.
+10. When a player passes or lands on 'Go,' they receive monetary compensation ($200).
+11. When there is only one player remaining, the player wins and the game ends.
 
 
 
