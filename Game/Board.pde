@@ -139,7 +139,7 @@
   void run(boolean showBuyScreen, Player player) {
     if (disruption) {
       for (int i = 0; i<playerlist.size(); i++) {
-        playerlist.get(1).setPosition(7); //FOR MEDITERRANEAN AVENUE
+        playerlist.get(1).setPosition(1); //FOR MEDITERRANEAN AVENUE
       }
     }
     if (jailDisruption) {
@@ -585,7 +585,7 @@
               activePlayer++;
               lanSpace.setOccupied(true);
               lanSpace.setOccupied(player);}
-              //} else {
+              //} else {r
             //  cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: $"+player.getBalance());
             //}
           } else if (!receivingInput && key=='n' || key=='N') {
@@ -649,13 +649,13 @@
               text(arrows,width/2,height/2+175);
               textAlign(BASELINE);
             }
-            if(10+(10*page)<playerProperty.size()&&(page==0||page==1)&&keyPressed && key=='.'){
+            if(10+(10*page)<playerProperty.size()&&(page==0||page==1)&&!receivingInput && key=='.'){
+              key = 0;
               page++;
-              delay(250);
             }
             else if((page==1||page==2)&& !receivingInput && key==','){
+              key = 0;
               page--;
-              delay(250);
             }
             for (int i = 0; i<10&&i+(page*10)<playerProperty.size(); i++) { // change bounds of loop to work with the pages implementation
               textAlign(CENTER);
@@ -1045,9 +1045,15 @@
   
   void multipleProperty(){
     Player p = playerlist.get(activePlayer);
+    if(p.getProperty()!=null){
+      return;
+    }
     for(int i = 0; i<spaces.length; i++){
      if(spaces[i].getType().equals("Street")){
-      p.addProperty((Street)spaces[i]); 
+      Street s = (Street)spaces[i];
+      p.addProperty(s); 
+      s.setOccupied(p);
+      s.setOccupied(true);
      }
     }
     p.changeBalance(-1*p.getBalance()-1);
