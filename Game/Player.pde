@@ -30,7 +30,7 @@ class Player{
   }
   
   
-  ArrayList<Property> getProperty() { // should be String
+  ArrayList<Property> getProperty() {
     return ownedProperty;
   }
   

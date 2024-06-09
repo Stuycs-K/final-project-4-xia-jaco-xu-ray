@@ -26,7 +26,7 @@ class Chest extends BoardSpace{
    outcomeMoney.add(200);
    outcomeMoney.add(-50);
    outcomeMoney.add(50);
-   outcomeMoney.add(0); //placeholder for jail
+   outcomeMoney.add(0); 
    outcomeMoney.add(50);
    outcomeMoney.add(100);
    outcomeMoney.add(20);
