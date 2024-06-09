@@ -50,6 +50,19 @@ void keyPressed(){
     mainBoard.speedIncrease();
   }
   
+  if(key=='['){
+    mainBoard.util1();
+  }
+  if(key==']'){
+    mainBoard.util2();
+  }
+  if(key==';'){
+    mainBoard.tpChance();
+  }
+  if(key==':'){
+    mainBoard.tpChest();
+  }
+  
   else{
     mainBoard.changeInputStatus(true);
   }

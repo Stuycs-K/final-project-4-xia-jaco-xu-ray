@@ -440,7 +440,7 @@
             body1+=" earns $"+lanSpace.getOutcomeMoney(chanceIndex);
           }
           String body2 = "Press c to confirm";
-          cardPrompt("Chest: "+lanSpace.getOutcome(chanceIndex), 225, body1, body2, "", "");
+          cardPrompt("Chance: "+lanSpace.getOutcome(chanceIndex), 225, body1, body2, "", "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
             player.changeBalance(lanSpace.getOutcomeMoney(chanceIndex));
@@ -1045,9 +1045,6 @@
   
   void multipleProperty(){
     Player p = playerlist.get(activePlayer);
-    if(p.getProperty()!=null){
-      return;
-    }
     for(int i = 0; i<spaces.length; i++){
      if(spaces[i].getType().equals("Street")){
       Street s = (Street)spaces[i];
@@ -1058,6 +1055,30 @@
     }
     p.changeBalance(-1*p.getBalance()-1);
     run(true,p);
+  }
+  
+  void util1(){
+    buyScreen = true;
+    Player p = playerlist.get(activePlayer);
+    p.setPosition(12);
+  }
+  
+ void util2(){
+    buyScreen = true;
+    Player p = playerlist.get(activePlayer);
+    p.setPosition(28);
+  }
+  
+  void tpChance(){
+    buyScreen = true;
+    Player p = playerlist.get(activePlayer);
+    p.setPosition(7);
+  }
+  
+  void tpChest(){
+    buyScreen = true;
+    Player p = playerlist.get(activePlayer);
+    p.setPosition(2);
   }
   
 }
