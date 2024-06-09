@@ -139,7 +139,7 @@
   void run(boolean showBuyScreen, Player player) {
     if (disruption) {
       for (int i = 0; i<playerlist.size(); i++) {
-        playerlist.get(1).setPosition(1); //FOR MEDITERRANEAN AVENUE
+        playerlist.get(1).setPosition(7); //FOR MEDITERRANEAN AVENUE
       }
     }
     if (jailDisruption) {
@@ -377,8 +377,11 @@
                 playerlist.get(i).changeBalance(50);
               }
             }
-            buyScreen = !buyScreen;
             chanceIndex = (int)(Math.random() * 11);
+            if(player.getBalance()<0){
+              return;
+            }
+            buyScreen = !buyScreen;
             activePlayer++;
           }
         }
@@ -398,8 +401,11 @@
               }
             }
             player.changeBalance(-tsum);
-            buyScreen = !buyScreen;
             chanceIndex = (int)(Math.random() * 11);
+            if(player.getBalance()<0){
+              return;
+            }
+            buyScreen = !buyScreen;
             activePlayer++;
           }
         }
@@ -479,9 +485,12 @@
                tsum += cspace.getHotels()*115;
               }
             }
-            player.changeBalance(-tsum);
-            buyScreen = !buyScreen;
             chestIndex = (int)(Math.random() * 16);
+            player.changeBalance(-tsum);
+            if(player.getBalance()<0){
+              return;
+            }
+            buyScreen = !buyScreen;
             activePlayer++;
           }
         }
