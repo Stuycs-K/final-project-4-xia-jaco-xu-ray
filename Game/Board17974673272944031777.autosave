@@ -440,7 +440,7 @@
             body1+=" earns $"+lanSpace.getOutcomeMoney(chanceIndex);
           }
           String body2 = "Press c to confirm";
-          cardPrompt("Chance: "+lanSpace.getOutcome(chanceIndex), 225, body1, body2, "", "");
+          cardPrompt("Chest: "+lanSpace.getOutcome(chanceIndex), 225, body1, body2, "", "");
           if (!receivingInput && key=='c' || key=='C') {
             key = 0;
             player.changeBalance(lanSpace.getOutcomeMoney(chanceIndex));
@@ -707,9 +707,9 @@
               if (activePlayer==playerlist.size()-1) { // if activePlayer was index 3 (out of four players) then the next index/player should be 0
                 activePlayer = 0; // if activePlayer is 0,1,2 (out of four players/indices 0,1,2,3), removing the player will be fine because everything is shifted down
               }
-              //else {
-              // activePlayer++; 
-              //}
+              else {
+               activePlayer++; 
+              }
               playerlist.remove(player);
               buyScreen = !buyScreen;
             }
@@ -962,7 +962,7 @@
             }
           }
           else {
-            cardPrompt("Jail",225,"You didn't roll a 4. You rolled a "+jailDice+".","You're still in jail","Press y to continue","");
+            cardPrompt("Jail",225,"You didn't roll a 4","You're still in jail","Press y to continue","");
             if (!receivingInput && key=='y' || key=='Y') {
               key = 0;
               player.setJail(true);
@@ -1039,8 +1039,8 @@
   void onePlayerJail(){
     buyScreen = true;
     Player p = playerlist.get(activePlayer);
-    p.setPosition(30);
-    return;
+    p.setPosition(2);
+    //jail(p);
   }
   
   void multipleProperty(){
@@ -1055,30 +1055,6 @@
     }
     p.changeBalance(-1*p.getBalance()-10000);
     run(true,p);
-  }
-  
-  void util1(){
-    buyScreen = true;
-    Player p = playerlist.get(activePlayer);
-    p.setPosition(12);
-  }
-  
- void util2(){
-    buyScreen = true;
-    Player p = playerlist.get(activePlayer);
-    p.setPosition(28);
-  }
-  
-  void tpChance(){
-    buyScreen = true;
-    Player p = playerlist.get(activePlayer);
-    p.setPosition(7);
-  }
-  
-  void tpChest(){
-    buyScreen = true;
-    Player p = playerlist.get(activePlayer);
-    p.setPosition(2);
   }
   
 }
