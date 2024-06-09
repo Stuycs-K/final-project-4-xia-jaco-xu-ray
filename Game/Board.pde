@@ -1053,7 +1053,7 @@
       s.setOccupied(true);
      }
     }
-    p.changeBalance(-1*p.getBalance()-1);
+    p.changeBalance(-1*p.getBalance()-10000);
     run(true,p);
   }
   
