@@ -1,3 +1,4 @@
+import java.util.*;
 class Chest extends BoardSpace{
   
   private ArrayList<String> outcomes = new ArrayList<String>();

@@ -3,7 +3,7 @@
 
 ## Group Info
 
-**THE MONOPOLY ELEPHANTS**:
+**THE MONOPOLY ELEPHANTS**:   
 Jaco Xia & Ray Xu   
 PD 4   
 
@@ -23,22 +23,30 @@ Monopoly is a popular board game in which players aim to become wealthy by buyin
 8. If a player runs out of cash, they will be prompted to sell owned property (note that players can sell houses, hotels, and Streets separately). If such selling does not bring the player's balance back to net positive, the player is bankrupt and out of the game.
 9. When a player passes or lands on 'Go,' they receive monetary compensation ($200).
 
-
-
 ## Shortcuts
 
 *Note, you must start the game with 2-4 players to use majority of these shortcuts.
 
-'z' to deduct all players' balances by $200.  
-'t' to teleport all players to a random space on the board.   
-'d' to disrupt regular gameplay flow: shows sell/upgrade functionality for space Med(iterranean) Ave for a single player.   
+'z' to deduct all players' balances by $200  
+'t' to teleport all players to a random space on the board
+'d' to disrupt regular gameplay flow: shows sell/upgrade functionality for space Med(iterranean) Ave for a single player
 'j' to disrupt regular gameplay flow: puts ALL players in jail INDEFINITELY (to showcase the jail prompts quicker)   
 'q' to disrupt regular gameplay flow: shows functionality for jail sequence for ONE player  
-'w' to see cycling through properties, selling property, and bankruptcy!  
+'w' to see cycling through properties, selling property, and bankruptcy
 'e' to disrupt regular gameplay flow: shows functionality for tax and bankruptcy  
 'r' to RESET BOARD  
 '+' to increase game speed  
-'[' to TP active player to utility 1  (note, if a player owns both utilities, other players will have to pay 10x whatever they roll)
-']' to TP active player to utility 2  (note, if a player owns both utilities, other players will have to pay 10x whatever they roll)
-';' to TP active player to chance card  
-':' to TP active player to community chest card  
+'[' to TP active player to utility 1  (note, if a player owns both utilities, other players will have to pay 10x whatever they roll)    
+']' to TP active player to utility 2  (note, if a player owns both utilities, other players will have to pay 10x whatever they roll)    
+';' to TP active player to chance card     
+':' to TP active player to community chest card     
+
+## Bugs
+
+After thorough testing, no outstanding bugs were discovered. HOWEVER, if disruptions/shortcuts are spammed, it's likely that the game may overload.  
+IF the game is overloaded, utilise the 'r' shortcut to reset the game. This should reset all disruptions and restart the game.  
+If 'r' does not work, the game may have to be reconfigured manually via the terminal or Processing.  
+
+## Documents
+**VIDEO:** https://drive.google.com/file/d/11U3IAbQwAKN7CFTutAbGogd8_w-ngD5S/view?usp=sharing   
+**PROTOTYPE DOCUMENT**: https://docs.google.com/document/d/1XoQ_iM9c6MeDP4B-3HUv67_R85Tj_C4fzxe5mEb3M1Y/edit?usp=sharing   

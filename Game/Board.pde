@@ -277,9 +277,6 @@
                   lanSpace.updateRent();
                   buyScreen = !buyScreen;
                   activePlayer++;}
-                  //} else {
-                //  cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: $"+player.getBalance());
-                //}
               }
             }
             if (!receivingInput && key=='n' || key=='N') {
@@ -541,7 +538,6 @@
             jail(player);
             chestIndex = (int)(Math.random() * 16);
             return;
-            //activePlayer++;
           }
         }
         else {
@@ -585,9 +581,6 @@
               activePlayer++;
               lanSpace.setOccupied(true);
               lanSpace.setOccupied(player);}
-              //} else {r
-            //  cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: $"+player.getBalance());
-            //}
           } else if (!receivingInput && key=='n' || key=='N') {
             key = 0;
             buyScreen = false;
@@ -707,9 +700,6 @@
               if (activePlayer==playerlist.size()-1) { // if activePlayer was index 3 (out of four players) then the next index/player should be 0
                 activePlayer = 0; // if activePlayer is 0,1,2 (out of four players/indices 0,1,2,3), removing the player will be fine because everything is shifted down
               }
-              //else {
-              // activePlayer++; 
-              //}
               playerlist.remove(player);
               buyScreen = !buyScreen;
             }
@@ -755,7 +745,7 @@
         int pos = player.getPos();
         int x;
         int y;
-        if (pos < 11) { // these if statements will just find the x and y pos on the board
+        if (pos < 11) {
           x = width/22 + (pos * sqLength);
           y = width/22;
         } else if (pos < 21) {
@@ -925,7 +915,6 @@
   }
   
   void jail(Player player){
-      //if (player.jailCount()==0) {
       if (player.jailCount()<3){
         if (player.jailScreen()) {
           String body1 = player.getName()+" is in jail!";
@@ -1008,8 +997,6 @@
       for (int i = 0; i<playerlist.size(); i++) {
         playerlist.get(i).setPosition(temp);
       }
-      //drawBoard();
-      //drawPlayer();
       draw();
     }
   }
