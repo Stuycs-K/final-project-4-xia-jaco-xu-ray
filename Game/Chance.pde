@@ -1,3 +1,4 @@
+import java.util.*;
 class Chance extends BoardSpace{
   
   private ArrayList<String> outcomes = new ArrayList<String>();

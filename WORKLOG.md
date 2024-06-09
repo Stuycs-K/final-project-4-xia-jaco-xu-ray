@@ -105,3 +105,6 @@ Classwork: Finished implementing all chest cards wanted in-game (except get out 
 
 ### 6/8/24
 Homework: Added Chance card spaces, tested and verified their functionality. 
+
+### 6/9/24
+Homework: Cleaned up comments on code; updated UML diagram, prototype document, created demo video.

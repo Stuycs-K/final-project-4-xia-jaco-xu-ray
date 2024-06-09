@@ -24,7 +24,7 @@ class Utility extends Property{
       preventOverload = false;
     }
     return super.getPrice();
-  } // note to self, maybe add methods in Property class like update price (for selling purposes) and override thes emethods in property.
+  } 
   
   void stopRandomizing(boolean status){
    preventOverload = status; 
