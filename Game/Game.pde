@@ -40,8 +40,6 @@ void keyPressed(){
   
   if(key=='w'){
     mainBoard.multipleProperty();
-
-    //delay(400);
   }
   
   if(key=='r'){

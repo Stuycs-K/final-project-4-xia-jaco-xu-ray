@@ -15,10 +15,10 @@ class Street extends Property{
   int getHouses(){
     return houses;
   }
-  int getHotels(){ // Updated the diagram with this method - Ray [DELETE AFTER SEEN]
+  int getHotels(){ 
     return hotels;
   }
-  void setHouses(int amount){ // Updated the diagram with these parameters - Ray [DELETE AFTER SEEN]
+  void setHouses(int amount){ 
     houses=amount;
   }
   void setHotels(int amount){
@@ -28,11 +28,11 @@ class Street extends Property{
     return col;
   }
   
-  void updateRent(){  // havent updated the diagram for the three following methods - Jaco
+  void updateRent(){  
     super.setPrice(determineNextRent());
   }
   
-  void sellUpdatePrice(){ // sells house and updates price accordingly
+  void sellUpdatePrice(){ 
     if(getHotels()==1){
        super.whoOccupied.changeBalance(buyPrice()/2);
        setHotels(0);

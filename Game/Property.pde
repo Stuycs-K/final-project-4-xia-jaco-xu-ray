@@ -16,7 +16,7 @@ class Property extends BoardSpace{
     return rentPrice;
   }
   
-  void setPrice(int newPrice){  // havent updated the diagram for the following method - Jaco
+  void setPrice(int newPrice){  
     rentPrice = newPrice;
   }
   
@@ -24,7 +24,7 @@ class Property extends BoardSpace{
     return buyPrice;
   }
   
-  void setBuyPrice(int price){ // have not updated the diagram yet -- Jaco
+  void setBuyPrice(int price){ 
     buyPrice = price;
   }
   
@@ -43,8 +43,4 @@ class Property extends BoardSpace{
   void setOccupied(boolean status){
     occupied = status;
   }
-  
-  //String getType(){ //Added this method and added it to diagram - Ray [DELETE AFTER SEEN] keep it in boardspace - Jaco
-  //  return type;
-  //}
 }

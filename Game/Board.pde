@@ -94,8 +94,6 @@
     jailDice = 0;
     chestIndex = (int)(Math.random() * 16);
     chanceIndex = (int) (Math.random() * 11);
-    //chestIndex = 13; //to test for specific chest card indices
-
   }
 
   void draw() {
@@ -205,7 +203,6 @@
             cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: $"+player.getBalance());
           }
           if (!receivingInput && key=='y' || key=='Y') {
-            //receivingInput = true;
             key = 0;
             if (player.getBalance()>=lanSpace.buyPrice()) {
               player.changeBalance(-lanSpace.buyPrice());
@@ -215,7 +212,7 @@
               lanSpace.setOccupied(true);
               lanSpace.setOccupied(player);
               lanSpace.updateRent();
-              lanSpace.updateBuyPrice(); // houses and hotels are constant for the "row"
+              lanSpace.updateBuyPrice(); 
             }
           } else if (!receivingInput && key=='n' || key=='N') {
             buyScreen = !buyScreen;
@@ -280,7 +277,7 @@
                   lanSpace.updateRent();
                   buyScreen = !buyScreen;
                   activePlayer++;}
-                //} else {
+                  //} else {
                 //  cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: $"+player.getBalance());
                 //}
               }
@@ -453,7 +450,7 @@
       else if (landedSpace.getType().equals("Chest")) {
         Chest lanSpace = (Chest)landedSpace;
         String body1 = player.getName();
-        if (chestIndex==0) { //Go to Go card index
+        if (chestIndex==0) { 
           body1+=" advances to Go";
           String body2 = "and receives $200.";
           String body3 = "Press c to confirm";
@@ -579,7 +576,7 @@
               activePlayer++;
               lanSpace.setOccupied(true);
               lanSpace.setOccupied(player);}
-            //} else {
+              //} else {
             //  cardPrompt(landedSpace.toString(), 225, "No money!", "", "", player.getName()+"'s balance: $"+player.getBalance());
             //}
           } else if (!receivingInput && key=='n' || key=='N') {
@@ -625,92 +622,6 @@
         }
       }
     }
-    //else if (landedSpace.getType().equals("Street")){
-    //  Street lanSpace = (Street) landedSpace;
-    //  if ((lanSpace.isOccupied() && lanSpace.getOccupier()!=player) || !lanSpace.isOccupied()) {
-    //    ArrayList<Property> playerProperty = player.getProperty();
-    //      if(player.getProperty().size()>0){
-    //        String body1 = "You must sell property!";
-    //        String body2 = "Houses/Hotels will be sold first";
-    //        cardPrompt(player.getName(),225,body1,body2,"","");
-    //        if(playerProperty.size()>10&&page==0){
-    //          String arrows = "Next(.)";
-    //          textAlign(CENTER);
-    //          text(arrows,width/2,height/2+175);
-    //          textAlign(BASELINE);
-    //        }
-    //        else if(page>0){
-    //          String arrows = "(,)Prev   Next(.)";
-    //          textAlign(CENTER);
-    //          text(arrows,width/2,height/2+175);
-    //          textAlign(BASELINE);
-    //        }
-    //        if(10+(10*page)<playerProperty.size()&&(page==0||page==1)&&keyPressed && key=='.'){
-    //          page++;
-    //          delay(250);
-    //        }
-    //        else if((page==1||page==2)&& keyPressed && key==','){
-    //          page--;
-    //          delay(250);
-    //        }
-    //        for (int i = 0; i<10&&i+(page*10)<playerProperty.size(); i++) { // change bounds of loop to work with the pages implementation
-    //          textAlign(CENTER);
-    //          textSize(20);
-    //          text(playerProperty.get(i+(page*10)).toString()+" ["+i+"]", width/2, height/2-(70-(20*i)));
-    //          textAlign(BASELINE);
-    //        }
-    //        if (keyPressed && Character.isDigit(key) && key-48<playerProperty.size()) { // character 0 is 48 in ascii
-    //          Street temp = (Street)playerProperty.get((page*10)+key-48);
-    //          temp.sellUpdatePrice();
-    //          key = 0; // null
-    //          textAlign(CENTER);
-    //          fill(7, 200, 7);
-    //          textSize(50);
-    //          text("Sold!", width/2, height/2+175);
-    //          fill(0);
-    //          textAlign(BASELINE);
-    //        }
-    
-    //        if (player.getBalance()>0) {
-    //          buyScreen = !buyScreen;
-    //          activePlayer++;
-    //        }
-    //      }
-    //     else {
-    //      String body1 = "You have no more property to sell";
-    //      String body2 = player.getName()+" is bankrupt!";
-    //      String body3 = "Press y to continue";
-    //      if (playerlist.size()==2) {
-    //        if (activePlayer==0) {
-    //          body3 =  playerlist.get(1).getName()+" won!";
-    //        }
-    //        else {
-    //         body3 =  playerlist.get(0).getName()+" won!"; 
-    //        }
-    //        playerlist.remove(player);
-    //        cardPrompt(player.getName(), 225, body1, body2, body3, "");
-    //      }
-    //      else {
-    //        cardPrompt(player.getName(), 225, body1, body2, body3, "");
-    //        if (keyPressed && key=='y' || key=='Y') {
-    //          if (activePlayer==playerlist.size()-1) { // if activePlayer was index 3 (out of four players) then the next index/player should be 0
-    //            activePlayer = 0; // if activePlayer is 0,1,2 (out of four players/indices 0,1,2,3), removing the player will be fine because everything is shifted down
-    //          }
-    //          else {
-    //           activePlayer++; 
-    //          }
-    //          playerlist.remove(player);
-    //          buyScreen = !buyScreen;
-    //        }
-    //      }
-    //    }
-    //  }
-    //  else {
-    //     buyScreen = false;
-    //     activePlayer++;
-    //     return;
-    //  }
-    //}
     else{
         ArrayList<Property> playerProperty = player.getProperty();
           if(player.getProperty().size()>0){
@@ -752,7 +663,7 @@
                 Utility temp = (Utility)playerProperty.get((page*10)+key-48);
                 temp.sellUtility();
               }
-              key = 0; // null
+              key = 0; 
               textAlign(CENTER);
               fill(7, 200, 7);
               textSize(50);
@@ -827,11 +738,10 @@
   }
 
   void drawPlayer() {
-    //drawBoard();
     strokeWeight(1);
     for (int i = 0; i<playerlist.size(); i++) {
       Player player = playerlist.get(i);
-      if (!player.isBankrupt()) { // is the player bankrupt?
+      if (!player.isBankrupt()) {
         int sqLength = width/11;
         int pos = player.getPos();
         int x;
@@ -849,7 +759,7 @@
           x = (sqLength/2);
           y = (height - (sqLength/2)) - (sqLength * (pos - 30));
         } else {
-          System.out.println("not in bounds"); // just to run through for errors; can delete later or can keep
+          System.out.println("not in bounds"); 
           return;
         }
         if (player.getName().equals("Player 1")) { // set the color for the player
@@ -884,14 +794,13 @@
           fill(252, 142, 172);
           text(player.getName()+" balance: $"+player.getBalance(), width/11+20, ((height/11)+30)+(i*20));
         }
-        //add more colors for more players
-        circle(x, y, 10); // CAN EDIT LATER FOR DIFFERENT DESIGN "peg"
+        circle(x, y, 10); 
       }
     }
   }
 
   void drawBoard() {
-    background(205, 230, 208); // change to whatever looks good
+    background(205, 230, 208); 
     int spaceCounter = 0;
     for (int i = 0; i<width; i+=width/11) {
       fill(205, 230, 208);
@@ -964,7 +873,6 @@
       }
     }
     for (int i = 0; i<width; i+=width/11) {
-      //if (!spaces[spaceCounter].toString().equals("empty")) {
       textSize(10);
       fill(0);
       textAlign(CENTER);
@@ -978,7 +886,6 @@
     }
     spaceCounter=0;
     for (int i = width; i>0; i-=width/11) {
-      //if (!spaces[spaceCounter].toString().equals("empty")) {
       textSize(10);
       fill(0);
       textAlign(CENTER);
@@ -989,7 +896,6 @@
       spaceCounter++;
     }
     
-    //utility names
     Utility u1 = (Utility)spaces[12];
     Utility u2 = (Utility)spaces[28];
     if(u1.isOccupied()){
