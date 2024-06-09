@@ -707,9 +707,9 @@
               if (activePlayer==playerlist.size()-1) { // if activePlayer was index 3 (out of four players) then the next index/player should be 0
                 activePlayer = 0; // if activePlayer is 0,1,2 (out of four players/indices 0,1,2,3), removing the player will be fine because everything is shifted down
               }
-              //else {
-              // activePlayer++; 
-              //}
+              else {
+               activePlayer++; 
+              }
               playerlist.remove(player);
               buyScreen = !buyScreen;
             }
@@ -962,7 +962,7 @@
             }
           }
           else {
-            cardPrompt("Jail",225,"You didn't roll a 4. You rolled a "+jailDice+".","You're still in jail","Press y to continue","");
+            cardPrompt("Jail",225,"You didn't roll a 4","You're still in jail","Press y to continue","");
             if (!receivingInput && key=='y' || key=='Y') {
               key = 0;
               player.setJail(true);
@@ -1039,15 +1039,12 @@
   void onePlayerJail(){
     buyScreen = true;
     Player p = playerlist.get(activePlayer);
-    p.setPosition(30);
-    return;
+    p.setPosition(2);
+    //jail(p);
   }
   
   void multipleProperty(){
     Player p = playerlist.get(activePlayer);
-    if(p.getProperty()!=null){
-      return;
-    }
     for(int i = 0; i<spaces.length; i++){
      if(spaces[i].getType().equals("Street")){
       Street s = (Street)spaces[i];
@@ -1056,7 +1053,7 @@
       s.setOccupied(true);
      }
     }
-    p.changeBalance(-1*p.getBalance()-1);
+    p.changeBalance(-1*p.getBalance()-10000);
     run(true,p);
   }
   
