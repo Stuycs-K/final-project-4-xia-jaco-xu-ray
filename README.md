@@ -35,10 +35,10 @@ Monopoly is a popular board game in which players aim to become wealthy by buyin
 'j' to disrupt regular gameplay flow: puts ALL players in jail INDEFINITELY (to showcase the jail prompts quicker)   
 'q' to disrupt regular gameplay flow: shows functionality for jail sequence for ONE player  
 'w' to see cycling through properties, selling property, and bankruptcy!  
-'e' to disrupt regular gameplay flow: shows functionality for tax and bankruptcy  
-'r' to RESET BOARD  
-'+' to increase game speed  
-'[' to TP active player to utility 1  (note, if a player owns both utilities, other players will have to pay 10x whatever they roll)
-']' to TP active player to utility 2  (note, if a player owns both utilities, other players will have to pay 10x whatever they roll)
+'e' to disrupt regular gameplay flow: shows functionality for tax and bankruptcy   
+'r' to RESET BOARD    
+'+' to increase game speed    
+'[' to TP active player to utility 1  (note, if a player owns both utilities,   other players will have to pay 10x whatever they roll)  
+']' to TP active player to utility 2  (note, if a player owns both utilities,  other players will have to pay 10x whatever they roll)  
 ';' to TP active player to chance card  
 ':' to TP active player to community chest card  
