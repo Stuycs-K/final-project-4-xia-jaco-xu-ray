@@ -30,11 +30,11 @@ Monopoly is a popular board game in which players aim to become wealthy by buyin
 *Note, you must start the game with 2-4 players to use majority of these shortcuts.
 
 'z' to deduct all players' balances by $200  
-'t' to teleport all players to a random space on the board
-'d' to disrupt regular gameplay flow: shows sell/upgrade functionality for space Med(iterranean) Ave for a single player
+'t' to teleport all players to a random space on the board  
+'d' to disrupt regular gameplay flow: shows sell/upgrade functionality for space Med(iterranean) Ave for a single player  
 'j' to disrupt regular gameplay flow: puts ALL players in jail INDEFINITELY (to showcase the jail prompts quicker)   
 'q' to disrupt regular gameplay flow: shows functionality for jail sequence for ONE player  
-'w' to see cycling through properties, selling property, and bankruptcy
+'w' to see cycling through properties, selling property, and bankruptcy  
 'e' to disrupt regular gameplay flow: shows functionality for tax and bankruptcy  
 'r' to RESET BOARD  
 '+' to increase game speed  
